@@ -76,7 +76,6 @@ const FileUpload = () => {
                 )}
             </div>
 
-
         </div>
     );
 };

@@ -4,7 +4,7 @@ import "../styles/uploadPage.css";
 const UploadPage = () => {
     return (
         <div className={"uploadFile"}>
-            <h2 >Excel Upload</h2>
+            <h2 >Excel File Uploader</h2>
             <FileUpload />
         </div>
     );
