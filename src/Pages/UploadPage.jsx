@@ -3,7 +3,7 @@ import "./uploadPage.css";
 
 const UploadPage = () => {
     return (
-        <div className={"uploadFile"} style={{ padding: "40px" }}>
+        <div className={"uploadFile"}>
             <h2>Excel Upload</h2>
             <FileUpload />
         </div>
