@@ -1,8 +1,9 @@
 import FileUpload from "../components/FileUpload";
+import "./uploadPage.css";
 
 const UploadPage = () => {
     return (
-        <div style={{ padding: "40px" }}>
+        <div className={"uploadFile"} style={{ padding: "40px" }}>
             <h2>Excel Upload</h2>
             <FileUpload />
         </div>
