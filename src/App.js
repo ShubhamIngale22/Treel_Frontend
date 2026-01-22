@@ -1,13 +1,11 @@
 import './App.css';
+import UploadPage from "./Pages/UploadPage";
 
 function App() {
   return (
-    <div className="App">
-      <header className="App-header">
-        <h1>TREEL Mobility Solution</h1>
-      </header>
-    </div>
-  );
+    <>
+        <UploadPage/>
+    </>
+  )
 }
-
 export default App;
