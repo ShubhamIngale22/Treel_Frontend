@@ -1,6 +1,7 @@
 import { useState } from "react";
 import api from "../services/api";
 import { validateExcelFile } from "../utils/validateFile";
+import "../styles/fileUpload.css"
 
 const FileUpload = () => {
     const [file, setFile] = useState(null);
@@ -21,12 +22,6 @@ const FileUpload = () => {
         try {
             setLoading(true);
             const res = await api.post("/api/uploadExcel", formData);
-            // const formattedRows=res.data.data.rows.map((row)=>({
-            //     name:row.Name,
-            //     email:row.Email,
-            //     age:row.Age
-            //
-            // }));
             setRows(res.data.data.rows);
             setMessage(res.data.message);
         } catch (err) {
@@ -38,42 +33,50 @@ const FileUpload = () => {
 
     return (
         <div>
-            <input
-                type="file"
-                accept=".xls,.xlsx"
-                onChange={(e) => setFile(e.target.files[0])}
-            />
+            <div className={"uploadBody"}>
+                <input
+                    type="file"
+                    accept=".xls,.xlsx"
+                    onChange={(e) => setFile(e.target.files[0])}
+                />
 
-            <br /><br />
+                <br /><br />
 
-            <button onClick={handleUpload} disabled={loading}>
-                {loading ? "Uploading..." : "Upload"}
-            </button>
+                <button onClick={handleUpload} disabled={loading}>
+                    {loading ? "Uploading..." : "Upload"}
+                </button>
 
-            <p>{message}</p>
+                <p>{message}</p>
+            </div>
 
-            {rows.length>0 && (
-                <table border="1" cellPadding="10" style={{ marginTop: "20px" }}>
-                    <thead>
+            <hr></hr>
+
+            <div className={"resultTable"}>
+                {rows.length>0 && (
+                    <table border="1" cellPadding="10" style={{ marginTop: "20px" }}>
+                        <thead>
                         <tr>
                             {columns.map((col)=>(
                                 <th key={col}>{col.toUpperCase()}</th>
                             ))}
                         </tr>
 
-                    </thead>
-                    <tbody>
+                        </thead>
+                        <tbody>
                         {rows.map((row,rowsIndex)=>(
                             <tr key={rowsIndex}>
                                 {columns.map((col)=>(
                                     <td key={col}>{row[col]}</td>
                                 ))}
                             </tr>
-                            ))
+                        ))
                         }
-                    </tbody>
-                </table>
-            )}
+                        </tbody>
+                    </table>
+                )}
+            </div>
+
+
         </div>
     );
 };

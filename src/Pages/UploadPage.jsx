@@ -1,10 +1,10 @@
 import FileUpload from "../components/FileUpload";
-import "./uploadPage.css";
+import "../styles/uploadPage.css";
 
 const UploadPage = () => {
     return (
         <div className={"uploadFile"}>
-            <h2>Excel Upload</h2>
+            <h2 >Excel Upload</h2>
             <FileUpload />
         </div>
     );
