@@ -1,4 +1,3 @@
-import './App.css';
 import UploadPage from "./Pages/UploadPage";
 
 function App() {

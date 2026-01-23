@@ -1,7 +1,7 @@
 import { useState } from "react";
 import api from "../services/api";
 import { validateExcelFile } from "../utils/validateFile";
-import "../styles/fileUpload.css"
+// import "../styles/fileUpload.css"
 
 const FileUpload = () => {
     const [file, setFile] = useState(null);
@@ -32,29 +32,29 @@ const FileUpload = () => {
     };
 
     return (
-        <div>
-            <div className={"uploadBody"}>
+        <div className="container mt-4">
+
+            <h2 className="fw-semibold mb-3 border-bottom pb-2">Excel File Uploader</h2>
                 <input
                     type="file"
+                    className="form-control mb-3"
                     accept=".xls,.xlsx"
                     onChange={(e) => setFile(e.target.files[0])}
                 />
 
-                <br /><br />
-
-                <button onClick={handleUpload} disabled={loading}>
+                <button  className="btn btn-primary" onClick={handleUpload} disabled={loading}>
                     {loading ? "Uploading..." : "Upload"}
                 </button>
-
-                <p>{message}</p>
+            <div className={`alert ${rows.length ? "alert-success" : "alert-warning"} mt-3`}>
+                {message}
             </div>
 
             <hr></hr>
 
-            <div className={"resultTable"}>
-                {rows.length>0 && (
-                    <table border="1" cellPadding="10" style={{ marginTop: "20px" }}>
-                        <thead>
+            <div className="table-responsive mt-4">
+                {rows.length > 0 && (
+                    <table className="table table-bordered table-striped">
+                        <thead className="table-dark">
                         <tr>
                             {columns.map((col)=>(
                                 <th key={col}>{col.toUpperCase()}</th>
