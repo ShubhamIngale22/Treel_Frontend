@@ -72,7 +72,7 @@ const FileUpload = () => {
                 <input
                     type="file"
                     className="form-control mb-3"
-                    accept=".xls,.xlsx"
+                    accept=".xls,.xlsx,.csv"
                     onChange={e => setFile(e.target.files[0])}
                 />
 

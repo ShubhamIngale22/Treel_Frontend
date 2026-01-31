@@ -2,6 +2,7 @@ export const validateExcelFile = (file) => {
     if (!file) return "Please select a file";
 
     const allowedTypes = [
+        "text/csv",
         "application/vnd.ms-excel",
         "application/vnd.openxmlformats-officedocument.spreadsheetml.sheet",
     ];
