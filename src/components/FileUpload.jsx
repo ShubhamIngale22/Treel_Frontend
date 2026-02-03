@@ -60,7 +60,6 @@ const FileUpload = () => {
             setLoading(false);
         }
     };
-
     return (
         <div className="container mt-5">
             <div className="card shadow p-4">
