@@ -25,14 +25,14 @@ const InstallationsTable = () => {
                         <thead className="table-light">
                         <tr className="text-secondary">
                             <th></th>
-                            <th>Yesterday</th>
-                            <th>1 Month</th>
-                            <th>1 Year</th>
+                            <th className={"fw-semibold"}>Yesterday</th>
+                            <th className={"fw-semibold"}>1 Month</th>
+                            <th className={"fw-semibold"}>1 Year</th>
                         </tr>
                         </thead>
                         <tbody>
                         <tr>
-                            <th className="table-light">Installations</th>
+                            <th className="table-light fw-semibold" >Installations</th>
                             <td className="fw-semibold text-success fs-6">
                                 {data?.yesterday ?? "—"}
                             </td>
@@ -44,7 +44,7 @@ const InstallationsTable = () => {
                             </td>
                         </tr>
                         <tr>
-                            <th className="table-light">Dealers Sell</th>
+                            <th className="table-light fw-semibold">Dealers Sell</th>
                             <td className="text-muted">—</td>
                             <td className="text-muted">—</td>
                             <td className="text-muted">—</td>
