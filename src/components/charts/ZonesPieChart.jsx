@@ -37,10 +37,9 @@ const ZonesPieChart = ({ uploadId }) => {
             animation: {
                 animateRotate: true,
                 animateScale: true,
-                duration: 3000,
+                duration: 2000,
                 easing: "easeInOutCubic"
             },
-
 
             plugins: {
                 legend: {
