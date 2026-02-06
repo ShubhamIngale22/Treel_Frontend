@@ -2,46 +2,60 @@ import {
     Chart as ChartJS,
     BarElement,
     ArcElement,
+    LineElement,
+    PointElement,
     CategoryScale,
     LinearScale,
     Tooltip,
     Legend,
+    Filler
 } from "chart.js";
 
 import ChartDataLabels from "chartjs-plugin-datalabels";
 
 ChartJS.register(
-    BarElement,
-    ArcElement,
     CategoryScale,
     LinearScale,
+
+    BarElement,
+    LineElement,
+    PointElement,
+    ArcElement,
+
     Tooltip,
     Legend,
-    ChartDataLabels
+    ChartDataLabels,
+    Filler
 );
+
+// Optional but recommended
+ChartJS.defaults.plugins.datalabels = {
+    display: false
+};
+
 export const CHART_COLORS = {
-    primary: "#7da2f8",    // soft blue
-    success: "#6fd3b2",    // soft green
-    info: "#7fd6e6",       // soft cyan
-    warning: "#f8d77a",    // soft yellow
-    danger: "#f28b82",     // soft red
-    secondary: "#b0b7c3"   // soft gray
+    primary: "#7da2f8",
+    success: "#6fd3b2",
+    info: "#7fd6e6",
+    warning: "#f8d77a",
+    danger: "#f28b82",
+    secondary: "#b0b7c3"
 };
 
 export const BAR_COLORS_1 = [
-    "#7da2f8",  // soft blue
-    "#6fd3b2",  // soft green
-    "#7fd6e6",  // soft cyan
-    "#f8d77a",  // soft yellow
-    "#f28b82"   // soft red
+    "#7da2f8",
+    "#6fd3b2",
+    "#7fd6e6",
+    "#f8d77a",
+    "#f28b82"
 ];
 
 export const BAR_COLORS_2 = [
-    "#b39ddb",  // soft purple
-    "#ffb480",  // soft orange
-    "#7edec5",  // soft teal
-    "#8ab4f8",  // soft royal blue
-    "#cfd4da"   // soft gray
+    "#b39ddb",
+    "#ffb480",
+    "#7edec5",
+    "#8ab4f8",
+    "#cfd4da"
 ];
 
 export const PIE_COLORS = [
@@ -52,4 +66,3 @@ export const PIE_COLORS = [
     "#f28b82",
     "#b0b7c3"
 ];
-
