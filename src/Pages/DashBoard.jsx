@@ -3,11 +3,11 @@ import DealerInstallationsLineChart from "../components/charts/DealerInstallatio
 import Top5DealerTable from "../components/Tables/Top5DealerTable";
 import Top5MakeModelTable from "../components/Tables/top5MakeModelTable";
 import Top5RegionsTable from "../components/Tables/top5RegionsTable";
-import ZonesPieChart from "../components/charts/ZonesPieChart";
+import ZoneWisePieChart from "../components/charts/ZoneWisePieChart";
 
 const Dashboard = () => {
     return (
-        <div className="container-fluid bg-light min-vh-100">
+        <div className="container-fluid bg-light min-vh">
 
             {/* HEADER */}
             <div
@@ -22,28 +22,29 @@ const Dashboard = () => {
             {/* MAIN CONTENT */}
             <div
                 className="row g-3 px-2"
-                style={{ height: "calc(100vh - 70px)" }}
+                style={{ height: "calc(100vh - 110px)" }}
             >
 
                 {/* LEFT SIDE – 50% */}
-                <div className="col-md-6 d-flex flex-column gap-3 mb-3">
+                <div className="col-md-6 d-flex flex-column gap-2">
 
-                    <InstallationsTable />
-                    <div className="card shadow-sm rounded-4 flex-fill">
-                        <div className="card-body d-flex align-items-center justify-content-center text-muted fw-semibold">
-                            Left Card 2
-                        </div>
-                    </div>
-                    <Top5RegionsTable/>
+                    <DealerInstallationsLineChart/>
+                    <ZoneWisePieChart />
 
                 </div>
 
                 {/* RIGHT SIDE – 50% */}
-                <div className="col-md-6 d-flex flex-column gap-2 mb-3">
+                <div className="col-md-6 d-flex flex-column gap-2">
 
-                    <DealerInstallationsLineChart/>
-                    <Top5DealerTable/>
-                    <Top5MakeModelTable/>
+                    <InstallationsTable />
+                    <div className="d-flex flex-row gap-2">
+                        <Top5DealerTable/>
+                        <Top5MakeModelTable/>
+                    </div>
+                    <div className="d-flex flex-row gap-2">
+                        <Top5DealerTable/>
+                        <Top5RegionsTable/>
+                    </div>
 
                 </div>
             </div>

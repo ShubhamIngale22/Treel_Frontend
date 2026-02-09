@@ -52,10 +52,8 @@ const InstallationsTable = () => {
                         </tbody>
                     </table>
                 </div>
-
             </div>
         </div>
     );
 };
-
 export default InstallationsTable;
