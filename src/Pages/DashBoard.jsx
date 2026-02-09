@@ -4,6 +4,7 @@ import Top5DealerTable from "../components/Tables/Top5DealerTable";
 import Top5MakeModelTable from "../components/Tables/top5MakeModelTable";
 import Top5RegionsTable from "../components/Tables/top5RegionsTable";
 import ZoneWisePieChart from "../components/charts/ZoneWisePieChart";
+import Top5ZonesTable from "../components/Tables/top5ZonesTable";
 
 const Dashboard = () => {
     return (
@@ -22,7 +23,7 @@ const Dashboard = () => {
             {/* MAIN CONTENT */}
             <div
                 className="row g-3 px-2"
-                style={{ height: "calc(100vh - 110px)" }}
+                style={{ height: "calc(100vh - 80px)" }}
             >
 
                 {/* LEFT SIDE – 50% */}
@@ -37,15 +38,18 @@ const Dashboard = () => {
                 <div className="col-md-6 d-flex flex-column gap-2">
 
                     <InstallationsTable />
-                    <div className="d-flex flex-row gap-2">
+                    <div className="d-flex flex-row gap-2 flex-fill">
+
+                        <div className="d-flex flex-column gap-2 flex-fill">
                         <Top5DealerTable/>
                         <Top5MakeModelTable/>
-                    </div>
-                    <div className="d-flex flex-row gap-2">
-                        <Top5DealerTable/>
-                        <Top5RegionsTable/>
-                    </div>
+                        </div>
 
+                        <div className="d-flex flex-column gap-2 flex-fill">
+                        <Top5ZonesTable/>
+                        <Top5RegionsTable/>
+                        </div>
+                    </div>
                 </div>
             </div>
         </div>

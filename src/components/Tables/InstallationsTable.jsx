@@ -44,7 +44,7 @@ const InstallationsTable = () => {
                             </td>
                         </tr>
                         <tr>
-                            <th className="table-light fw-semibold">Dealers Sell</th>
+                            <th className="table-light fw-semibold">Dealers Sale</th>
                             <td className="text-muted">—</td>
                             <td className="text-muted">—</td>
                             <td className="text-muted">—</td>
