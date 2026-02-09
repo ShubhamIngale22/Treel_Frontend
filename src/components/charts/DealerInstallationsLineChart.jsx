@@ -30,7 +30,7 @@ const DealerInstallationsLineChart = () => {
     }, [range]);
 
     return (
-        <div className="card shadow-sm rounded-4 ">
+        <div className="card shadow-sm rounded-4 flex-fill ">
             <div className="card-body d-flex flex-column">
 
                 {/* BUTTONS */}
@@ -58,7 +58,7 @@ const DealerInstallationsLineChart = () => {
                 </div>
 
                 {/* LINE CHART */}
-                <div style={{ height: "120px" }}>
+                <div style={{ height: "140px" }}>
                     {chartData ? (
                         <Line
                             data={{
@@ -66,7 +66,7 @@ const DealerInstallationsLineChart = () => {
                                 datasets: [
                                     {
                                         ...chartData.datasets[0],
-                                        label: "Installations Trend"   // 👈 LINE NAME
+                                        label: "Installations Trend"   // LINE NAME
                                     }
                                 ]
                             }}
@@ -96,7 +96,6 @@ const DealerInstallationsLineChart = () => {
                         </div>
                     )}
                 </div>
-
             </div>
         </div>
     );
