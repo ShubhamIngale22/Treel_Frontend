@@ -64,5 +64,6 @@ export const PIE_COLORS = [
     "#7fd6e6",
     "#f8d77a",
     "#f28b82",
-    "#b0b7c3"
+    "#b0b7c3",
+    "#7edec5"
 ];
