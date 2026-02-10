@@ -26,7 +26,7 @@ const Top5ZonesTable = () => {
         <div className="card shadow-sm rounded-4 flex-fill" >
             <div className="card-body p-2">
                 <h6 className="text-center fw-bold text-secondary mb-1" style={{ fontSize: "0.85rem" }}>
-                    Top 5 Regions
+                    Top 5 Zones
                 </h6>
 
                 <div className="table-responsive" style={{ maxHeight: "170px" }}>

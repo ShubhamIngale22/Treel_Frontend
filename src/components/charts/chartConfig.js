@@ -28,7 +28,6 @@ ChartJS.register(
     Filler
 );
 
-// Optional but recommended
 ChartJS.defaults.plugins.datalabels = {
     display: false
 };
