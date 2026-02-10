@@ -10,10 +10,11 @@ const Dashboard = () => {
     return (
         <div className="container-fluid bg-light min-vh">
 
-            {/* HEADER */}
             <div
                 className="rounded-3 mx-2 mt-2 mb-3 py-2"
-                style={{ backgroundColor: "#10b981" }}
+                style={{ background: "linear-gradient(90deg, #064e3b, #16a34a, #4ade80)",
+                    boxShadow: "0 10px 24px rgba(6,78,59,0.45)",
+                    border: "1px solid rgba(6,78,59,0.35)"}}
             >
                 <h4 className="text-center text-white m-0 fw-semibold">
                     TREEL Smart-Tyre Dashboard
@@ -35,7 +36,7 @@ const Dashboard = () => {
                 </div>
 
                 {/* RIGHT SIDE – 50% */}
-                <div className="col-md-6 d-flex flex-column gap-2">
+                <div className="col-md-6 d-flex flex-column gap-3">
 
                     <InstallationsTable />
                     <div className="d-flex flex-row gap-2 flex-fill">
@@ -49,12 +50,12 @@ const Dashboard = () => {
                         <Top5ZonesTable/>
                         <Top5RegionsTable/>
                         </div>
+
                     </div>
                 </div>
             </div>
         </div>
     );
 };
-
 export default Dashboard;
 
