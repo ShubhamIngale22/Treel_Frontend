@@ -1,4 +1,5 @@
 import { useEffect, useState } from "react";
+import api from "../../services/api";
 
 const Top5MakeModelTable = () => {
     const [data, setData] = useState([]);
@@ -11,12 +12,14 @@ const Top5MakeModelTable = () => {
     };
 
     useEffect(() => {
-        fetch("http://localhost:5000/api/top5MakeModelTable")
-            .then(res => res.json())
-            .then(res => {
-                if (!res.success) return;
-                setData(res.data);
-            });
+        api.getTop5MakeModel().then(res=>{
+            if(!res.success) return;
+            setData(res.data)
+
+        }).catch((err)=>{
+            console.error("Api fetch error :", err);
+            throw err;
+        })
     }, []);
 
     return (
@@ -30,10 +33,10 @@ const Top5MakeModelTable = () => {
                     <table className="table table-sm table-bordered align-middle text-center mb-0">
                         <thead className="table-light">
                         <tr>
-                            <th style={{...stickyTh, width: "50px"}}>Sr.</th>
-                            <th style={{...stickyTh, maxWidth: "70px"}}>Make</th>
-                            <th style={{...stickyTh, maxWidth: "70px"}}>Model</th>
-                            <th style={{...stickyTh, width: "80px"}}>Count</th>
+                            <th style={{...stickyTh, width: "50px",background: "#afd3ed"}}>Sr.</th>
+                            <th style={{...stickyTh, maxWidth: "70px",background: "#afd3ed"}}>Manufacturer</th>
+                            <th style={{...stickyTh, maxWidth: "70px",background: "#afd3ed"}}>Model</th>
+                            <th style={{...stickyTh, width: "80px",background: "#afd3ed"}}>Count</th>
                         </tr>
                         </thead>
 

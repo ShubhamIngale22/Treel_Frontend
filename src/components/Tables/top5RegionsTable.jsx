@@ -1,4 +1,5 @@
 import { useEffect, useState } from "react";
+import api from "../../services/api";
 
 const Top5RegionsTable = () => {
     const [data, setData] = useState([]);
@@ -11,12 +12,14 @@ const Top5RegionsTable = () => {
     };
 
     useEffect(() => {
-        fetch("http://localhost:5000/api/top5regionsTable")
-            .then(res => res.json())
-            .then(res => {
-                if (!res.success) return;
-                setData(res.data);
-            });
+        api.getTop5Regions().then(res=>{
+            if(!res.success) return;
+            setData(res.data)
+
+        }).catch((err)=>{
+            console.error("Api fetch error :", err);
+            throw err;
+        })
     }, []);
 
     return (
@@ -30,9 +33,9 @@ const Top5RegionsTable = () => {
                     <table className="table table-sm table-bordered align-middle text-center mb-0">
                         <thead className="table-light">
                         <tr>
-                            <th style={{...stickyTh, width: "60px"}}>Sr.</th>
-                            <th style={{...stickyTh, minWidth: "120px"}}>RegionName</th>
-                            <th style={{...stickyTh, width: "100px"}}>Count</th>
+                            <th style={{...stickyTh, width: "60px",background: "#afd3ed"}}>Sr.</th>
+                            <th style={{...stickyTh, minWidth: "120px",background: "#afd3ed"}}>RegionName</th>
+                            <th style={{...stickyTh, width: "100px",background: "#afd3ed"}}>Count</th>
                         </tr>
                         </thead>
 

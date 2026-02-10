@@ -1,15 +1,18 @@
 import { useEffect, useState } from "react";
+import api from "../../services/api";
 
 const InstallationsTable = () => {
     const [data, setData] = useState(null);
 
     useEffect(() => {
-        fetch("http://localhost:5000/api/installationTable")
-            .then(res => res.json())
-            .then(res => {
-                if (!res.success) return;
-                setData(res.data);
-            });
+        api.getInstallation().then(res=>{
+            if(!res.success) return;
+            setData(res.data)
+
+        }).catch((err)=>{
+            console.error("Api fetch error :", err);
+            throw err;
+        })
     }, []);
 
     return (
@@ -24,27 +27,27 @@ const InstallationsTable = () => {
                     <table className="table table-sm table-bordered align-middle text-center mb-0">
                         <thead className="table-light">
                         <tr className="text-secondary">
-                            <th></th>
-                            <th className={"fw-semibold"}>Yesterday</th>
-                            <th className={"fw-semibold"}>1 Month</th>
-                            <th className={"fw-semibold"}>1 Year</th>
+                            <th style={{background: "#cce3d9"}}></th>
+                            <th className={"fw-semibold"} style={{background: "#b1e0cc"}}>Yesterday</th>
+                            <th className={"fw-semibold"} style={{background: "#b1e0cc"}}>Past Month</th>
+                            <th className={"fw-semibold"} style={{background: "#b1e0cc"}}>Past Year</th>
                         </tr>
                         </thead>
                         <tbody>
                         <tr>
-                            <th className="table-light fw-semibold" >Installations</th>
-                            <td className="fw-semibold text-success fs-6">
+                            <th className="table-light fw-semibold" style={{background: "#b1e0cc"}} >Installations</th>
+                            <td className="fw-bold text-success fs-6">
                                 {data?.yesterday ?? "—"}
                             </td>
-                            <td className="fw-semibold text-success fs-6">
+                            <td className="fw-bold text-success fs-6">
                                 {data?.lastMonth ?? "—"}
                             </td>
-                            <td className="fw-semibold text-success fs-6">
+                            <td className="fw-bold text-success fs-6">
                                 {data?.lastYear ?? "—"}
                             </td>
                         </tr>
                         <tr>
-                            <th className="table-light fw-semibold">Dealers Sale</th>
+                            <th className="table-light fw-semibold" style={{background: "#b1e0cc"}}>Dealer Sales</th>
                             <td className="text-muted">—</td>
                             <td className="text-muted">—</td>
                             <td className="text-muted">—</td>

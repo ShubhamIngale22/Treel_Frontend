@@ -1,4 +1,5 @@
 import { useEffect, useState } from "react";
+import api from "../../services/api";
 
 const Top5DealerTable = () => {
     const [data, setData] = useState([]);
@@ -11,12 +12,14 @@ const Top5DealerTable = () => {
     };
 
     useEffect(() => {
-        fetch("http://localhost:5000/api/top5DealerTable")
-            .then(res => res.json())
-            .then(res => {
-                if (!res.success) return;
-                setData(res.data);
-            });
+        api.getTop5Dealer().then(res=>{
+            if(!res.success) return;
+            setData(res.data)
+
+        }).catch((err)=>{
+            console.error("Api fetch error :", err);
+            throw err;
+        })
     }, []);
 
     return (
@@ -28,11 +31,11 @@ const Top5DealerTable = () => {
 
                 <div className="table-responsive" style={{ maxHeight: "170px" }}>
                     <table className="table table-sm table-bordered align-middle text-center mb-0">
-                        <thead className="table-light">
+                        <thead>
                         <tr>
-                            <th style={{...stickyTh, width: "50px"}}>Sr.</th>
-                            <th style={{...stickyTh, minWidth: "120px"}}>Dealer Shop</th>
-                            <th style={{...stickyTh, width: "70px"}}>Count</th>
+                            <th style={{...stickyTh, width: "50px",background: "#afd3ed"}}>Sr.</th>
+                            <th style={{...stickyTh, minWidth: "120px",background: "#afd3ed"}}>Dealer Shop</th>
+                            <th style={{...stickyTh, width: "70px",background: "#afd3ed"}}>Count</th>
                         </tr>
                         </thead>
 

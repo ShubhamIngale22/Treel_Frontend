@@ -1,6 +1,7 @@
 import { useEffect, useState } from "react";
 import { Pie } from "react-chartjs-2";
 import { PIE_COLORS } from "./chartConfig";
+import api from "../../services/api";
 
 const ZoneWisePieChart = () => {
     const [data, setData] = useState([]);
@@ -13,20 +14,17 @@ const ZoneWisePieChart = () => {
     useEffect(() => {
         const fetchData = () => {
             setLoading(true);
-
-            fetch(
-                `http://localhost:5000/api/zone-installations?type=${range}&metric=${metric}`
-            )
-                .then(res => res.json())
-                .then(res => {
+            api.getZoneWisePieChart(metric,range).then(res => {
                     if (res.success) {
                         setData(res.data);
                     }
+                }).catch(err => {
+                console.error("ZoneWisePieChart API error:", err);
                 })
                 .finally(() => setLoading(false));
         };
         fetchData();
-    }, [metric, range]);
+        }, [metric, range]);
 
     const pieData = {
         labels: data.map(d => d.zone),
@@ -57,11 +55,10 @@ const ZoneWisePieChart = () => {
 
                 {/* Heading */}
                 <h6 className="text-center fw-bold text-secondary mb-3 pr-3" style={{ fontSize: "1rem" }}>
-                    Zone-wise Installations an Sales
+                    Zone-wise Installations and Sales
                 </h6>
 
                 <div className="d-flex align-items-center justify-content-between w-100">
-
                     {/* Left Buttons */}
                     <div className="d-flex flex-column gap-3">
                         <button
