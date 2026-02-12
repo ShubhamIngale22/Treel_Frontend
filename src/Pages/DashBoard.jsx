@@ -36,14 +36,14 @@ const Dashboard = () => {
                 </div>
 
                 {/* RIGHT SIDE – 50% */}
-                <div className="col-md-6 d-flex flex-column gap-3">
+                <div className="col-md-6 d-flex flex-column gap-2">
 
                     <InstallationsTable />
                     <div className="d-flex flex-row gap-2 flex-fill">
 
-                        <div className="d-flex flex-column gap-2 flex-fill">
-                        <Top5DealerTable/>
-                        <Top5MakeModelTable/>
+                        <div className="d-flex flex-column gap-2 flex-fill ">
+                            <Top5DealerTable/>
+                            <Top5MakeModelTable/>
                         </div>
 
                         <div className="d-flex flex-column gap-2 flex-fill">
@@ -52,6 +52,7 @@ const Dashboard = () => {
                         </div>
 
                     </div>
+
                 </div>
             </div>
         </div>
