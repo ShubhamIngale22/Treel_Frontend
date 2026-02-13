@@ -2,31 +2,42 @@ import { useEffect, useState } from "react";
 import { Line } from "react-chartjs-2";
 import api from "../../services/api";
 
-const LINE_STYLE = {
-    borderColor: "rgba(59,130,246,0.42)",
-    backgroundColor: "rgba(59,130,246,0.30)",
-    tension: 0.4,
-    fill: true,
-    pointRadius: 4,
-    pointHoverRadius: 6
-};
+// const LINE_STYLE = {
+//     borderColor: "rgba(59,130,246,0.42)",
+//     backgroundColor: "rgba(59,130,246,0.30)",
+//     tension: 0.4,
+//     fill: true,
+//     pointRadius: 4,
+//     pointHoverRadius: 6
+// };
 const DealerInstallationsLineChart = () => {
-    const [range, setRange] = useState("7days");
+    const [range, setRange] = useState("1year");
     const [chartData, setChartData] = useState(null);
 
     useEffect(() => {
-        api.getDealerInstallations(range).then(res => {
+        api.getDealerInstallationsSells(range).then(res => {
                 if (!res.success) return;
-                setChartData({
-                    labels: res.data.labels,
-                    datasets: [
-                        {
-                            label: "Installations",
-                            data: res.data.data,
-                            ...LINE_STYLE
-                        }
-                    ]
-                });
+            setChartData({
+                labels: res.data.labels,
+                datasets: [
+                    {
+                        label: "Installations",
+                        data: res.data.installations,
+                        borderColor: "#3b82f6",
+                        backgroundColor: "rgba(59,130,246,0.2)",
+                        tension: 0.4,
+                        fill: true,
+                    },
+                    {
+                        label: "Sells",
+                        data: res.data.sells,
+                        borderColor: "#f97316",
+                        backgroundColor: "rgba(249,115,22,0.2)",
+                        tension: 0.4,
+                        fill: false,
+                    }
+                ]
+            });
             }).catch((err)=>{
             console.error("Api fetch error :", err);
             throw err;
@@ -34,7 +45,7 @@ const DealerInstallationsLineChart = () => {
     }, [range]);
 
     return (
-        <div className="card shadow-sm rounded-4 flex-fill ">
+        <div className="card shadow-sm rounded-4 flex-fill">
             <div className="card-body d-flex flex-column">
 
                 {/* BUTTONS */}
@@ -62,28 +73,38 @@ const DealerInstallationsLineChart = () => {
                 </div>
 
                 {/* LINE CHART */}
-                <div style={{ height: "140px" }}>
+                <div >
                     {chartData ? (
                         <Line
-                            data={{
-                                ...chartData,
-                                datasets: [
-                                    {
-                                        ...chartData.datasets[0],
-                                        label: "Installations Trend"   // LINE NAME
-                                    }
-                                ]
-                            }}
+                            data={chartData}
                             options={{
                                 responsive: true,
                                 maintainAspectRatio: false,
                                 plugins: {
-                                    legend: { display: false }
+                                    legend: {
+                                        display: true,
+                                        position: "top",
+                                        labels: {
+                                            usePointStyle: true
+                                        }
+                                    },
+                                    tooltip: {
+                                        callbacks: {
+                                            label: function(context) {
+                                                return context.dataset.label + ": " +
+                                                    context.raw.toLocaleString();
+                                            }
+                                        }
+                                    }
                                 },
                                 scales: {
                                     y: {
                                         beginAtZero: true,
-                                        ticks: { precision: 0 }
+                                        ticks: {
+                                            callback: function(value) {
+                                                return value.toLocaleString();
+                                            }
+                                        }
                                     },
                                     x: {
                                         ticks: {
@@ -93,6 +114,7 @@ const DealerInstallationsLineChart = () => {
                                     }
                                 }
                             }}
+
                         />
                     ) : (
                         <div className="h-100 d-flex align-items-center justify-content-center text-muted">
