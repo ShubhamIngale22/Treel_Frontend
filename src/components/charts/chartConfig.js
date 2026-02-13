@@ -57,7 +57,7 @@ export const BAR_COLORS_2 = [
     "#cfd4da"
 ];
 
-export const PIE_COLORS = [
+export const PIE_COLORS_1 = [
     "#7da2f8",
     "#6fd3b2",
     "#7fd6e6",
@@ -66,3 +66,14 @@ export const PIE_COLORS = [
     "#b0b7c3",
     "#7edec5"
 ];
+
+export const PIE_COLORS_2 = [
+    "#f8d77a",
+    "#b0b7c3",
+    "#7da2f8",
+    "#7edec5",
+    "#f28b82",
+    "#7fd6e6",
+    "#6fd3b2",
+];
+
