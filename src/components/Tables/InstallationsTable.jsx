@@ -2,12 +2,14 @@ import { useEffect, useState } from "react";
 import api from "../../services/api";
 
 const InstallationsTable = () => {
-    const [data, setData] = useState(null);
+    const [installationData, setInstallationData] = useState(null);
+    const [sellsData, setSellsData] = useState(null);
 
     useEffect(() => {
-        api.getInstallation().then(res=>{
+        api.getInstallationSellsTable().then(res=>{
             if(!res.success) return;
-            setData(res.data)
+            setInstallationData(res.data.installations);
+            setSellsData(res.data.sells);
 
         }).catch((err)=>{
             console.error("Api fetch error :", err);
@@ -18,7 +20,6 @@ const InstallationsTable = () => {
     return (
         <div className="card shadow-sm rounded-4 ">
             <div className="card-body d-flex flex-column">
-
                 <h6 className="text-center fw-bold text-secondary mb-2">
                     Installation Summary
                 </h6>
@@ -37,20 +38,38 @@ const InstallationsTable = () => {
                         <tr>
                             <th className="table-light fw-semibold" style={{background: "#b1e0cc"}} >Installations</th>
                             <td className="fw-bold text-success fs-6">
-                                {data?.yesterday ?? "—"}
+                                {installationData?.yesterday != null
+                                    ? installationData.yesterday.toLocaleString("en-IN")
+                                    : "—"}
                             </td>
                             <td className="fw-bold text-success fs-6">
-                                {data?.lastMonth ?? "—"}
+                                {installationData?.lastMonth != null
+                                    ? installationData.lastMonth.toLocaleString("en-IN")
+                                    : "—"}
                             </td>
                             <td className="fw-bold text-success fs-6">
-                                {data?.lastYear ?? "—"}
+                                {installationData?.lastYear != null
+                                    ? installationData.lastYear.toLocaleString("en-IN")
+                                    : "—"}
                             </td>
                         </tr>
                         <tr>
                             <th className="table-light fw-semibold" style={{background: "#b1e0cc"}}>Dealer Sales</th>
-                            <td className="text-muted">—</td>
-                            <td className="text-muted">—</td>
-                            <td className="text-muted">—</td>
+                            <td className="fw-bold text-success fs-6">
+                                {sellsData?.yesterday != null
+                                    ? sellsData.yesterday.toLocaleString("en-IN")
+                                    : "—"}
+                            </td>
+                            <td className="fw-bold text-success fs-6">
+                                {sellsData?.lastMonth != null
+                                    ? sellsData.lastMonth.toLocaleString("en-IN")
+                                    : "—"}
+                            </td>
+                            <td className="fw-bold text-success fs-6">
+                                {sellsData?.lastYear != null
+                                    ? sellsData.lastYear.toLocaleString("en-IN")
+                                    : "—"}
+                            </td>
                         </tr>
                         </tbody>
                     </table>
