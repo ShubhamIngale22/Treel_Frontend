@@ -11,8 +11,8 @@ api.interceptors.response.use(
 );
 
 const apiService = {
-    getInstallation: () =>
-        api.get("/dealerInstallationTable"),
+    getInstallationSellsTable: () =>
+        api.get("/dealerInstallationsSellsTable"),
 
     getTop5Dealer: () =>
         api.get("/top5DealerInstallationTable"),
@@ -26,14 +26,14 @@ const apiService = {
     getTop5Zones: () =>
         api.get("/top5ZoneTable"),
 
-    getDealerInstallations: (range) =>
-        api.get("/dealerInstallationLineChart", {
+    getDealerInstallationsSells: (range) =>
+        api.get("/sellsInstallationsLineChart", {
             params: { type: range }
         }),
 
-    getZoneWisePieChart: (metric, range) =>
-        api.get("/zoneWiseDealerInstallationsPie", {
-            params: { type: range, metric }
+    getZoneWisePieChart: (range) =>
+        api.get("/zoneWiseInstallationsSellsPie", {
+            params: { type: range }
         }),
 };
 export default apiService;
