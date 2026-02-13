@@ -1,6 +1,6 @@
 import { useEffect, useState } from "react";
 import { Pie } from "react-chartjs-2";
-import { PIE_COLORS } from "./chartConfig";
+import { PIE_COLORS_1,PIE_COLORS_2 } from "./chartConfig";
 import api from "../../services/api";
 
 const ZoneWisePieChart = () => {
@@ -12,26 +12,30 @@ const ZoneWisePieChart = () => {
     const rightLegend = data.slice(Math.ceil(data.length / 2));
 
     useEffect(() => {
-        const fetchData = () => {
-            setLoading(true);
-            api.getZoneWisePieChart(metric,range).then(res => {
-                    if (res.success) {
-                        setData(res.data);
-                    }
-                }).catch(err => {
-                console.error("ZoneWisePieChart API error:", err);
-                })
-                .finally(() => setLoading(false));
-        };
-        fetchData();
+        setLoading(true);
+        api.getZoneWisePieChart(range).then(res => {
+            if(!res.success) return;
+
+            const metricData=
+                metric === "sells" ? res.data.sells : res.data.installations;
+            setData(metricData)
+
+
+        }).catch(err => {
+            console.error("ZoneWisePieChart API error:", err);
+        })
+            .finally(() => setLoading(false));
         }, [metric, range]);
+
+    const colors=
+        metric === "installations" ? PIE_COLORS_1 : PIE_COLORS_2;
 
     const pieData = {
         labels: data.map(d => d.zone),
         datasets: [
             {
                 data: data.map(d => d.count),
-                backgroundColor: PIE_COLORS,
+                backgroundColor: colors,
                 borderWidth: 1
             }
         ]
@@ -49,13 +53,16 @@ const ZoneWisePieChart = () => {
         }
     };
 
+    const heading=
+         metric === "installations" ? "Zone Performance Distribution (Installation)" : "Zone Performance Distribution (Sells)";
+
     return (
         <div className="card shadow-sm rounded-4 ">
             <div className="card-body">
 
                 {/* Heading */}
-                <h6 className="text-center fw-bold text-secondary mb-3 pr-3" style={{ fontSize: "1rem" }}>
-                    Zone-wise Installations and Sales
+                <h6 className="text-center fw-bold text-secondary mb-3">
+                    {heading}
                 </h6>
 
                 <div className="d-flex align-items-center justify-content-between w-100">
@@ -74,11 +81,11 @@ const ZoneWisePieChart = () => {
 
                         <button
                             className={`btn btn-sm ${
-                                metric === "sales"
+                                metric === "sells"
                                     ? "btn-secondary"
                                     : "btn-outline-secondary"
                             }`}
-                            onClick={() => setMetric("sales")}
+                            onClick={() => setMetric("sells")}
                         >
                             Dealer Sales
                         </button>
@@ -92,7 +99,7 @@ const ZoneWisePieChart = () => {
                                     style={{
                                         width: 12,
                                         height: 12,
-                                        backgroundColor: PIE_COLORS[i],
+                                        backgroundColor: colors[i],
                                         borderRadius: "50%"
                                     }}
                                 />
@@ -121,7 +128,7 @@ const ZoneWisePieChart = () => {
                                     style={{
                                         width: 12,
                                         height: 12,
-                                        backgroundColor: PIE_COLORS[i + leftLegend.length],
+                                        backgroundColor: colors[i + leftLegend.length],
                                         borderRadius: "50%"
                                     }}
                                 />
