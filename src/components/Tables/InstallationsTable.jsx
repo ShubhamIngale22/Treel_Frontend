@@ -29,43 +29,43 @@ const InstallationsTable = () => {
                         <thead className="table-light">
                         <tr className="text-secondary">
                             <th style={{background: "#cce3d9"}}></th>
-                            <th className={"fw-semibold"} style={{background: "#b1e0cc"}}>Yesterday</th>
-                            <th className={"fw-semibold"} style={{background: "#b1e0cc"}}>Past Month</th>
-                            <th className={"fw-semibold"} style={{background: "#b1e0cc"}}>Past Year</th>
+                            <th className={"fw-semibold"} style={{background: "#b1e0cc",fontSize: "0.85rem"}}>Yesterday</th>
+                            <th className={"fw-semibold"} style={{background: "#b1e0cc",fontSize: "0.85rem"}}>Past Month</th>
+                            <th className={"fw-semibold"} style={{background: "#b1e0cc",fontSize: "0.85rem"}}>Past Year</th>
                         </tr>
                         </thead>
                         <tbody>
                         <tr>
-                            <th className="table-light fw-semibold" style={{background: "#b1e0cc"}} >Installations</th>
-                            <td className="fw-bold text-success fs-6">
+                            <th className="table-light fw-semibold" style={{background: "#b1e0cc",fontSize: "0.85rem"}} >Installations</th>
+                            <td className="fw-semibold text-success " style={{ fontSize: "0.9rem" }} >
                                 {installationData?.yesterday != null
                                     ? installationData.yesterday.toLocaleString("en-IN")
                                     : "—"}
                             </td>
-                            <td className="fw-bold text-success fs-6">
+                            <td className="fw-semibold text-success " style={{ fontSize: "0.9rem" }}>
                                 {installationData?.lastMonth != null
                                     ? installationData.lastMonth.toLocaleString("en-IN")
                                     : "—"}
                             </td>
-                            <td className="fw-bold text-success fs-6">
+                            <td className="fw-semibold text-success " style={{ fontSize: "0.9rem" }}>
                                 {installationData?.lastYear != null
                                     ? installationData.lastYear.toLocaleString("en-IN")
                                     : "—"}
                             </td>
                         </tr>
                         <tr>
-                            <th className="table-light fw-semibold" style={{background: "#b1e0cc"}}>Dealer Sales</th>
-                            <td className="fw-bold text-success fs-6">
+                            <th className="table-light fw-semibold" style={{background: "#b1e0cc",fontSize: "0.85rem"}}>Dealer Sales</th>
+                            <td className="fw-semibold text-success" style={{ fontSize: "0.9rem" }}>
                                 {sellsData?.yesterday != null
                                     ? sellsData.yesterday.toLocaleString("en-IN")
                                     : "—"}
                             </td>
-                            <td className="fw-bold text-success fs-6">
+                            <td className="fw-semibold text-success" style={{ fontSize: "0.9rem" }}>
                                 {sellsData?.lastMonth != null
                                     ? sellsData.lastMonth.toLocaleString("en-IN")
                                     : "—"}
                             </td>
-                            <td className="fw-bold text-success fs-6">
+                            <td className="fw-semibold text-success" style={{ fontSize: "0.9rem" }}>
                                 {sellsData?.lastYear != null
                                     ? sellsData.lastYear.toLocaleString("en-IN")
                                     : "—"}

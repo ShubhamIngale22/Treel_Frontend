@@ -109,7 +109,7 @@ const ZoneWisePieChart = () => {
                     </div>
 
                     {/* Pie Chart */}
-                    <div style={{ width: 300, height: 300 }}>
+                    <div style={{ width: 250, height: 250 }}>
                         {loading ? (
                             <div className="text-muted text-center small">Loading...</div>
                         ) : (

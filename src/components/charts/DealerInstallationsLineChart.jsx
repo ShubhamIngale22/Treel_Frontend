@@ -45,11 +45,11 @@ const DealerInstallationsLineChart = () => {
     }, [range]);
 
     return (
-        <div className="card shadow-sm rounded-4 flex-fill">
+        <div className="card shadow-sm rounded-4">
             <div className="card-body d-flex flex-column">
 
                 {/* BUTTONS */}
-                <div className="btn-group mb-3 align-self-center">
+                <div className="btn-group mb-2 align-self-center">
                     <button
                         className={`btn btn-sm m-1 ${range === "7days" ? "btn-warning" : "btn-outline-warning"}`}
                         onClick={() => setRange("7days")}
@@ -73,7 +73,7 @@ const DealerInstallationsLineChart = () => {
                 </div>
 
                 {/* LINE CHART */}
-                <div >
+                <div style={{height:"150px"}}>
                     {chartData ? (
                         <Line
                             data={chartData}

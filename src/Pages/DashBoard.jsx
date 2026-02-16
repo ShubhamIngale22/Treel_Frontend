@@ -39,14 +39,14 @@ const Dashboard = () => {
                 <div className="col-md-6 d-flex flex-column gap-2">
 
                     <InstallationsTable />
-                    <div className="d-flex flex-row gap-2 flex-fill">
+                    <div className="d-flex flex-row gap-2 " >
 
-                        <div className="d-flex flex-column gap-2 flex-fill ">
+                        <div className="d-flex flex-column gap-2 flex-fill " style={{ height: "300px" }}>
                             <Top5DealerTable/>
                             <Top5MakeModelTable/>
                         </div>
 
-                        <div className="d-flex flex-column gap-2 flex-fill">
+                        <div className="d-flex flex-column gap-2 flex-fill " style={{ height: "300px" }}>
                         <Top5ZonesTable/>
                         <Top5RegionsTable/>
                         </div>

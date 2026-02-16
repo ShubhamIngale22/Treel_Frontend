@@ -25,7 +25,7 @@ const Top5DealerTable = () => {
     return (
         <div className="card shadow-sm rounded-4 flex-fill">
             <div className="card-body p-2">
-                <h6 className="text-center fw-bold text-secondary mb-1" style={{ fontSize: "0.85rem" }}>
+                <h6 className="text-center fw-bold text-secondary mb-1" style={{ fontSize: "0.75rem" }}>
                     Top 5 Dealers
                 </h6>
 
@@ -39,12 +39,12 @@ const Top5DealerTable = () => {
                         </tr>
                         </thead>
 
-                        <tbody style={{ fontSize: "0.8rem" }}>
+                        <tbody style={{ fontSize: "0.73rem" }}>
                         {data.length > 0 ? (
                             data.map((item, index) => (
                                 <tr key={index}>
                                     <td className="fw-semibold">{index + 1}</td>
-                                    <td className="fw-normal text-start px-2" style={{ fontSize: "0.80rem" }}>
+                                    <td className="fw-normal text-start px-2" style={{ fontSize: "0.70rem" }}>
                                         {item.dealerShopName}
                                     </td>
                                     <td className="fw-bold text-primary">{item.count.toLocaleString()}</td>
