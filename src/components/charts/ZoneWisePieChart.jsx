@@ -51,7 +51,12 @@ const ZoneWisePieChart = () => {
             datalabels: {
                 display: true
             }
-        }
+        },
+        animation: {
+            animateRotate: true,   // ← this enables the spin
+            animateScale: true,    // ← optional: scale up effect
+            duration: 1000,
+        },
     };
 
     const heading1=
@@ -113,12 +118,27 @@ const ZoneWisePieChart = () => {
                     </div>
 
                     {/* Pie Chart */}
-                    <div style={{ width: 250, height: 250 }}>
-                        {loading ? (
-                            <div className="text-muted text-center small">Loading...</div>
-                        ) : (
-                            <Pie data={pieData} options={pieOptions} />
+                    <div style={{ width: 250, height: 250, position: "relative" }}>
+
+                        {/* Spinner overlay — sits ON TOP, chart stays mounted */}
+                        {loading && (
+                            <div style={{
+                                position: "absolute", inset: 0,
+                                display: "flex", alignItems: "center",
+                                justifyContent: "center",
+                                background: "rgba(255,255,255,0.7)",
+                                zIndex: 10,
+                                borderRadius: "50%"
+                            }}>
+                                <div className="spinner-border spinner-border-sm text-secondary" />
+                            </div>
                         )}
+
+                        <Pie
+                            key={`${metric}-${range}`}
+                            data={pieData}
+                            options={pieOptions}
+                        />
                     </div>
 
                     {/* Right Legend */}
