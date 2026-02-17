@@ -8,14 +8,15 @@ const ZoneWisePieChart = () => {
     const [metric, setMetric] = useState("installations"); // installations | sales
     const [range, setRange] = useState("monthly"); // monthly | yearly
     const [loading, setLoading] = useState(false);
+    const [labels,setLabels]=useState({});
     const leftLegend = data.slice(0, Math.ceil(data.length / 2));
     const rightLegend = data.slice(Math.ceil(data.length / 2));
 
     useEffect(() => {
         setLoading(true);
         api.getZoneWisePieChart(range).then(res => {
+            setLabels(res.data.labels);
             if(!res.success) return;
-
             const metricData=
                 metric === "sells" ? res.data.sells : res.data.installations;
             setData(metricData)
@@ -53,8 +54,11 @@ const ZoneWisePieChart = () => {
         }
     };
 
-    const heading=
-         metric === "installations" ? "Zone Performance Distribution (Installation)" : "Zone Performance Distribution (Sells)";
+    const heading1=
+         metric === "installations" ? "Zone-wise Installations" : "Zone-Wise Sells";
+
+    const heading2=
+        range==="monthly" ? labels?.lastMonthLabel : labels?.fyYearLabel;
 
     return (
         <div className="card shadow-sm rounded-4 ">
@@ -62,7 +66,7 @@ const ZoneWisePieChart = () => {
 
                 {/* Heading */}
                 <h6 className="text-center fw-bold text-secondary mb-3">
-                    {heading}
+                    {heading1} ({heading2})
                 </h6>
 
                 <div className="d-flex align-items-center justify-content-between w-100">
