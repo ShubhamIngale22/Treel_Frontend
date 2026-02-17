@@ -4,9 +4,11 @@ import api from "../../services/api";
 const InstallationsTable = () => {
     const [installationData, setInstallationData] = useState(null);
     const [sellsData, setSellsData] = useState(null);
+    const [labels,setLabels]=useState({});
 
     useEffect(() => {
         api.getInstallationSellsTable().then(res=>{
+            setLabels(res.data.labels);
             if(!res.success) return;
             setInstallationData(res.data.installations);
             setSellsData(res.data.sells);
@@ -30,8 +32,8 @@ const InstallationsTable = () => {
                         <tr className="text-secondary">
                             <th style={{background: "#cce3d9"}}></th>
                             <th className={"fw-semibold"} style={{background: "#b1e0cc",fontSize: "0.85rem"}}>Yesterday</th>
-                            <th className={"fw-semibold"} style={{background: "#b1e0cc",fontSize: "0.85rem"}}>Past Month</th>
-                            <th className={"fw-semibold"} style={{background: "#b1e0cc",fontSize: "0.85rem"}}>Past Year</th>
+                            <th className={"fw-semibold"} style={{background: "#b1e0cc",fontSize: "0.85rem"}}>{labels.lastMonthLabel}</th>
+                            <th className={"fw-semibold"} style={{background: "#b1e0cc",fontSize: "0.85rem"}}>{labels.fyYearLabel}</th>
                         </tr>
                         </thead>
                         <tbody>
@@ -48,13 +50,13 @@ const InstallationsTable = () => {
                                     : "—"}
                             </td>
                             <td className="fw-semibold text-success " style={{ fontSize: "0.9rem" }}>
-                                {installationData?.lastYear != null
-                                    ? installationData.lastYear.toLocaleString("en-IN")
+                                {installationData?.fyYear != null
+                                    ? installationData.fyYear.toLocaleString("en-IN")
                                     : "—"}
                             </td>
                         </tr>
                         <tr>
-                            <th className="table-light fw-semibold" style={{background: "#b1e0cc",fontSize: "0.85rem"}}>Dealer Sales</th>
+                            <th className="table-light fw-semibold" style={{background: "#b1e0cc",fontSize: "0.85rem"}}>Dealer Sells</th>
                             <td className="fw-semibold text-success" style={{ fontSize: "0.9rem" }}>
                                 {sellsData?.yesterday != null
                                     ? sellsData.yesterday.toLocaleString("en-IN")
@@ -66,8 +68,8 @@ const InstallationsTable = () => {
                                     : "—"}
                             </td>
                             <td className="fw-semibold text-success" style={{ fontSize: "0.9rem" }}>
-                                {sellsData?.lastYear != null
-                                    ? sellsData.lastYear.toLocaleString("en-IN")
+                                {sellsData?.fyYear != null
+                                    ? sellsData.fyYear.toLocaleString("en-IN")
                                     : "—"}
                             </td>
                         </tr>
