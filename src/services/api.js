@@ -14,17 +14,25 @@ const apiService = {
     getInstallationSellsTable: () =>
         api.get("/dealerInstallationsSellsTable"),
 
-    getTop5Dealer: () =>
-        api.get("/top5DealerInstallationTable"),
+    getTop5Dealer: (range) =>
+        api.get("/top5DealerInstallationTable", {
+            params: { type: range }
+        }),
 
-    getTop5MakeModel: () =>
-        api.get("/top5MakeModelTable"),
+    getTop5MakeModel: (range) =>
+        api.get("/top5MakeModelTable", {
+            params: { type: range }
+        }),
 
-    getTop5Regions: () =>
-        api.get("/top5regionTable"),
+    getTop5Regions: (range) =>
+        api.get("/top5regionTable", {
+            params: { type: range }
+        }),
 
-    getTop5Zones: () =>
-        api.get("/top5ZoneTable"),
+    getTop5Zones: (range) =>
+        api.get("/top5ZoneTable", {
+            params: { type: range }
+        }),
 
     getDealerInstallationsSells: (range) =>
         api.get("/sellsInstallationsLineChart", {

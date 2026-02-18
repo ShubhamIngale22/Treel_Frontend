@@ -1,7 +1,7 @@
 import { useEffect, useState } from "react";
 import api from "../../services/api";
 
-const Top5MakeModelTable = () => {
+const Top5MakeModelTable = ({range}) => {
     const [data, setData] = useState([]);
     const stickyTh = {
         position: "sticky",
@@ -12,7 +12,7 @@ const Top5MakeModelTable = () => {
     };
 
     useEffect(() => {
-        api.getTop5MakeModel().then(res=>{
+        api.getTop5MakeModel(range).then(res=>{
             if(!res.success) return;
             setData(res.data)
 
@@ -20,7 +20,7 @@ const Top5MakeModelTable = () => {
             console.error("Api fetch error :", err);
             throw err;
         })
-    }, []);
+    }, [range]);
 
     return (
         <div className="card shadow-sm rounded-4 flex-fill" >
@@ -36,7 +36,7 @@ const Top5MakeModelTable = () => {
                             <th style={{...stickyTh, width: "50px",background: "#afd3ed"}}>Sr.</th>
                             <th style={{...stickyTh, maxWidth: "70px",background: "#afd3ed"}}>Manufacturer</th>
                             <th style={{...stickyTh, maxWidth: "70px",background: "#afd3ed"}}>Model</th>
-                            <th style={{...stickyTh, width: "80px",background: "#afd3ed"}}>Count</th>
+                            <th style={{...stickyTh, width: "80px",background: "#afd3ed"}}>Installations</th>
                         </tr>
                         </thead>
 

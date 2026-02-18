@@ -5,8 +5,13 @@ import Top5MakeModelTable from "../components/Tables/top5MakeModelTable";
 import Top5RegionsTable from "../components/Tables/top5RegionsTable";
 import ZoneWisePieChart from "../components/charts/ZoneWisePieChart";
 import Top5ZonesTable from "../components/Tables/top5ZonesTable";
+import TableFilterButtons from "../components/Tables/TableFilterButtons";
+import {useState} from "react";
 
 const Dashboard = () => {
+
+    const [tableRange,setTableRange]=useState("Finance Year");
+
     return (
         <div className="container-fluid bg-light min-vh">
 
@@ -37,27 +42,20 @@ const Dashboard = () => {
 
                     <InstallationsTable />
 
-                    <div className="d-flex flex-row justify-content-around">
-                        <button className="btn btn-sm btn-danger">
-                            Monthly
-                        </button>
-                        <button className="btn btn-sm btn-success">
-                            Finance Year
-                        </button>
-                        <button className="btn btn-sm btn-warning">
-                            All Time
-                        </button>
-                    </div>
+                    <TableFilterButtons
+                    tableRange={tableRange}
+                    setTableRange={setTableRange}
+                    />
 
                     <div className="d-flex flex-row gap-2 " >
                         <div className="d-flex flex-column gap-2 flex-fill ">
-                            <Top5DealerTable/>
-                            <Top5MakeModelTable/>
+                            <Top5DealerTable range={tableRange}/>
+                            <Top5MakeModelTable range={tableRange}/>
                         </div>
 
                         <div className="d-flex flex-column gap-2 flex-fill ">
-                        <Top5ZonesTable/>
-                        <Top5RegionsTable/>
+                        <Top5ZonesTable range={tableRange}/>
+                        <Top5RegionsTable range={tableRange}/>
                         </div>
 
                     </div>

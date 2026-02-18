@@ -1,7 +1,7 @@
 import { useEffect, useState } from "react";
 import api from "../../services/api";
 
-const Top5ZonesTable = () => {
+const Top5ZonesTable = ({range}) => {
     const [data, setData] = useState([]);
     const stickyTh = {
         position: "sticky",
@@ -12,7 +12,7 @@ const Top5ZonesTable = () => {
     };
 
     useEffect(() => {
-        api.getTop5Zones().then(res=>{
+        api.getTop5Zones(range).then(res=>{
             if(!res.success) return;
             setData(res.data)
 
@@ -20,7 +20,7 @@ const Top5ZonesTable = () => {
             console.error("Api fetch error :", err);
             throw err;
         })
-    }, []);
+    }, [range]);
 
     return (
         <div className="card shadow-sm rounded-4 flex-fill" >
@@ -35,7 +35,7 @@ const Top5ZonesTable = () => {
                         <tr>
                             <th style={{...stickyTh, width: "60px",background: "#afd3ed"}}>Sr.</th>
                             <th style={{...stickyTh, minWidth: "120px",background: "#afd3ed"}}>Zone</th>
-                            <th style={{...stickyTh, width: "100px",background: "#afd3ed"}}>Count</th>
+                            <th style={{...stickyTh, width: "100px",background: "#afd3ed"}}>Installations</th>
                         </tr>
                         </thead>
 
