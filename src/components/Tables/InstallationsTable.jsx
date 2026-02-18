@@ -21,8 +21,8 @@ const InstallationsTable = () => {
 
     return (
         <div className="card shadow-sm rounded-4 ">
-            <div className="card-body d-flex flex-column">
-                <h6 className="text-center fw-bold text-secondary mb-2">
+            <div className="card-body d-flex flex-column p-3">
+                <h6 className="text-center fw-bold text-secondary mb-1">
                     Installation Summary
                 </h6>
 

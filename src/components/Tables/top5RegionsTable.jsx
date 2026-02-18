@@ -25,7 +25,7 @@ const Top5RegionsTable = () => {
     return (
         <div className="card shadow-sm rounded-4 flex-fill" >
             <div className="card-body p-2">
-                <h6 className="text-center fw-bold text-secondary mb-1" style={{ fontSize: "0.75rem" }}>
+                <h6 className="text-center fw-bold text-secondary mb-1" style={{ fontSize: "0.85rem" }}>
                     Top 5 Regions
                 </h6>
 
@@ -39,7 +39,7 @@ const Top5RegionsTable = () => {
                         </tr>
                         </thead>
 
-                        <tbody style={{ fontSize: "0.73rem" }}>
+                        <tbody style={{ fontSize: "0.8rem" }}>
                         {data.length > 0 ? (
                             data.map((item, index) => (
                                 <tr key={index}>

@@ -17,15 +17,12 @@ const Dashboard = () => {
                     border: "1px solid rgba(6,78,59,0.35)"}}
             >
                 <h4 className="text-center text-white m-0 fw-semibold">
-                    TREEL Smart-Tyre Dashboard
+                    TREEL Smart Tyre Dashboard
                 </h4>
             </div>
 
             {/* MAIN CONTENT */}
-            <div
-                className="row g-3 px-2"
-                style={{ height: "calc(100vh - 80px)" }}
-            >
+            <div className="row g-3 px-2" style={{ height: "calc(100vh - 70px)" }}>
 
                 {/* LEFT SIDE – 50% */}
                 <div className="col-md-6 d-flex flex-column gap-2">
@@ -39,14 +36,26 @@ const Dashboard = () => {
                 <div className="col-md-6 d-flex flex-column gap-2">
 
                     <InstallationsTable />
-                    <div className="d-flex flex-row gap-2 " >
 
-                        <div className="d-flex flex-column gap-2 flex-fill " style={{ height: "300px" }}>
+                    <div className="d-flex flex-row justify-content-around">
+                        <button className="btn btn-sm btn-danger">
+                            Monthly
+                        </button>
+                        <button className="btn btn-sm btn-success">
+                            Finance Year
+                        </button>
+                        <button className="btn btn-sm btn-warning">
+                            All Time
+                        </button>
+                    </div>
+
+                    <div className="d-flex flex-row gap-2 " >
+                        <div className="d-flex flex-column gap-2 flex-fill ">
                             <Top5DealerTable/>
                             <Top5MakeModelTable/>
                         </div>
 
-                        <div className="d-flex flex-column gap-2 flex-fill " style={{ height: "300px" }}>
+                        <div className="d-flex flex-column gap-2 flex-fill ">
                         <Top5ZonesTable/>
                         <Top5RegionsTable/>
                         </div>

@@ -25,7 +25,7 @@ const Top5MakeModelTable = () => {
     return (
         <div className="card shadow-sm rounded-4 flex-fill" >
             <div className="card-body p-2">
-                <h6 className="text-center fw-bold text-secondary mb-1" style={{ fontSize: "0.75rem" }}>
+                <h6 className="text-center fw-bold text-secondary mb-1" style={{ fontSize: "0.85rem" }}>
                     Top 5 Make-Model
                 </h6>
 
@@ -40,15 +40,15 @@ const Top5MakeModelTable = () => {
                         </tr>
                         </thead>
 
-                        <tbody style={{ fontSize: "0.73rem" }}>
+                        <tbody style={{ fontSize: "0.8rem" }}>
                         {data.length > 0 ? (
                             data.map((item, index) => (
                                 <tr key={index}>
                                     <td className="fw-semibold">{index + 1}</td>
-                                    <td className="fw-normal text-center px-2" style={{ fontSize: "0.70rem" }}>
+                                    <td className="fw-normal text-center px-2" style={{ fontSize: "0.75rem" }}>
                                         {item.make}
                                     </td>
-                                    <td className="fw-normal text-center px-2" style={{ fontSize: "0.70rem" }}>
+                                    <td className="fw-normal text-center px-2" style={{ fontSize: "0.75rem" }}>
                                         {item.model}
                                     </td>
                                     <td className="fw-bold text-primary">{item.count.toLocaleString()}</td>

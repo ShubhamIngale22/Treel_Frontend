@@ -11,7 +11,7 @@ import api from "../../services/api";
 //     pointHoverRadius: 6
 // };
 const DealerInstallationsLineChart = () => {
-    const [range, setRange] = useState("1year");
+    const [range, setRange] = useState("7days");
     const [chartData, setChartData] = useState(null);
 
     useEffect(() => {
@@ -73,7 +73,7 @@ const DealerInstallationsLineChart = () => {
                 </div>
 
                 {/* LINE CHART */}
-                <div style={{height:"150px"}}>
+                <div style={{height:"155px"}}>
                     {chartData ? (
                         <Line
                             data={chartData}

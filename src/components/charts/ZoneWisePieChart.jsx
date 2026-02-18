@@ -19,9 +19,7 @@ const ZoneWisePieChart = () => {
             if(!res.success) return;
             const metricData=
                 metric === "sells" ? res.data.sells : res.data.installations;
-            setData(metricData)
-
-
+            setData(metricData);
         }).catch(err => {
             console.error("ZoneWisePieChart API error:", err);
         })
@@ -96,7 +94,7 @@ const ZoneWisePieChart = () => {
                             }`}
                             onClick={() => setMetric("sells")}
                         >
-                            Dealer Sales
+                            Dealer Sells
                         </button>
                     </div>
 
@@ -118,7 +116,7 @@ const ZoneWisePieChart = () => {
                     </div>
 
                     {/* Pie Chart */}
-                    <div style={{ width: 250, height: 250, position: "relative" }}>
+                    <div style={{ width: 300, height: 300, position: "relative" }}>
 
                         {/* Spinner overlay — sits ON TOP, chart stays mounted */}
                         {loading && (
@@ -182,7 +180,7 @@ const ZoneWisePieChart = () => {
                             }`}
                             onClick={() => setRange("yearly")}
                         >
-                            YTD
+                            FY
                         </button>
                     </div>
                 </div>
