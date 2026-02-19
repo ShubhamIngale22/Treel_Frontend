@@ -16,11 +16,16 @@ const Dashboard = () => {
 
             {/* Header */}
             <div
-                className="rounded-3 mx-2 mt-2 mb-3 py-2"
+                className="rounded-3 py-2"
                 style={{
                     background: "linear-gradient(90deg, #064e3b, #16a34a, #4ade80)",
                     boxShadow: "0 10px 24px rgba(6,78,59,0.45)",
-                    border: "1px solid rgba(6,78,59,0.35)"
+                    border: "1px solid rgba(6,78,59,0.35)",
+                    position: "fixed",
+                    top: 1,
+                    left: 2,
+                    right: 2,
+                    zIndex: 10
                 }}
             >
                 <h4 className="text-center text-white m-0 fw-semibold">
@@ -29,7 +34,7 @@ const Dashboard = () => {
             </div>
 
             {/* MAIN CONTENT */}
-            <div className="row g-3 px-2 pb-4">
+            <div className="row g-3 px-2 pb-4px" style={{ paddingTop: "70px" }}>
 
                 {/* LEFT SIDE */}
                 <div className="col-12 col-xxl-6 d-flex flex-column">
