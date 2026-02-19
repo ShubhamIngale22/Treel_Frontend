@@ -34,7 +34,7 @@ const Dashboard = () => {
             </div>
 
             {/* MAIN CONTENT */}
-            <div className="row g-3 px-2 pb-4px" style={{ paddingTop: "70px" }}>
+            <div className="row g-3 px-2 pb-4px" style={{ paddingTop: "70px",paddingBottom:"20px" }}>
 
                 {/* LEFT SIDE */}
                 <div className="col-12 col-xxl-6 d-flex flex-column">

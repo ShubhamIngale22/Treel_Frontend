@@ -3,6 +3,7 @@ import api from "../../services/api";
 
 const Top5MakeModelTable = ({range}) => {
     const [data, setData] = useState([]);
+    const [loading, setLoading] = useState(false);
     const stickyTh = {
         position: "sticky",
         top: 0,
@@ -12,6 +13,7 @@ const Top5MakeModelTable = ({range}) => {
     };
 
     useEffect(() => {
+        setLoading(true);
         api.getTop5MakeModel(range).then(res=>{
             if(!res.success) return;
             setData(res.data)
@@ -19,7 +21,7 @@ const Top5MakeModelTable = ({range}) => {
         }).catch((err)=>{
             console.error("Api fetch error :", err);
             throw err;
-        })
+        }).finally(()=>setLoading(false));
     }, [range]);
 
     return (
@@ -41,7 +43,13 @@ const Top5MakeModelTable = ({range}) => {
                         </thead>
 
                         <tbody style={{ fontSize: "0.8rem" }}>
-                        {data.length > 0 ? (
+                        { loading ? (
+                            <tr>
+                                <td colSpan="3" className="text-center text-muted py-2" style={{ fontSize: "0.75rem" }}>
+                                    Loading...
+                                </td>
+                            </tr>
+                        ):data.length > 0 ? (
                             data.map((item, index) => (
                                 <tr key={index}>
                                     <td className="fw-semibold">{index + 1}</td>
@@ -57,7 +65,7 @@ const Top5MakeModelTable = ({range}) => {
                         ) : (
                             <tr>
                                 <td colSpan="3" className="text-center text-muted py-2" style={{ fontSize: "0.75rem" }}>
-                                    Loading...
+                                    Data is not available
                                 </td>
                             </tr>
                         )}
