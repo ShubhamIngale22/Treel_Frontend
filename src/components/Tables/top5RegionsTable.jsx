@@ -11,18 +11,18 @@ const Top5RegionsTable = ({range}) => {
         zIndex: 2,
         fontSize: "0.75rem" // Smaller header text
     };
+    const tableName="Regions";
 
     useEffect(() => {
         setLoading(true);
-        api.getTop5Regions(range).then(res=>{
+        api.getTop5SmartTyreInstallation(range,tableName).then(res=>{
             if(!res.success) return;
             setData(res.data)
-
         }).catch((err)=>{
             console.error("Api fetch error :", err);
             throw err;
         }).finally(()=>setLoading(false));
-    }, [range]);
+    }, [range,tableName]);
 
     return (
         <div className="card shadow-sm rounded-4 flex-fill" >
@@ -61,7 +61,7 @@ const Top5RegionsTable = ({range}) => {
                         ) : (
                             <tr>
                                 <td colSpan="3" className="text-center text-muted py-2" style={{ fontSize: "0.75rem" }}>
-                                    Loading...
+                                    Data is not available
                                 </td>
                             </tr>
                         )}

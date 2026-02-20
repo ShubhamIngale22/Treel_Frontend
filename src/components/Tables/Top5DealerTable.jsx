@@ -11,10 +11,11 @@ const Top5DealerTable = ({range}) => {
         zIndex: 2,
         fontSize: "0.75rem" // Smaller header text
     };
+    const tableName="Dealers";
 
     useEffect(() => {
         setLoading(true);
-        api.getTop5Dealer(range).then(res=>{
+        api.getTop5SmartTyreInstallation(range,tableName).then(res=>{
             if(!res.success) return;
             setData(res.data)
 
@@ -22,7 +23,7 @@ const Top5DealerTable = ({range}) => {
             console.error("Api fetch error :", err);
             throw err;
         }).finally(()=>setLoading(false));
-    }, [range]);
+    }, [range,tableName]);
 
     return (
         <div className="card shadow-sm rounded-4 flex-fill">
