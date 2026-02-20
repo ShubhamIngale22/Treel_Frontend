@@ -16,25 +16,38 @@ const Dashboard = () => {
 
             {/* Header */}
             <div
-                className="rounded-3 py-2"
+                className="rounded-3 py-2 px-3 d-flex align-items-center"
                 style={{
                     background: "linear-gradient(90deg, #064e3b, #16a34a, #4ade80)",
-                    boxShadow: "0 10px 24px rgba(6,78,59,0.45)",
+                    boxShadow: "0 8px 20px rgba(6,78,59,0.45)",
                     border: "1px solid rgba(6,78,59,0.35)",
                     position: "fixed",
                     top: 1,
-                    left: 2,
-                    right: 2,
+                    left: 1,
+                    right: 1,
                     zIndex: 10
                 }}
             >
-                <h4 className="text-center text-white m-0 fw-semibold">
+                <img
+                    src="/treel_logo.png"
+                    alt="Treel Logo"
+                    className="img-fluid"
+                    style={{
+                        height: "clamp(20px, 3.5vw, 28px)",
+                        width: "auto",
+                        maxWidth: "70px"
+                    }}
+                />
+                <h4
+                    className="text-center text-white m-0 fw-semibold flex-grow-1"
+                    style={{ fontSize: "clamp(17px, 2.5vw, 24px)" }}
+                >
                     TREEL Smart Tyre Dashboard
                 </h4>
             </div>
 
             {/* MAIN CONTENT */}
-            <div className="row g-3 px-2 pb-4px" style={{ paddingTop: "70px",paddingBottom:"20px" }}>
+            <div className="row g-3 px-2 pb-4px" style={{ paddingTop: "65px",paddingBottom:"15px" }}>
 
                 {/* LEFT SIDE */}
                 <div className="col-12 col-xxl-6 d-flex flex-column">
