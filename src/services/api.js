@@ -11,28 +11,6 @@ api.interceptors.response.use(
 );
 
 const apiService = {
-    getInstallationSellsTable: () =>
-        api.get("/dealerInstallationsSellsTable"),
-
-    getTop5Dealer: (range) =>
-        api.get("/top5DealerInstallationTable", {
-            params: { type: range }
-        }),
-
-    getTop5MakeModel: (range) =>
-        api.get("/top5MakeModelTable", {
-            params: { type: range }
-        }),
-
-    getTop5Regions: (range) =>
-        api.get("/top5regionTable", {
-            params: { type: range }
-        }),
-
-    getTop5Zones: (range) =>
-        api.get("/top5ZoneTable", {
-            params: { type: range }
-        }),
 
     getDealerInstallationsSells: (range) =>
         api.get("/sellsInstallationsLineChart", {
@@ -42,6 +20,14 @@ const apiService = {
     getZoneWisePieChart: (range) =>
         api.get("/zoneWiseInstallationsSellsPie", {
             params: { type: range }
+        }),
+
+    getInstallationSellsTable: () =>
+        api.get("/dealerInstallationsSellsTable"),
+
+    getTop5SmartTyreInstallation: (range,tableName) =>
+        api.get("/getTop5SmartTyreInstallation", {
+            params: { type: range,filter:tableName}
         }),
 };
 export default apiService;
