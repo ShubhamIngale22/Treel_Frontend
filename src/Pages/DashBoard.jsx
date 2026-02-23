@@ -22,9 +22,9 @@ const Dashboard = () => {
                     boxShadow: "0 8px 20px rgba(6,78,59,0.45)",
                     border: "1px solid rgba(6,78,59,0.35)",
                     position: "fixed",
-                    top: 1,
-                    left: 1,
-                    right: 1,
+                    top: 5,
+                    left: 20,
+                    right: 20,
                     zIndex: 10
                 }}
             >

@@ -56,13 +56,13 @@ const ZoneWisePieChart = () => {
             <div className="card-body d-flex flex-column p-2 p-md-3">
 
                 {/* Heading */}
-                <h6 className="text-center fw-bold text-secondary mb-2 flex-shrink-0">
+                <h6 className="text-center fw-bold text-secondary mb-3 mb-lg-2 flex-shrink-0">
                     {heading1} ({heading2})
                 </h6>
 
                 {/* Buttons row — MTD/FY left, Installations/Dealer Sells right */}
                 <div className="d-flex justify-content-between align-items-center mb-2 gap-2 flex-shrink-0">
-                    <div className="d-flex gap-2">
+                    <div className="d-flex btn-group gap-2">
                         <button
                             className={`btn btn-sm ${range === "monthly" ? "btn-success" : "btn-outline-success"}`}
                             onClick={() => setRange("monthly")}
@@ -76,7 +76,7 @@ const ZoneWisePieChart = () => {
                             Financial Year
                         </button>
                     </div>
-                    <div className="d-flex gap-2">
+                    <div className="d-flex btn-group gap-2">
                         <button
                             className={`btn btn-sm ${metric === "installations" ? "btn-primary" : "btn-outline-primary"}`}
                             onClick={() => setMetric("installations")}
