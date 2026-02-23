@@ -1,15 +1,6 @@
 import { useEffect, useState } from "react";
 import { Line } from "react-chartjs-2";
 import api from "../../services/api";
-
-// const LINE_STYLE = {
-//     borderColor: "rgba(59,130,246,0.42)",
-//     backgroundColor: "rgba(59,130,246,0.30)",
-//     tension: 0.4,
-//     fill: true,
-//     pointRadius: 4,
-//     pointHoverRadius: 6
-// };
 const DealerInstallationsLineChart = () => {
     const [range, setRange] = useState("7days");
     const [chartData, setChartData] = useState(null);
