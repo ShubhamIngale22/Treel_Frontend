@@ -50,13 +50,13 @@ const Dashboard = () => {
             <div className="row g-3 px-2 pb-4px" style={{ paddingTop: "65px",paddingBottom:"15px" }}>
 
                 {/* LEFT SIDE */}
-                <div className="col-12 col-xxl-6 d-flex flex-column">
+                <div className="col-12 col-xxl-6 d-flex flex-column gap-3">
                     {/* Line chart — fixed height */}
-                    <div style={{ height: 250 }}>
+                    <div style={{height:"270px"}}>
                         <DealerInstallationsLineChart />
                     </div>
                     {/* Pie chart — height tuned to match right side */}
-                    <div style={{ height: 360 }}>
+                    <div style={{height:"330px"}}>
                         <ZoneWisePieChart />
                     </div>
                 </div>

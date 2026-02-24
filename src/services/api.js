@@ -12,9 +12,9 @@ api.interceptors.response.use(
 
 const apiService = {
 
-    getDealerInstallationsSells: (range) =>
+    getDealerInstallationsSells: (params) =>
         api.get("/sellsInstallationsLineChart", {
-            params: { type: range }
+            params
         }),
 
     getZoneWisePieChart: (range) =>

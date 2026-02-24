@@ -152,7 +152,7 @@ const ZoneWiseBarChart = () => {
                             <div className="spinner-border spinner-border-sm text-secondary" />
                         </div>
                     )}
-                    <Bar key={range} data={barData} options={barOptions} />
+                        <Bar key={range} data={barData} options={barOptions} />
                 </div>
 
             </div>
