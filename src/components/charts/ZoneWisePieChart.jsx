@@ -17,10 +17,10 @@ const SELLS_COLOR   = "rgba(249,115,22,0.6)";
 
 const ZoneWiseBarChart = () => {
     const [installations, setInstallations] = useState([]);
-    const [sells, setSells]                 = useState([]);
-    const [range, setRange]                 = useState("monthly");
-    const [loading, setLoading]             = useState(false);
-    const [labels, setLabels]               = useState({});
+    const [sells, setSells]= useState([]);
+    const [range, setRange]= useState("monthly");
+    const [loading, setLoading]= useState(false);
+    const [labels, setLabels]= useState({});
 
     useEffect(() => {
         setLoading(true);
