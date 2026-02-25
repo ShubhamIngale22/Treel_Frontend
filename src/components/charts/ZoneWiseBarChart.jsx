@@ -24,7 +24,7 @@ const ZoneWiseBarChart = () => {
 
     useEffect(() => {
         setLoading(true);
-        api.getZoneWisePieChart(range)
+        api.getZoneWiseBarChart(range)
             .then(res => {
                 setLabels(res.data.labels);
                 if (!res.success) return;

@@ -5,7 +5,7 @@ import DealerInstallationsLineChart from "../components/charts/DealerInstallatio
 import Top5DealerTable from "../components/Tables/Top5DealerTable";
 import Top5MakeModelTable from "../components/Tables/top5MakeModelTable";
 import Top5RegionsTable from "../components/Tables/top5RegionsTable";
-import ZoneWisePieChart from "../components/charts/ZoneWisePieChart";
+import ZoneWiseBarChart from "../components/charts/ZoneWiseBarChart";
 import Top5ZonesTable from "../components/Tables/top5ZonesTable";
 
 const Dashboard = () => {
@@ -36,7 +36,7 @@ const Dashboard = () => {
                     {/* LEFT SIDE */}
                     <div className="col-12 col-xxl-6 d-flex flex-column gap-2">
                         <div style={{ height: "270px" }}><DealerInstallationsLineChart /></div>
-                        <div style={{ height: "330px" }}><ZoneWisePieChart /></div>
+                        <div style={{ height: "330px" }}><ZoneWiseBarChart /></div>
                     </div>
 
                     {/* RIGHT SIDE */}
