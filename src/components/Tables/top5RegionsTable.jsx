@@ -55,7 +55,7 @@ const Top5RegionsTable = ({range}) => {
                                     <td className="fw-normal text-center px-2" style={{ fontSize: "0.70rem" }}>
                                         {item.regionName}
                                     </td>
-                                    <td className="fw-bold text-primary">{item.count.toLocaleString()}</td>
+                                    <td className="fw-semibold text-dark">{item.count.toLocaleString()}</td>
                                 </tr>
                             ))
                         ) : (

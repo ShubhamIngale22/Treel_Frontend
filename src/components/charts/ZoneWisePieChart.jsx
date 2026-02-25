@@ -98,29 +98,29 @@ const ZoneWiseBarChart = () => {
                 </h6>
 
                 {/* Controls */}
-                <div className="d-flex flex-wrap justify-content-between align-items-center mb-2 gap-2 flex-shrink-0">
+                <div className="d-flex flex-wrap justify-content-around align-items-center mb-2 gap-2 flex-shrink-0">
 
-                    {/* Range buttons */}
-                    <div className="d-flex gap-2">
-                        <button
-                            className={`btn btn-sm ${range === "monthly" ? "btn-success" : "btn-outline-success"}`}
-                            onClick={() => setRange("monthly")}
-                        >
-                            MTD
-                        </button>
-                        <button
-                            className={`btn btn-sm ${range === "yearly" ? "btn-warning" : "btn-outline-warning"}`}
-                            onClick={() => setRange("yearly")}
-                        >
-                            YTD
-                        </button>
-                        <button
-                            className={`btn btn-sm ${range === "custom" ? "btn-danger" : "btn-outline-danger"}`}
-                            onClick={() => setRange("custom")}
-                        >
-                            Custom
-                        </button>
-                    </div>
+                    {/*/!* Range buttons *!/*/}
+                    {/*<div className="d-flex gap-2">*/}
+                    {/*    <button*/}
+                    {/*        className={`btn btn-sm ${range === "monthly" ? "btn-success" : "btn-outline-success"}`}*/}
+                    {/*        onClick={() => setRange("monthly")}*/}
+                    {/*    >*/}
+                    {/*        MTD*/}
+                    {/*    </button>*/}
+                    {/*    <button*/}
+                    {/*        className={`btn btn-sm ${range === "yearly" ? "btn-warning" : "btn-outline-warning"}`}*/}
+                    {/*        onClick={() => setRange("yearly")}*/}
+                    {/*    >*/}
+                    {/*        YTD*/}
+                    {/*    </button>*/}
+                    {/*    <button*/}
+                    {/*        className={`btn btn-sm ${range === "custom" ? "btn-danger" : "btn-outline-danger"}`}*/}
+                    {/*        onClick={() => setRange("custom")}*/}
+                    {/*    >*/}
+                    {/*        Custom*/}
+                    {/*    </button>*/}
+                    {/*</div>*/}
 
                     {/* Legend pills */}
                     <div className="d-flex gap-3 align-items-center">

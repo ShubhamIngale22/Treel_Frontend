@@ -32,7 +32,7 @@ const Top5DealerTable = ({range}) => {
                     Top 5 Dealers
                 </h6>
 
-                <div className="table-responsive" style={{ maxHeight: "170px" }}>
+                <div className="table-responsive" style={{ maxHeight: "200px" }}>
                     <table className="table table-sm table-bordered align-middle text-center mb-0">
                         <thead>
                         <tr>
@@ -56,7 +56,7 @@ const Top5DealerTable = ({range}) => {
                                     <td className="fw-normal text-start px-2" style={{ fontSize: "0.70rem" }}>
                                         {item.dealerShopName}
                                     </td>
-                                    <td className="fw-bold text-primary">{item.count.toLocaleString()}</td>
+                                    <td className="fw-semibold text-dark">{item.count.toLocaleString()}</td>
                                 </tr>
                             ))
                         ) : (

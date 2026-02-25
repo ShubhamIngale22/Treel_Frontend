@@ -147,7 +147,7 @@ export default function CustomRangePicker({ isActive, label, onApply }) {
             {showCustom && (
                 <div
                     className="position-absolute bg-white border rounded-3 shadow"
-                    style={{ top: "calc(100% + 6px)", left: 0, zIndex: 100, width: "min(280px, 90vw)", padding: "16px", transform: "translateX(min(0px, calc(100vw - 316px)))" }}
+                    style={{ top: "calc(100% + 6px)", left: "auto",right:0, zIndex: 100, width: "min(280px, 90vw)", padding: "16px"}}
                 >
                     <p className="text-uppercase fw-semibold text-secondary mb-3" style={{ fontSize: "10px", letterSpacing: "0.6px" }}>
                         Custom Range

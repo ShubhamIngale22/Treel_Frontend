@@ -32,7 +32,7 @@ const Top5ZonesTable = ({range}) => {
                     Top 5 Zones
                 </h6>
 
-                <div className="table-responsive" style={{ maxHeight: "170px" }}>
+                <div className="table-responsive" style={{ maxHeight: "200px" }}>
                     <table className="table table-sm table-bordered align-middle text-center mb-0">
                         <thead className="table-light">
                         <tr>
@@ -56,7 +56,7 @@ const Top5ZonesTable = ({range}) => {
                                     <td className="fw-normal text-center px-2" style={{ fontSize: "0.70rem" }}>
                                         {item.zone}
                                     </td>
-                                    <td className="fw-bold text-primary">{item.count.toLocaleString()}</td>
+                                    <td className="fw-semibold text-dark">{item.count.toLocaleString()}</td>
                                 </tr>
                             ))
                         ) : (
