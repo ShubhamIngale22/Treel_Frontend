@@ -89,6 +89,13 @@ export default function DealerInstallationsLineChart() {
                 border: { display: false },
             },
         },
+        animation: {
+            duration: 800,
+            easing: "easeInOutQuart",
+            y: {
+                from: (ctx) => ctx.chart.scales.y.getPixelForValue(0)  // draws left to right
+            },
+        },
     };
 
     // ── Fetch ─────────────────────────────────────────────────────
@@ -160,10 +167,10 @@ export default function DealerInstallationsLineChart() {
                             <line x1="3"  y1="10" x2="21" y2="10" />
                         </svg>
                         <small style={{ fontSize: "11px", color: "#92400e" }}>
-                            Showing: <strong>{customParams.fiscalYear}</strong>
+                            Results for period : <strong>{customParams.fiscalYear}</strong>
                             {customParams.month && (
                                 // ← find the label by matching the month number value
-                                <> · <strong>{MONTHS.find(m => m.value === customParams.month)?.label}</strong></>
+                                <> - <strong>{MONTHS.find(m => m.value === customParams.month)?.label}</strong></>
                             )}
                         </small>
                     </div>
