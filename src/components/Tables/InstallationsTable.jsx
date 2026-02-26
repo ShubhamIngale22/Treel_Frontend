@@ -31,43 +31,43 @@ const InstallationsTable = () => {
                         <thead className="table-light">
                         <tr className="text-secondary">
                             <th style={{background: "#cce3d9"}}></th>
-                            <th className={"fw-semibold"} style={{background: "#b1e0cc",fontSize: "0.85rem"}}>Yesterday</th>
-                            <th className={"fw-semibold"} style={{background: "#b1e0cc",fontSize: "0.85rem"}}>{labels.lastMonthLabel}</th>
-                            <th className={"fw-semibold"} style={{background: "#b1e0cc",fontSize: "0.85rem"}}>{labels.fyYearLabel}</th>
+                            <th className={"fw-semibold"} style={{background: "#b1e0cc",fontSize: "0.8rem"}}>Yesterday</th>
+                            <th className={"fw-semibold"} style={{background: "#b1e0cc",fontSize: "0.8rem"}}>{labels.lastMonthLabel}</th>
+                            <th className={"fw-semibold"} style={{background: "#b1e0cc",fontSize: "0.8rem"}}>{labels.fyYearLabel}</th>
                         </tr>
                         </thead>
                         <tbody>
                         <tr>
-                            <th className="table-light fw-semibold" style={{background: "#b1e0cc",fontSize: "0.85rem"}} >Installations</th>
-                            <td className="fw-semibold text-success " style={{ fontSize: "0.9rem" }} >
+                            <th className="table-light fw-semibold" style={{background: "#b1e0cc",fontSize: "0.8rem"}} >Installations</th>
+                            <td className="fw-semibold text-success " style={{ fontSize: "0.85rem" }} >
                                 {installationData?.yesterday != null
                                     ? installationData.yesterday.toLocaleString("en-IN")
                                     : "—"}
                             </td>
-                            <td className="fw-semibold text-success " style={{ fontSize: "0.9rem" }}>
+                            <td className="fw-semibold text-success " style={{ fontSize: "0.85rem" }}>
                                 {installationData?.lastMonth != null
                                     ? installationData.lastMonth.toLocaleString("en-IN")
                                     : "—"}
                             </td>
-                            <td className="fw-semibold text-success " style={{ fontSize: "0.9rem" }}>
+                            <td className="fw-semibold text-success " style={{ fontSize: "0.85rem" }}>
                                 {installationData?.fyYear != null
                                     ? installationData.fyYear.toLocaleString("en-IN")
                                     : "—"}
                             </td>
                         </tr>
                         <tr>
-                            <th className="table-light fw-semibold" style={{background: "#b1e0cc",fontSize: "0.85rem"}}>Dealer Sells</th>
-                            <td className="fw-semibold text-success" style={{ fontSize: "0.9rem" }}>
+                            <th className="table-light fw-semibold" style={{background: "#b1e0cc",fontSize: "0.8rem"}}>Dealer Sells</th>
+                            <td className="fw-semibold text-success" style={{ fontSize: "0.85rem" }}>
                                 {sellsData?.yesterday != null
                                     ? sellsData.yesterday.toLocaleString("en-IN")
                                     : "—"}
                             </td>
-                            <td className="fw-semibold text-success" style={{ fontSize: "0.9rem" }}>
+                            <td className="fw-semibold text-success" style={{ fontSize: "0.85rem" }}>
                                 {sellsData?.lastMonth != null
                                     ? sellsData.lastMonth.toLocaleString("en-IN")
                                     : "—"}
                             </td>
-                            <td className="fw-semibold text-success" style={{ fontSize: "0.9rem" }}>
+                            <td className="fw-semibold text-success" style={{ fontSize: "0.85rem" }}>
                                 {sellsData?.fyYear != null
                                     ? sellsData.fyYear.toLocaleString("en-IN")
                                     : "—"}
