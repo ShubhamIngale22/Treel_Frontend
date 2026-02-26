@@ -9,6 +9,8 @@ import {
     Legend,
 } from "chart.js";
 import api from "../../services/api";
+import { useDashboard } from "../context/DashboardContext";
+import { MONTHS }        from "../buttons/Customrangepicker";
 
 ChartJS.register(CategoryScale, LinearScale, BarElement, Tooltip, Legend);
 
@@ -16,25 +18,39 @@ const INSTALL_COLOR = "rgba(59,130,246,0.6)";
 const SELLS_COLOR   = "rgba(249,115,22,0.6)";
 
 const ZoneWiseBarChart = () => {
+    const { globalRange, customParams } = useDashboard();
+
     const [installations, setInstallations] = useState([]);
-    const [sells, setSells]= useState([]);
-    const [range, setRange]= useState("monthly");
-    const [loading, setLoading]= useState(false);
-    const [labels, setLabels]= useState({});
+    const [sells,         setSells]         = useState([]);
+    const [labels,        setLabels]        = useState({});
+    const [loading,       setLoading]       = useState(false);
+    const [error,         setError]         = useState(null);
 
+    // ── Fetch ────────────────────────────────────────────────────────────────────
     useEffect(() => {
-        setLoading(true);
-        api.getZoneWiseBarChart(range)
-            .then(res => {
-                setLabels(res.data.labels);
-                if (!res.success) return;
-                setInstallations(res.data.installations ?? []);
-                setSells(res.data.sells ?? []);
-            })
-            .catch(err => console.error("ZoneWiseBarChart API error:", err))
-            .finally(() => setLoading(false));
-    }, [range]);
+        const params = { type: globalRange ?? "YTD" };
 
+        if (globalRange === "custom") {
+            params.fiscal_year = customParams.fiscalYear;
+            if (customParams.month) params.month = customParams.month;
+        }
+
+        setLoading(true);
+        setError(null);
+
+        api.getZoneWiseBarChart(params)
+            .then((res) => {
+                if (!res.success) { setError("Failed to load data."); return; }
+                setLabels(res.data?.labels        ?? {});
+                setInstallations(res.data?.installations ?? []);
+                setSells(res.data?.sells         ?? []);
+            })
+            .catch((err) => { console.error("ZoneWiseBarChart API error:", err); setError("Something went wrong."); })
+            .finally(() => setLoading(false));
+
+    }, [globalRange, customParams]);
+
+    // ── Chart data ───────────────────────────────────────────────────────────────
     const zones = [...new Set([
         ...installations.map(d => d.zone),
         ...sells.map(d => d.zone),
@@ -50,14 +66,14 @@ const ZoneWiseBarChart = () => {
                 data: zones.map(z => getCount(installations, z)),
                 backgroundColor: INSTALL_COLOR,
                 borderRadius: 4,
-                borderSkipped: false,
+                borderSkipped: "bottom",
             },
             {
                 label: "Dealer Sells",
                 data: zones.map(z => getCount(sells, z)),
                 backgroundColor: SELLS_COLOR,
                 borderRadius: 4,
-                borderSkipped: false,
+                borderSkipped: "bottom",
             },
         ],
     };
@@ -68,6 +84,7 @@ const ZoneWiseBarChart = () => {
         plugins: {
             legend: { display: false },
             tooltip: { mode: "index", intersect: false },
+            datalabels: { display: false },
         },
         scales: {
             x: {
@@ -80,13 +97,23 @@ const ZoneWiseBarChart = () => {
                 ticks: { font: { size: 11 }, precision: 0 },
             },
         },
-        animation: { duration: 800 },
+        animation: {
+            duration: 2000,
+            easing: "easeOutQuart",
+            y: {
+                from: (ctx) => ctx.chart.scales.y.getPixelForValue(0)
+            }
+        },
+        transitions: {
+            active: { animation: { duration: 400 } },
+        },
     };
 
-    const periodLabel = range === "monthly"
+    const periodLabel = globalRange === "MTD"
         ? labels?.lastMonthLabel
         : labels?.fyYearLabel;
 
+    // ── Render ───────────────────────────────────────────────────────────────────
     return (
         <div className="card shadow-sm rounded-4 h-100">
             <div className="card-body d-flex flex-column p-2 p-md-3">
@@ -97,63 +124,54 @@ const ZoneWiseBarChart = () => {
                     {periodLabel && <span className="ms-1">({periodLabel})</span>}
                 </h6>
 
-                {/* Controls */}
-                <div className="d-flex flex-wrap justify-content-around align-items-center mb-2 gap-2 flex-shrink-0">
-
-                    {/*/!* Range buttons *!/*/}
-                    {/*<div className="d-flex gap-2">*/}
-                    {/*    <button*/}
-                    {/*        className={`btn btn-sm ${range === "monthly" ? "btn-success" : "btn-outline-success"}`}*/}
-                    {/*        onClick={() => setRange("monthly")}*/}
-                    {/*    >*/}
-                    {/*        MTD*/}
-                    {/*    </button>*/}
-                    {/*    <button*/}
-                    {/*        className={`btn btn-sm ${range === "yearly" ? "btn-warning" : "btn-outline-warning"}`}*/}
-                    {/*        onClick={() => setRange("yearly")}*/}
-                    {/*    >*/}
-                    {/*        YTD*/}
-                    {/*    </button>*/}
-                    {/*    <button*/}
-                    {/*        className={`btn btn-sm ${range === "custom" ? "btn-danger" : "btn-outline-danger"}`}*/}
-                    {/*        onClick={() => setRange("custom")}*/}
-                    {/*    >*/}
-                    {/*        Custom*/}
-                    {/*    </button>*/}
-                    {/*</div>*/}
-
-                    {/* Legend pills */}
-                    <div className="d-flex gap-3 align-items-center">
-                        <span className="d-flex align-items-center gap-1" style={{ fontSize: "0.75rem" }}>
-                            <span style={{
-                                width: 12, height: 12, borderRadius: 3,
-                                backgroundColor: INSTALL_COLOR, flexShrink: 0,
-                            }} />
-                            Installations
-                        </span>
-                        <span className="d-flex align-items-center gap-1" style={{ fontSize: "0.75rem" }}>
-                            <span style={{
-                                width: 12, height: 12, borderRadius: 3,
-                                backgroundColor: SELLS_COLOR, flexShrink: 0,
-                            }} />
-                            Dealer Sells
-                        </span>
-                    </div>
+                {/* Legend pills */}
+                <div className="d-flex justify-content-center align-items-center mb-2 gap-3 flex-shrink-0">
+                    <span className="d-flex align-items-center gap-1" style={{ fontSize: "0.75rem" }}>
+                        <span style={{ width: 12, height: 12, borderRadius: 3, backgroundColor: INSTALL_COLOR, flexShrink: 0 }} />
+                        Installations
+                    </span>
+                    <span className="d-flex align-items-center gap-1" style={{ fontSize: "0.75rem" }}>
+                        <span style={{ width: 12, height: 12, borderRadius: 3, backgroundColor: SELLS_COLOR, flexShrink: 0 }} />
+                        Dealer Sells
+                    </span>
                 </div>
 
                 {/* Chart */}
-                <div style={{ position: "relative", flex: "1 1 0", minHeight: 0 }}>
-                    {loading && (
-                        <div style={{
-                            position: "absolute", inset: 0,
-                            display: "flex", alignItems: "center", justifyContent: "center",
-                            background: "rgba(255,255,255,0.7)", zIndex: 10,
-                        }}>
-                            <div className="spinner-border spinner-border-sm text-secondary" />
+                <div style={{ position: "relative",height: "clamp(200px, 30vw, 260px)", flex: 10 }}>
+                    {loading ? (
+                        <div className="h-100 d-flex align-items-center justify-content-center gap-2">
+                            <div className="spinner-border spinner-border-sm text-secondary" role="status" />
+                            <span className="text-muted" style={{ fontSize: "12px" }}>Loading...</span>
+                        </div>
+                    ) : error ? (
+                        <div className="h-100 d-flex align-items-center justify-content-center">
+                            <span className="text-danger" style={{ fontSize: "12px" }}>{error}</span>
+                        </div>
+                    ) : (
+                        <div style={{ position: "relative", height: "98%", width: "100%" }}>
+                        <Bar key={globalRange} data={barData} options={barOptions} />
                         </div>
                     )}
-                        <Bar key={range} data={barData} options={barOptions} />
                 </div>
+
+                {/* Active custom badge — mirrors line chart */}
+                {globalRange === "custom" && (
+                    <div className="d-flex align-items-center gap-1 mt-1 px-2 py-1 mb-2 rounded-2 bg-warning bg-opacity-25">
+                        <svg width="11" height="11" viewBox="0 0 24 24" fill="none"
+                             stroke="#92400e" strokeWidth="2.5" strokeLinecap="round" strokeLinejoin="round">
+                            <rect x="3" y="4" width="18" height="18" rx="2" ry="2" />
+                            <line x1="16" y1="2" x2="16" y2="6" />
+                            <line x1="8"  y1="2" x2="8"  y2="6" />
+                            <line x1="3"  y1="10" x2="21" y2="10" />
+                        </svg>
+                        <small style={{ fontSize: "11px", color: "#92400e" }}>
+                            Results for period : <strong>{customParams.fiscalYear}</strong>
+                            {customParams.month && (
+                                <> - <strong>{MONTHS.find(m => m.value === customParams.month)?.label}</strong></>
+                            )}
+                        </small>
+                    </div>
+                )}
 
             </div>
         </div>
