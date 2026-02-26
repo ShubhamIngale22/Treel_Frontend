@@ -1,23 +1,46 @@
 const TableFilterButtons = ({ tableRange, setTableRange }) => {
     const filters = [
-        { label: "Monthly",      value: "monthly", active: "btn-danger",  inactive: "btn-outline-danger"  },
-        { label: "Financial Year", value: "Finance Year",      active: "btn-success", inactive: "btn-outline-success" },
-        { label: "All Time",       value: "All Time",  active: "btn-warning", inactive: "btn-outline-warning" },
+        { label: "MTD",      value: "monthly",      color: "#dc3545" },
+        { label: "YTD",      value: "Finance Year", color: "#198754" },
+        { label: "All Time", value: "All Time",      color: "#f59e0b" },
     ];
 
     return (
-        <div className="d-flex flex-row flex-wrap justify-content-around">
-            {filters.map(f => (
-                <button
-                    key={f.value}
-                    className={`btn btn-sm ${
-                        tableRange === f.value ? f.active : f.inactive
-                    }`}
-                    onClick={() => setTableRange(f.value)}
-                >
-                    {f.label}
-                </button>
-            ))}
+        <div className="d-flex flex-row justify-content-around gap-2 my-1">
+            {filters.map(f => {
+                const isActive = tableRange === f.value;
+                return (
+                    <button
+                        key={f.value}
+                        onClick={() => setTableRange(f.value)}
+                        style={{
+                            border: `1.5px solid ${f.color}`,
+                            backgroundColor: isActive ? f.color : "transparent",
+                            color: isActive ? "#fff" : f.color,
+                            borderRadius: "20px",
+                            padding: "3px 16px",
+                            fontSize: "12px",
+                            fontWeight: isActive ? "600" : "500",
+                            cursor: "pointer",
+                            transition: "all 0.2s ease",
+                            boxShadow: isActive ? `0 2px 8px ${f.color}55` : "none",
+                            letterSpacing: "0.3px",
+                        }}
+                        onMouseEnter={e => {
+                            if (!isActive) {
+                                e.currentTarget.style.backgroundColor = f.color + "15";
+                            }
+                        }}
+                        onMouseLeave={e => {
+                            if (!isActive) {
+                                e.currentTarget.style.backgroundColor = "transparent";
+                            }
+                        }}
+                    >
+                        {f.label}
+                    </button>
+                );
+            })}
         </div>
     );
 };
