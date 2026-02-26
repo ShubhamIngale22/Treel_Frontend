@@ -17,9 +17,9 @@ const apiService = {
             params
         }),
 
-    getZoneWiseBarChart: (range) =>
+    getZoneWiseBarChart: (params) =>
         api.get("/zoneWiseInstallationsSellsBarChart", {
-            params: { type: range }
+            params
         }),
 
     getInstallationSellsTable: () =>
