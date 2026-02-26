@@ -31,7 +31,6 @@ ChartJS.register(
 ChartJS.defaults.plugins.datalabels = {
     display: false
 };
-
 export const CHART_COLORS = {
     primary: "#7da2f8",
     success: "#6fd3b2",

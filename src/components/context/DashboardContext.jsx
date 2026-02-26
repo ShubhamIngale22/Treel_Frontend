@@ -5,7 +5,7 @@ const DashboardContext = createContext();
 export const useDashboard = () => useContext(DashboardContext);
 
 export function DashboardProvider({ children }) {
-    const [globalRange, setGlobalRange] = useState("MTD");
+    const [globalRange, setGlobalRange] = useState("YTD");
     // For custom: { fiscalYear: "2024-25", month: null }
     const [customParams, setCustomParams] = useState({ fiscalYear: "2024-25", month: null });
 
