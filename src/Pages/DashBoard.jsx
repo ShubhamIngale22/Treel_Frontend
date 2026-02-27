@@ -1,9 +1,7 @@
 import { DashboardProvider } from "../components/context/DashboardContext";
-import GlobalRangeSelector from "../components/buttons/GlobalRangeSelector";
 import InstallationsTable from "../components/Tables/InstallationsTable";
-import DealerInstallationsLineChart from "../components/charts/DealerInstallationsLineChart";
-import ZoneWiseBarChart from "../components/charts/ZoneWiseBarChart";
 import Top5TablesSection from "../components/Top5TablesSection";
+import ChartsSection from "../components/ChartsSection";
 
 const Dashboard = () => {
     return (
@@ -18,25 +16,17 @@ const Dashboard = () => {
                         className="dashboard-logo"
                     />
                     <h4 className="dashboard-title">Smart Tyre Dashboard</h4>
-                    <div className="dashboard-range">
-                        <GlobalRangeSelector />
-                    </div>
                 </header>
 
                 {/* ── Body grid ── */}
                 <div className="dashboard-grid">
 
-                    {/* LEFT — charts, isolated from table filter re-renders */}
+                    {/* LEFT — charts with their own range selector */}
                     <div className="dashboard-col">
-                        <div className="chart-line-slot">
-                            <DealerInstallationsLineChart />
-                        </div>
-                        <div className="chart-bar-slot">
-                            <ZoneWiseBarChart />
-                        </div>
+                        <ChartsSection />
                     </div>
 
-                    {/* RIGHT — summary table + Top 5 */}
+                    {/* RIGHT — tables */}
                     <div className="dashboard-col">
                         <InstallationsTable />
                         <Top5TablesSection />
