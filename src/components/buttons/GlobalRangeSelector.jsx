@@ -4,9 +4,9 @@ import CustomRangePicker from "./CustomRangePicker";
 const RANGE_OPTIONS = ["MTD", "YTD"];
 
 const RANGE_COLORS = {
-    MTD:    "#dc3545",
-    YTD:    "#dc3545",
-    custom: "#dc3545",
+    MTD:    "#e24731",
+    YTD:    "#e24731",
+    custom: "#e24731",
 };
 
 export default function GlobalRangeSelector() {
@@ -38,7 +38,7 @@ export default function GlobalRangeSelector() {
     };
 
     return (
-        <div className="d-flex align-items-center justify-content-center gap-2">
+        <div className="d-flex align-items-center justify-content-around gap-2">
             {RANGE_OPTIONS.map((key) => {
                 const isActive = globalRange === key;
                 return (
