@@ -6,18 +6,19 @@ import Top5ZonesTable from "./Tables/top5ZonesTable";
 import TableFilterButtons from "./Tables/TableFilterButtons";
 
 const Top5TablesSection = () => {
-    const [tableRange, setTableRange] = useState("Finance Year"); // ← state isolated here
+    const [tableRange, setTableRange] = useState("Finance Year");
 
     return (
-        <>
+        // top5-section and top5-grid defined in responsive.css
+        <div className="top5-section">
             <TableFilterButtons tableRange={tableRange} setTableRange={setTableRange} />
-            <div className="row g-2 flex-fill">
-                <div className="col-12 col-sm-6"><Top5DealerTable    range={tableRange} /></div>
-                <div className="col-12 col-sm-6"><Top5ZonesTable     range={tableRange} /></div>
-                <div className="col-12 col-sm-6"><Top5MakeModelTable range={tableRange} /></div>
-                <div className="col-12 col-sm-6"><Top5RegionsTable   range={tableRange} /></div>
+            <div className="top5-grid">
+                <Top5RegionsTable   range={tableRange} />
+                <Top5ZonesTable     range={tableRange} />
+                <Top5MakeModelTable range={tableRange} />
+                <Top5DealerTable    range={tableRange} />
             </div>
-        </>
+        </div>
     );
 };
 

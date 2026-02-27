@@ -76,3 +76,23 @@ export const PIE_COLORS_2 = [
     "#6fd3b2",
 ];
 
+/**
+ * getChartConfig()
+ *
+ * Reads window.screen.width (physical screen resolution — stable, never
+ * changes on resize or zoom) and returns Chart.js font sizes.
+ *
+ * Chart heights are NOT returned here — they are controlled by CSS
+ * (.chart-line-slot / .chart-bar-slot) so Chart.js just fills the parent.
+ */
+export const getChartConfig = () => {
+    const w = window.screen.width;
+
+    if (w >= 3840) return { tick: 17, legend: 18 }; // 4K UHD
+    if (w >= 2560) return { tick: 14, legend: 15 }; // WQHD 2K
+    if (w >= 1920) return { tick: 12, legend: 13 }; // Full HD
+    if (w >= 1440) return { tick: 11, legend: 12 }; // FHD+ laptop
+    if (w >= 1280) return { tick: 10, legend: 11 }; // HD laptop
+    return             { tick: 9,  legend: 10 };    // small / mobile
+};
+

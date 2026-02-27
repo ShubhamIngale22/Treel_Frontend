@@ -18,23 +18,21 @@ const TableFilterButtons = ({ tableRange, setTableRange }) => {
                             backgroundColor: isActive ? f.color : "transparent",
                             color: isActive ? "#fff" : f.color,
                             borderRadius: "20px",
-                            padding: "3px 16px",
-                            fontSize: "12px",
+                            // font size and padding from CSS tokens
+                            padding: "var(--pill-py, 3px) var(--pill-px, 14px)",
+                            fontSize: "var(--fs-pill, 11px)",
                             fontWeight: isActive ? "600" : "500",
                             cursor: "pointer",
                             transition: "all 0.2s ease",
                             boxShadow: isActive ? `0 2px 8px ${f.color}55` : "none",
                             letterSpacing: "0.3px",
+                            lineHeight: 1.4,
                         }}
                         onMouseEnter={e => {
-                            if (!isActive) {
-                                e.currentTarget.style.backgroundColor = f.color + "15";
-                            }
+                            if (!isActive) e.currentTarget.style.backgroundColor = f.color + "15";
                         }}
                         onMouseLeave={e => {
-                            if (!isActive) {
-                                e.currentTarget.style.backgroundColor = "transparent";
-                            }
+                            if (!isActive) e.currentTarget.style.backgroundColor = "transparent";
                         }}
                     >
                         {f.label}

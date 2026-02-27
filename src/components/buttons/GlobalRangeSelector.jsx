@@ -4,9 +4,9 @@ import CustomRangePicker from "./CustomRangePicker";
 const RANGE_OPTIONS = ["MTD", "YTD"];
 
 const RANGE_COLORS = {
-    MTD:    "#dc3545",  // same red as TableFilterButtons MTD
-    YTD:    "#dc3545",  // same green as TableFilterButtons YTD
-    custom: "#dc3545",  // same amber as TableFilterButtons All Time
+    MTD:    "#dc3545",
+    YTD:    "#dc3545",
+    custom: "#dc3545",
 };
 
 export default function GlobalRangeSelector() {
@@ -17,6 +17,7 @@ export default function GlobalRangeSelector() {
         setGlobalRange("custom");
     };
 
+    // font size and padding read from CSS tokens — scale automatically
     const pillStyle = (key, isActive) => {
         const color = RANGE_COLORS[key];
         return {
@@ -24,13 +25,15 @@ export default function GlobalRangeSelector() {
             backgroundColor: isActive ? color : "transparent",
             color: isActive ? "#fff" : color,
             borderRadius: "20px",
-            padding: "3px 16px",
-            fontSize: "11px",
+            padding: "var(--pill-py, 3px) var(--pill-px, 14px)",
+            margin:"var(--pill-py, 3px)",
+            fontSize: "var(--fs-pill, 11px)",
             fontWeight: isActive ? "600" : "500",
             cursor: "pointer",
             transition: "all 0.2s ease",
             boxShadow: isActive ? `0 2px 8px ${color}55` : "none",
             letterSpacing: "0.4px",
+            lineHeight: 1.4,
         };
     };
 

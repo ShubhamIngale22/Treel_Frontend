@@ -2,20 +2,22 @@ import React, { useEffect, useState } from "react";
 import { Line } from "react-chartjs-2";
 import api from "../../services/api";
 import { CHART_COLORS } from "./chartConfig";
-import { useDashboard } from "../context/DashboardContext";  // ← swap import
-import { MONTHS } from "../buttons/Customrangepicker"; // ← add this import
+import { useDashboard } from "../context/DashboardContext";
+import { MONTHS } from "../buttons/Customrangepicker";
+import { getChartConfig } from "./chartConfig";
 
-const buildChartData = (labels, installations, sells) => ({ /* unchanged */ });
-const chartOptions = { /* unchanged */ };
+// Read once at module load — window.screen.width is the physical screen
+// resolution, stable and never changes on resize/zoom
+const { tick: tickSize, legend: legendSize } = getChartConfig();
 
 export default function DealerInstallationsLineChart() {
-    const { globalRange, customParams } = useDashboard();  // ← from context
+    const { globalRange, customParams } = useDashboard();
 
     const [chartData, setChartData] = useState(null);
     const [loading,   setLoading]   = useState(false);
     const [error,     setError]     = useState(null);
 
-    // ── Chart helpers ─────────────────────────────────────────────────────────────
+    // ── Chart data builder ────────────────────────────────────────────────────
     const buildChartData = (labels, installations, sells) => ({
         labels,
         datasets: [
@@ -46,6 +48,10 @@ export default function DealerInstallationsLineChart() {
         ],
     });
 
+    // ── Chart options ─────────────────────────────────────────────────────────
+    // tickSize and legendSize come from window.screen.width via getChartConfig()
+    // Chart height is NOT set here — Chart.js fills the .chart-line-slot div
+    // which is sized by CSS tokens in responsive.css
     const chartOptions = {
         responsive: true,
         maintainAspectRatio: false,
@@ -59,7 +65,7 @@ export default function DealerInstallationsLineChart() {
                     usePointStyle: true,
                     pointStyleWidth: 12,
                     boxHeight: 8,
-                    font: { size: 12 },
+                    font: { size: legendSize },   // ← from window.screen.width
                     color: "#1c1c1b",
                     padding: 8,
                 },
@@ -80,33 +86,34 @@ export default function DealerInstallationsLineChart() {
             y: {
                 beginAtZero: true,
                 grid: { color: "#f1f5f9" },
-                ticks: { color: "#94a3b8", font: { size: 10 }, callback: (v) => v.toLocaleString() },
+                ticks: {
+                    color: "#94a3b8",
+                    font: { size: tickSize },      // ← from window.screen.width
+                    callback: (v) => v.toLocaleString(),
+                },
                 border: { display: false },
             },
             x: {
                 grid: { display: false },
-                ticks: { color: "#94a3b8", font: { size: 10 }, maxRotation: 0, autoSkip: true },
+                ticks: {
+                    color: "#94a3b8",
+                    font: { size: tickSize },      // ← from window.screen.width
+                    maxRotation: 0,
+                    autoSkip: true,
+                },
                 border: { display: false },
             },
         },
         animation: {
             duration: 800,
             easing: "easeInOutQuart",
-            y: {
-                from: (ctx) => ctx.chart.scales.y.getPixelForValue(0)  // draws left to right
-            },
+            y: { from: (ctx) => ctx.chart.scales.y.getPixelForValue(0) },
         },
     };
 
-    // ── Fetch ─────────────────────────────────────────────────────
+    // ── Fetch ─────────────────────────────────────────────────────────────────
     useEffect(() => {
-        const typeMap = {         // ← add this
-            MTD: "MTD",
-            YTD: "YTD",
-            custom: "custom",
-        };
-
-        const params = { type: typeMap[globalRange] ?? "1year" };  // ← replace the old params line
+        const params = { type: globalRange ?? "YTD" };
 
         if (globalRange === "custom") {
             params.fiscal_year = customParams.fiscalYear;
@@ -126,28 +133,35 @@ export default function DealerInstallationsLineChart() {
             })
             .catch((err) => { console.error(err); setError("Something went wrong."); })
             .finally(() => setLoading(false));
-
     }, [globalRange, customParams]);
 
-    // ── Render ────────────────────────────────────────────────────
+    // ── Render ────────────────────────────────────────────────────────────────
+    // h-100 makes the card fill .chart-line-slot fully
     return (
         <div className="card shadow-sm rounded-4 h-100" style={{ overflow: "visible" }}>
-            <div className="card-body d-flex flex-column p-3">
+            <div className="card-body d-flex flex-column" style={{ padding: "var(--card-p, 0.75rem)" }}>
 
-                <h6 className="text-center fw-bold text-secondary mb-2 flex-shrink-0">
+                <h6
+                    className="text-center fw-bold text-secondary mb-2 flex-shrink-0"
+                    style={{ fontSize: "var(--fs-title, 0.85rem)" }}
+                >
                     Dealer Installations &amp; Sells performance overview
                 </h6>
 
-                {/* Chart */}
-                <div style={{ height: "clamp(140px, 30vw, 190px)", flex: 1 }}>
+                {/* flex:1 + minHeight:0 makes this div fill remaining card height */}
+                <div style={{ flex: 1, minHeight: 0, position: "relative" }}>
                     {loading ? (
                         <div className="h-100 d-flex align-items-center justify-content-center gap-2">
                             <div className="spinner-border spinner-border-sm text-secondary" role="status" />
-                            <span className="text-muted" style={{ fontSize: "12px" }}>Loading...</span>
+                            <span className="text-muted" style={{ fontSize: "var(--fs-badge, 0.70rem)" }}>
+                                Loading...
+                            </span>
                         </div>
                     ) : error ? (
                         <div className="h-100 d-flex align-items-center justify-content-center">
-                            <span className="text-danger" style={{ fontSize: "12px" }}>{error}</span>
+                            <span className="text-danger" style={{ fontSize: "var(--fs-badge, 0.70rem)" }}>
+                                {error}
+                            </span>
                         </div>
                     ) : chartData ? (
                         <div style={{ position: "relative", height: "98%", width: "100%" }}>
@@ -156,7 +170,7 @@ export default function DealerInstallationsLineChart() {
                     ) : null}
                 </div>
 
-                {/* Active custom badge */}
+                {/* Custom range badge */}
                 {globalRange === "custom" && (
                     <div className="d-flex align-items-center gap-1 mt-1 px-2 py-1 mb-2 rounded-2 bg-warning bg-opacity-25">
                         <svg width="11" height="11" viewBox="0 0 24 24" fill="none"
@@ -166,10 +180,9 @@ export default function DealerInstallationsLineChart() {
                             <line x1="8"  y1="2" x2="8"  y2="6" />
                             <line x1="3"  y1="10" x2="21" y2="10" />
                         </svg>
-                        <small style={{ fontSize: "11px", color: "#92400e" }}>
+                        <small style={{ fontSize: "var(--fs-badge, 0.70rem)", color: "#92400e" }}>
                             Results for period : <strong>{customParams.fiscalYear}</strong>
                             {customParams.month && (
-                                // ← find the label by matching the month number value
                                 <> - <strong>{MONTHS.find(m => m.value === customParams.month)?.label}</strong></>
                             )}
                         </small>

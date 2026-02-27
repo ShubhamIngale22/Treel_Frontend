@@ -1,0 +1,346 @@
+/* ============================================================
+   Smart Tyre Dashboard — responsive.css
+   Import once in main.jsx BEFORE bootstrap
+   ============================================================ */
+
+/* ── Default (mobile / small screens < 1280px) ── */
+:root {
+    /* Layout */
+    --header-h:         56px;
+    --dash-gap:         12px;
+    --dash-px:          10px;
+
+    --custom-range-h:   250px;
+    --custom-range-w:   240px;
+    --fs-custom-scroll-h: 25px;
+
+    /* Chart slot heights */
+    --chart-line-h:     270px;
+    --chart-bar-h:      330px;
+
+    /* Typography */
+    --fs-title:         0.80rem;
+    --fs-th:            0.75rem;
+    --fs-td:            0.72rem;
+    --fs-table-p:       0.25rem;
+    --fs-badge:         0.68rem;
+    --fs-pill:          10px;
+
+    /* Pill padding */
+    --pill-py:          2px;
+    --pill-px:          12px;
+
+    /* Card padding */
+    --card-p:           0.60rem;
+
+    /* Legend swatch size */
+    --swatch:           10px;
+
+    /* Table scroll cap */
+    --top5-maxh:        220px;
+    --top5-wide-maxh:   145px;
+}
+
+/* ── 1440px — FHD+ laptop ── */
+@media (min-width: 1440px) {
+    :root {
+        --header-h:         60px;
+        --dash-gap:         16px;
+        --dash-px:          20px;
+
+        --custom-range-h:   270px;
+        --custom-range-w:   400px;
+        --fs-custom-scroll-h: 27px;
+
+        --chart-line-h:     300px;
+        --chart-bar-h:      370px;
+        --fs-title:         0.875rem;
+        --fs-th:            0.80rem;
+        --fs-td:            0.78rem;
+        --fs-badge:         0.72rem;
+        --fs-pill:          12px;
+        --pill-py:          3px;
+        --pill-px:          16px;
+        --card-p:           0.75rem;
+        --swatch:           12px;
+        --top5-maxh:        200px;
+        --top5-wide-maxh:   180px;
+    }
+}
+/* ── 1530px —  ── */
+@media (min-width: 1530px) {
+    :root {
+        --header-h:         50px;
+        --dash-gap:         14px;
+        --dash-px:          14px;
+
+        --custom-range-h:   250px;
+        --custom-range-w:   500px;
+        --fs-custom-scroll-h: 25px;
+
+        --chart-line-h:     270px;
+        --chart-bar-h:      330px;
+        --fs-title:         0.80rem;
+        --fs-th:            0.7rem;
+        --fs-td:            0.7rem;
+        --fs-badge:         0.70rem;
+        --fs-pill:          13px;
+        --pill-py:          3px;
+        --pill-px:          14px;
+        --card-p:           0.70rem;
+        --swatch:           11px;
+        --top5-maxh:        185px;
+        --top5-wide-maxh:   175px;
+    }
+}
+
+/* ── 1920px — Full HD monitor ── */
+@media (min-width: 1920px) {
+    :root {
+        --header-h:         68px;
+        --dash-gap:         22px;
+        --dash-px:          32px;
+
+        --custom-range-h:   360px;
+        --custom-range-w:   700px;
+        --fs-custom-scroll-h: 40px;
+
+        --chart-line-h:     400px;
+        --chart-bar-h:      550px;
+        --fs-title:         1.4rem;
+        --fs-th:            1.1rem;
+        --fs-td:            1.1rem;
+        --fs-table-p:       0.45rem;
+        --fs-badge:         1.3rem;
+        --fs-pill:          20px;
+        --pill-py:          4px;
+        --pill-px:          20px;
+        --card-p:           1.1rem;
+        --swatch:           15px;
+        --top5-maxh:        380px;
+        --top5-wide-maxh:   380px;
+    }
+}
+
+/* ── 2560px — WQHD / 2K monitor ── */
+@media (min-width: 2560px) {
+    :root {
+        --header-h:         120px;
+        --dash-gap:         28px;
+        --dash-px:          48px;
+
+        --custom-range-h:   450px;
+        --custom-range-w:   900px;
+        --fs-custom-scroll-h: 40px;
+
+        --chart-line-h:     570px;
+        --chart-bar-h:      670px;
+        --fs-title:         1.7rem;
+        --fs-th:            1.5rem;
+        --fs-td:            1.5rem;
+        --fs-table-p:       0.6rem;
+        --fs-badge:         1.40rem;
+        --fs-pill:          25px;
+        --pill-py:          6px;
+        --pill-px:          26px;
+        --card-p:           1.5rem;
+        --swatch:           20px;
+        --top5-maxh:        none;
+        --top5-wide-maxh:   none;
+    }
+}
+
+/* ── 3840px — 4K UHD ── */
+@media (min-width: 3840px) {
+    :root {
+        --header-h:         150px;
+        --dash-gap:         40px;
+        --dash-px:          67px;
+
+        --custom-range-h:   750px;
+        --custom-range-w:   1200px;
+        --fs-custom-scroll-h: 80px;
+
+        --chart-line-h:     830px;
+        --chart-bar-h:      1050px;
+        --fs-title:         2.8rem;
+        --fs-th:            2.45rem;
+        --fs-td:            2.45rem;
+        --fs-table-p:       0.8rem;
+        --fs-badge:         2.5rem;
+        --fs-pill:          40px;
+        --pill-py:          18px;
+        --pill-px:          50px;
+        --card-p:           2.22rem;
+        --swatch:           30px;
+        --top5-maxh:        none;
+        --top5-wide-maxh:   none;
+    }
+}
+
+
+/* ============================================================
+   Dashboard Layout Classes
+   ============================================================ */
+
+.dashboard-shell {
+    background: #f8fafc;
+    min-height: 100vh;
+    padding-top: calc(var(--header-h) + var(--dash-gap));
+    padding-bottom: var(--dash-gap);
+    padding-left: var(--dash-px);
+    padding-right: var(--dash-px);
+}
+
+/* ── Fixed header ── */
+.dashboard-header {
+    position: fixed;
+    top: 0;
+    left: 0;
+    right: 0;
+    z-index: 1030;
+    height: var(--header-h);
+    padding: 0 var(--dash-px);
+    display: flex;
+    align-items: center;
+    gap: clamp(8px, 1.5vw, 24px);
+    background: linear-gradient(90deg, #064e3b, #16a34a, #4ade80);
+    box-shadow: 0 8px 20px rgba(6, 78, 59, 0.45);
+    border-bottom: 1px solid rgba(6, 78, 59, 0.35);
+}
+
+.dashboard-logo {
+    height: clamp(18px, 2.5vw, 80px);
+    width: auto;
+    max-width: clamp(60px, 6vw, 190px);
+    flex-shrink: 0;
+}
+
+.dashboard-title {
+    margin: 0;
+    flex-grow: 1;
+    text-align: center;
+    color: #fff;
+    font-weight: 700;
+    letter-spacing: clamp(1px, 0.3vw, 4px);
+    text-transform: uppercase;
+    font-size: clamp(14px, 1.6vw, 70px);
+    text-shadow: 0 0 20px rgba(74, 222, 128, 0.8),
+    0 0 40px rgba(74, 222, 128, 0.4);
+    white-space: nowrap;
+    overflow: hidden;
+    text-overflow: ellipsis;
+}
+
+.dashboard-range {
+    flex-shrink: 0;
+}
+
+/* ── Two-column grid ── */
+.dashboard-grid {
+    display: grid;
+    gap: var(--dash-gap);
+    grid-template-columns: 1fr;
+    align-items: start;
+}
+
+/* ── Column wrappers ── */
+.dashboard-col {
+    display: flex;
+    flex-direction: column;
+    gap: var(--dash-gap);
+    min-width: 0;
+    height: 100%;
+}
+
+/* ── Chart height slots ── */
+.chart-line-slot {
+    height: var(--chart-line-h);
+    min-height: 180px;
+    flex-shrink: 0;
+}
+
+.chart-bar-slot {
+    height: var(--chart-bar-h);
+    min-height: 220px;
+    flex-shrink: 0;
+}
+.td-th-style {
+    padding: var(--fs-table-p)  !important;
+}
+/* ── Top5 section ── */
+.top5-section {
+    display: flex;
+    flex-direction: column;
+    gap: var(--dash-gap);
+}
+
+/* ── Top5 2x2 grid ── */
+.top5-grid {
+    display: grid;
+    grid-template-columns: 1fr;
+    gap: var(--dash-gap);
+}
+
+/* table scroll cap from token */
+.top5-grid .table-responsive {
+    max-height: var(--top5-maxh);
+    overflow-y: auto;
+}
+
+@media (min-width: 1024px) {
+    .dashboard-grid {
+        grid-template-columns: 1fr;
+        align-items: stretch;
+    }
+    .top5-grid {
+        grid-template-columns: 1fr 1fr;
+    }
+}
+
+
+@media (min-width: 1530px) {
+    .dashboard-grid {
+        grid-template-columns: 1fr 1fr;
+        align-items: stretch;
+    }
+    .top5-grid {
+        grid-template-columns: 1fr 1fr;
+    }
+}
+
+@media (min-width: 1920px) {
+    .dashboard-grid {
+        grid-template-columns: 0.90fr 1.1fr;
+        align-items: stretch;
+    }
+    .top5-grid {
+        grid-template-columns: 1fr 1fr;
+    }
+}
+
+@media (min-width: 2560px) {
+    .dashboard-grid {
+        grid-template-columns: 0.95fr 1.05fr;
+    }
+    .top5-grid {
+        grid-template-columns: 1fr 1fr;
+    }
+}
+
+@media (min-width: 3840px) {
+    .dashboard-grid {
+        grid-template-columns: 0.95fr 1.05fr;
+    }
+    .top5-grid {
+        grid-template-columns: 0.91fr 1.09fr;
+    }
+}
+
+/* remove cap at 2560px+ */
+@media (min-width: 2560px) {
+    .top5-grid .table-responsive {
+        max-height: unset;
+        overflow-y: visible;
+    }
+}
