@@ -15,8 +15,8 @@ import { getChartConfig } from "./chartConfig";
 
 ChartJS.register(CategoryScale, LinearScale, BarElement, Tooltip, Legend);
 
-const INSTALL_COLOR = "rgba(59,130,246,0.6)";
-const SELLS_COLOR   = "rgba(249,115,22,0.6)";
+const INSTALL_COLOR = "rgba(52, 211, 153, 0.8)";  // Green
+const SELLS_COLOR   = "rgba(239, 68, 68, 0.7)";   // Red
 
 // Read once at module load — physical screen resolution, never changes
 const { tick: tickSize } = getChartConfig();

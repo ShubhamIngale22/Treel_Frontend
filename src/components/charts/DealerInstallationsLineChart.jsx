@@ -1,7 +1,6 @@
 import React, { useEffect, useState } from "react";
 import { Line } from "react-chartjs-2";
 import api from "../../services/api";
-import { CHART_COLORS } from "./chartConfig";
 import { useDashboard } from "../context/DashboardContext";
 import { MONTHS } from "../buttons/Customrangepicker";
 import { getChartConfig } from "./chartConfig";
@@ -9,6 +8,8 @@ import { getChartConfig } from "./chartConfig";
 // Read once at module load — window.screen.width is the physical screen
 // resolution, stable and never changes on resize/zoom
 const { tick: tickSize, legend: legendSize } = getChartConfig();
+const INSTALL_COLOR = "rgba(52, 211, 153, 0.8)";  // Green
+const SELLS_COLOR   = "rgba(239, 68, 68, 0.7)";   // Red
 
 export default function DealerInstallationsLineChart() {
     const { globalRange, customParams } = useDashboard();
@@ -24,9 +25,9 @@ export default function DealerInstallationsLineChart() {
             {
                 label: "Installations",
                 data: installations,
-                borderColor: CHART_COLORS.primary,
-                backgroundColor: "rgba(125,162,248,0.15)",
-                pointBackgroundColor: CHART_COLORS.primary,
+                borderColor: INSTALL_COLOR,
+                backgroundColor: "rgba(52, 211, 153, 0.12)",
+                pointBackgroundColor: INSTALL_COLOR,
                 pointBorderColor: "#fff",
                 pointRadius: 4,
                 pointHoverRadius: 6,
@@ -36,9 +37,9 @@ export default function DealerInstallationsLineChart() {
             {
                 label: "Sells",
                 data: sells,
-                borderColor: CHART_COLORS.success,
-                backgroundColor: "rgba(111,211,178,0.10)",
-                pointBackgroundColor: CHART_COLORS.success,
+                borderColor: SELLS_COLOR,
+                backgroundColor: "rgba(239, 68, 68, 0.10)",
+                pointBackgroundColor: SELLS_COLOR,
                 pointBorderColor: "#fff",
                 pointRadius: 4,
                 pointHoverRadius: 6,
@@ -48,10 +49,6 @@ export default function DealerInstallationsLineChart() {
         ],
     });
 
-    // ── Chart options ─────────────────────────────────────────────────────────
-    // tickSize and legendSize come from window.screen.width via getChartConfig()
-    // Chart height is NOT set here — Chart.js fills the .chart-line-slot div
-    // which is sized by CSS tokens in responsive.css
     const chartOptions = {
         responsive: true,
         maintainAspectRatio: false,
@@ -65,7 +62,7 @@ export default function DealerInstallationsLineChart() {
                     usePointStyle: true,
                     pointStyleWidth: 12,
                     boxHeight: 8,
-                    font: { size: legendSize },   // ← from window.screen.width
+                    font: { size: legendSize },
                     color: "#1c1c1b",
                     padding: 8,
                 },
@@ -88,7 +85,7 @@ export default function DealerInstallationsLineChart() {
                 grid: { color: "#f1f5f9" },
                 ticks: {
                     color: "#94a3b8",
-                    font: { size: tickSize },      // ← from window.screen.width
+                    font: { size: tickSize },
                     callback: (v) => v.toLocaleString(),
                 },
                 border: { display: false },
@@ -97,7 +94,7 @@ export default function DealerInstallationsLineChart() {
                 grid: { display: false },
                 ticks: {
                     color: "#94a3b8",
-                    font: { size: tickSize },      // ← from window.screen.width
+                    font: { size: tickSize },
                     maxRotation: 0,
                     autoSkip: true,
                 },

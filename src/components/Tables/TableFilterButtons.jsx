@@ -1,12 +1,14 @@
 const TableFilterButtons = ({ tableRange, setTableRange }) => {
     const filters = [
-        { label: "MTD",      value: "monthly",      color: "#dc3545" },
-        { label: "YTD",      value: "Finance Year", color: "#198754" },
-        { label: "All Time", value: "All Time",      color: "#f59e0b" },
+        { label: "MTD",      value: "monthly",      color: "#e24731" },
+        { label: "YTD",      value: "Finance Year", color: "#e24731" },
+        { label: "All Time", value: "All Time",      color: "#e24731" },
+        { label: "Custom", value: "Custom",      color: "#e24731" },
     ];
 
     return (
-        <div className="d-flex flex-row justify-content-around gap-2 my-1">
+        <div className="card shadow-sm rounded-2 p-1">
+            <div className="d-flex flex-row justify-content-around gap-2 my-1">
             {filters.map(f => {
                 const isActive = tableRange === f.value;
                 return (
@@ -39,6 +41,7 @@ const TableFilterButtons = ({ tableRange, setTableRange }) => {
                     </button>
                 );
             })}
+            </div>
         </div>
     );
 };

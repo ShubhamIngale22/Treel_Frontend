@@ -78,8 +78,8 @@
         --custom-range-w:   500px;
         --fs-custom-scroll-h: 25px;
 
-        --chart-line-h:     270px;
-        --chart-bar-h:      330px;
+        --chart-line-h:     255px;
+        --chart-bar-h:      300px;
         --fs-title:         0.80rem;
         --fs-th:            0.7rem;
         --fs-td:            0.7rem;
@@ -182,9 +182,10 @@
 /* ============================================================
    Dashboard Layout Classes
    ============================================================ */
-
+/*1C1D22*/
+/*rgba(248, 250, 252, 0.9);*/
 .dashboard-shell {
-    background: #f8fafc;
+    background: rgba(163, 150, 150, 0.1);
     min-height: 100vh;
     padding-top: calc(var(--header-h) + var(--dash-gap));
     padding-bottom: var(--dash-gap);
@@ -204,9 +205,9 @@
     display: flex;
     align-items: center;
     gap: clamp(8px, 1.5vw, 24px);
-    background: linear-gradient(90deg, #064e3b, #16a34a, #4ade80);
-    box-shadow: 0 8px 20px rgba(6, 78, 59, 0.45);
-    border-bottom: 1px solid rgba(6, 78, 59, 0.35);
+    background: linear-gradient(90deg, #1C1D22, #2e3039, #444651);
+    box-shadow: 0 8px 20px rgba(28, 29, 34, 0.45);
+    border-bottom: 1px solid rgba(28, 29, 34, 0.35);
 }
 
 .dashboard-logo {
@@ -214,6 +215,7 @@
     width: auto;
     max-width: clamp(60px, 6vw, 190px);
     flex-shrink: 0;
+    padding: 4px;
 }
 
 .dashboard-title {
@@ -225,8 +227,7 @@
     letter-spacing: clamp(1px, 0.3vw, 4px);
     text-transform: uppercase;
     font-size: clamp(14px, 1.6vw, 70px);
-    text-shadow: 0 0 20px rgba(74, 222, 128, 0.8),
-    0 0 40px rgba(74, 222, 128, 0.4);
+    text-shadow: 0 0 20px rgba(28, 29, 34, 0.8), 0 0 40px rgba(28, 29, 34, 0.4);
     white-space: nowrap;
     overflow: hidden;
     text-overflow: ellipsis;
@@ -253,6 +254,13 @@
     height: 100%;
 }
 
+.charts-section{
+    display: flex;
+    flex-direction: column;
+    gap: var(--dash-gap);
+    min-width: 0;
+    height: 100%;
+}
 /* ── Chart height slots ── */
 .chart-line-slot {
     height: var(--chart-line-h);
