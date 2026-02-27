@@ -130,7 +130,7 @@ export default function CustomRangePicker({ isActive, label, onApply, buttonStyl
     };
 
     return (
-        <div className="position-relative" ref={dropdownRef} style={{ zIndex: 9999 }}>
+        <div className="position-relative" ref={dropdownRef}>
 
             {/* Trigger button — uses same pill style as MTD/YTD via buttonStyle prop */}
             <button
