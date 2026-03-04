@@ -1,78 +1,40 @@
-import { useEffect, useState } from "react";
+import { useEffect, useState, useRef } from "react";
 import api from "../../services/api";
 import { TYPE_MAP } from "../buttons/TableFilterButtons";
+import TableShell from "./TableShell";
+
+const COLUMNS = [
+    { label: "Sr.",           width: "60px"                                                                        },
+    { label: "Region Name",   minWidth: "120px", key: "regionName", className: "fw-normal text-center px-2"       },
+    { label: "Installations", width: "100px",    render: row => row.count.toLocaleString(), className: "fw-semibold text-dark" },
+];
+
 const Top5RegionsTable = ({ range, customParams = {} }) => {
-    const [data, setData] = useState([]);
-    const [loading, setLoading] = useState(false);
+    const [data,       setData]       = useState([]);
+    const [refreshing, setRefreshing] = useState(false);
+    const abortRef  = useRef(null);
     const tableName = "Regions";
 
-    const stickyTh = {
-        position: "sticky",
-        top: 0,
-        background: "#afd3ed",
-        zIndex: 2,
-        fontSize: "var(--fs-th, 0.78rem)",
-        fontWeight: "600",
-        padding:"var(--fs-table-p,1rem)"
-    };
-
     useEffect(() => {
+        if (abortRef.current) abortRef.current.abort();
+        abortRef.current = new AbortController();
+
         const type = TYPE_MAP[range];
-        setLoading(true);
+        setRefreshing(true);
+
         api.getTop5SmartTyreInstallation(type, tableName, type === "custom" ? customParams : {})
             .then(res => { if (!res.success) return; setData(res.data); })
-            .catch(err => console.error("API fetch error:", err))
-            .finally(() => setLoading(false));
+            .catch(err => { if (err.name !== "CanceledError") console.error("API fetch error:", err); })
+            .finally(() => setRefreshing(false));
     }, [range, customParams]);
 
     return (
-        <div className="card shadow-sm rounded-4 flex-fill">
-            <div className="card-body" style={{ padding: "var(--card-p, 0.75rem)" }}>
-                <h6
-                    className="text-center fw-bold text-secondary mb-1"
-                    style={{ fontSize: "var(--fs-title, 0.85rem)" }}
-                >
-                    Top 5 Regions
-                </h6>
-
-                <div className="table-responsive">
-                    <table className="table table-sm table-bordered align-middle text-center mb-0">
-                        <thead className="table-light">
-                        <tr>
-                            <th style={{ ...stickyTh, width: "60px" }}>Sr.</th>
-                            <th style={{ ...stickyTh, minWidth: "120px" }}>RegionName</th>
-                            <th style={{ ...stickyTh, width: "100px" }}>Installations</th>
-                        </tr>
-                        </thead>
-                        <tbody style={{ fontSize: "var(--fs-td, 0.75rem)" }}>
-                        {loading ? (
-                            <tr>
-                                <td colSpan="3" className="text-center text-muted py-2"
-                                    style={{ fontSize: "var(--fs-th, 0.78rem)" }}>
-                                    Loading...
-                                </td>
-                            </tr>
-                        ) : data.length > 0 ? (
-                            data.map((item, index) => (
-                                <tr key={index}>
-                                    <td className="td-th-style fw-semibold">{index + 1}</td>
-                                    <td className="td-th-style fw-normal text-center px-2">{item.regionName}</td>
-                                    <td className="td-th-style fw-semibold text-dark">{item.count.toLocaleString()}</td>
-                                </tr>
-                            ))
-                        ) : (
-                            <tr>
-                                <td colSpan="3" className="text-center text-muted py-2"
-                                    style={{ fontSize: "var(--fs-th, 0.78rem)" }}>
-                                    Data is not available
-                                </td>
-                            </tr>
-                        )}
-                        </tbody>
-                    </table>
-                </div>
-            </div>
-        </div>
+        <TableShell
+            title="Top 6 Regions"
+            columns={COLUMNS}
+            data={data}
+            refreshing={refreshing}
+        />
     );
 };
 
