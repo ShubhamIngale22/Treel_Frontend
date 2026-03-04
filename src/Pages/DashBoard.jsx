@@ -1,7 +1,7 @@
 import { DashboardProvider } from "../components/context/DashboardContext";
 import InstallationsTable from "../components/Tables/InstallationsTable";
-import Top5TablesSection from "../components/Top5TablesSection";
-import ChartsSection from "../components/ChartsSection";
+import Top5TablesSection from "../components/sections/Top5TablesSection";
+import ChartsSection from "../components/sections/ChartsSection";
 
 const Dashboard = () => {
     return (
