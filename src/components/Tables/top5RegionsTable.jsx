@@ -1,7 +1,7 @@
 import { useEffect, useState } from "react";
 import api from "../../services/api";
-
-const Top5RegionsTable = ({ range }) => {
+import { TYPE_MAP } from "../buttons/TableFilterButtons";
+const Top5RegionsTable = ({ range, customParams = {} }) => {
     const [data, setData] = useState([]);
     const [loading, setLoading] = useState(false);
     const tableName = "Regions";
@@ -17,12 +17,13 @@ const Top5RegionsTable = ({ range }) => {
     };
 
     useEffect(() => {
+        const type = TYPE_MAP[range];
         setLoading(true);
-        api.getTop5SmartTyreInstallation(range, tableName)
+        api.getTop5SmartTyreInstallation(type, tableName, type === "custom" ? customParams : {})
             .then(res => { if (!res.success) return; setData(res.data); })
-            .catch(err => { console.error("Api fetch error :", err); throw err; })
+            .catch(err => console.error("API fetch error:", err))
             .finally(() => setLoading(false));
-    }, [range, tableName]);
+    }, [range, customParams]);
 
     return (
         <div className="card shadow-sm rounded-4 flex-fill">

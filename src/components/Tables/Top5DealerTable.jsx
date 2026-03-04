@@ -1,29 +1,30 @@
 import { useEffect, useState } from "react";
 import api from "../../services/api";
+import { TYPE_MAP } from "../buttons/TableFilterButtons";
 
-const Top5DealerTable = ({ range }) => {
-    const [data, setData] = useState([]);
+const Top5DealerTable = ({ range, customParams = {} }) => {
+    const [data,    setData]    = useState([]);
     const [loading, setLoading] = useState(false);
     const tableName = "Dealers";
 
-    // sticky header — font size from CSS token
     const stickyTh = {
-        position: "sticky",
-        top: 0,
+        position:   "sticky",
+        top:        0,
         background: "#afd3ed",
-        zIndex: 2,
-        fontSize: "var(--fs-th, 0.1rem)",
+        zIndex:     2,
+        fontSize:   "var(--fs-th, 0.1rem)",
         fontWeight: "600",
-        padding:"var(--fs-table-p,1rem)"
+        padding:    "var(--fs-table-p, 1rem)",
     };
 
     useEffect(() => {
+        const type = TYPE_MAP[range];
         setLoading(true);
-        api.getTop5SmartTyreInstallation(range, tableName)
+        api.getTop5SmartTyreInstallation(type, tableName, type === "custom" ? customParams : {})
             .then(res => { if (!res.success) return; setData(res.data); })
-            .catch(err => { console.error("Api fetch error :", err); throw err; })
+            .catch(err => console.error("API fetch error:", err))
             .finally(() => setLoading(false));
-    }, [range, tableName]);
+    }, [range, customParams]);
 
     return (
         <div className="card shadow-sm rounded-4 flex-fill">
