@@ -1,6 +1,6 @@
-import GlobalRangeSelector from "./buttons/GlobalRangeSelector";
-import DealerInstallationsLineChart from "./charts/DealerInstallationsLineChart";
-import ZoneWiseBarChart from "./charts/ZoneWiseBarChart";
+import GlobalRangeSelector from "../buttons/GlobalRangeSelector";
+import DealerInstallationsLineChart from "../charts/DealerInstallationsLineChart";
+import ZoneWiseBarChart from "../charts/ZoneWiseBarChart";
 
 const ChartsSection = () => {
     return (
