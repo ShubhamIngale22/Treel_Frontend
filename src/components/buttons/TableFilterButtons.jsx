@@ -1,15 +1,15 @@
-import CustomRangePicker from "../buttons/Customrangepicker";
+import CustomRangePicker from "./Customrangepicker";
 
 const TYPE_MAP = {
-    "monthly":      "MTD",
-    "Finance Year": "YTD",
-    "All Time":     null,
-    "Custom":       "custom",
+    "MTD":      "MTD",
+    "YTD":      "YTD",
+    "All Time": null,
+    "Custom":   "custom",
 };
 
 const filters = [
-    { label: "MTD",      value: "monthly",       color: "#e24731" },
-    { label: "YTD",      value: "Finance Year",  color: "#e24731" },
+    { label: "MTD",      value: "MTD",       color: "#e24731" },
+    { label: "YTD",      value: "YTD",  color: "#e24731" },
     { label: "All Time", value: "All Time",       color: "#e24731" },
 ];
 
