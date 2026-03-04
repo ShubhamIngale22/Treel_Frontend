@@ -25,9 +25,14 @@ const apiService = {
     getInstallationSellsTable: () =>
         api.get("/dealerInstallationsSellsTable"),
 
-    getTop5SmartTyreInstallation: (range,tableName) =>
+    getTop5SmartTyreInstallation: (range, tableName, customParams = {}) =>
         api.get("/getTop5SmartTyreInstallation", {
-            params: { type: range,filter:tableName}
+            params: {
+                type:         range,
+                filter:       tableName,
+                fiscal_year:  customParams.fiscalYear || null,
+                month:        customParams.month || null,
+            }
         }),
 };
 export default apiService;
