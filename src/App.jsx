@@ -2,6 +2,7 @@ import { BrowserRouter, Routes, Route, Navigate } from "react-router-dom";
 import { jwtDecode } from "jwt-decode";
 import Login from "./Pages/Login";
 import DashBoard from "./Pages/DashBoard";
+import UserMaster from "./Pages/UserMaster";
 
 const checkToken = () => {
     const token = localStorage.getItem("token");
@@ -37,13 +38,18 @@ export default function App() {
         <BrowserRouter>
             <Routes>
                 <Route path="/" element={
-                    <PrivateRoute>
+                    <PublicRoute>
                         <Login />
-                    </PrivateRoute>
+                    </PublicRoute>
                 } />
                 <Route path="/dashboard" element={
                     <PrivateRoute>
                         <DashBoard />
+                    </PrivateRoute>
+                } />
+                <Route path="/users" element={
+                    <PrivateRoute>
+                        <UserMaster />
                     </PrivateRoute>
                 } />
             </Routes>
