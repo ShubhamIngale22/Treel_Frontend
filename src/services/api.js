@@ -7,7 +7,7 @@ const api = axios.create({
     baseURL: BASE_URL,
 });
 
-// ✅ attach token to every request automatically
+// attach token to every request automatically
 api.interceptors.request.use((config) => {
     const token = localStorage.getItem("token");
     if (token) {
@@ -19,7 +19,7 @@ api.interceptors.request.use((config) => {
 api.interceptors.response.use(
     (response) => response.data,
     (error) => {
-        // ✅ auto logout on token expired
+        //  auto logout on token expired
         if (error.response?.status === 401) {
             localStorage.removeItem("token");
             localStorage.removeItem("user");
@@ -30,7 +30,7 @@ api.interceptors.response.use(
 );
 
 const apiService = {
-    // ✅ login
+    // login
     login: (data) => api.post("/loginUser", data),
 
     getDealerInstallationsSells: (params) =>
