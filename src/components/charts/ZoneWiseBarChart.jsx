@@ -70,6 +70,7 @@ const ZoneWiseBarChart = () => {
                 backgroundColor: INSTALL_COLOR,
                 borderRadius: 4,
                 borderSkipped: "bottom",
+                maxBarThickness: 120,
             },
             {
                 label: "Dealer Sells",
@@ -77,7 +78,8 @@ const ZoneWiseBarChart = () => {
                 backgroundColor: SELLS_COLOR,
                 borderRadius: 4,
                 borderSkipped: "bottom",
-            },
+                maxBarThickness: 120,
+            }
         ],
     };
 
