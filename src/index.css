@@ -352,3 +352,110 @@
         overflow-y: visible;
     }
 }
+
+/* ── Header right side ── */
+.dh-right {
+    display: flex;
+    align-items: center;
+    gap: 12px;
+    margin-left: auto;
+    flex-shrink: 0;
+}
+
+.dh-icon-btn {
+    background: none;
+    border: none;
+    color: #fff;
+    cursor: pointer;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    padding: 6px;
+    border-radius: 6px;
+    transition: background 0.2s;
+}
+.dh-icon-btn:hover {
+    background: rgba(255,255,255,0.1);
+}
+
+.dh-divider {
+    width: 1px;
+    height: 28px;
+    background: rgba(255,255,255,0.2);
+}
+
+.dh-profile {
+    display: flex;
+    align-items: center;
+    gap: 8px;
+    cursor: pointer;
+    position: relative;
+    padding: 4px 8px;
+    border-radius: 6px;
+    transition: background 0.2s;
+}
+.dh-profile:hover {
+    background: rgba(255,255,255,0.1);
+}
+
+.dh-avatar {
+    width: 32px;
+    height: 32px;
+    background: #e24731;
+    border-radius: 50%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    color: #fff;
+    flex-shrink: 0;
+}
+
+.dh-user-info {
+    display: flex;
+    flex-direction: column;
+    line-height: 1.2;
+}
+
+.dh-user-name {
+    font-size: 13px;
+    font-weight: 600;
+    color: #fff;
+    white-space: nowrap;
+}
+
+.dh-user-role {
+    font-size: 11px;
+    color: rgba(255,255,255,0.6);
+    white-space: nowrap;
+}
+
+.dh-logout-popup {
+    position: absolute;
+    top: calc(100% + 8px);
+    right: 0;
+    background: #1c1d22;
+    border: 1px solid #333;
+    border-radius: 6px;
+    padding: 4px;
+    z-index: 9999;
+    min-width: 120px;
+    box-shadow: 0 8px 24px rgba(0,0,0,0.4);
+}
+
+.dh-logout-btn {
+    width: 100%;
+    background: none;
+    border: none;
+    color: #fff;
+    padding: 8px 12px;
+    font-size: 13px;
+    cursor: pointer;
+    display: flex;
+    align-items: center;
+    gap: 8px;
+    border-radius: 4px;
+    transition: background 0.2s;
+}
+.dh-logout-btn:hover {
+    background: #e24731;
+}
