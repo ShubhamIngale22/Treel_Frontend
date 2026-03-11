@@ -45,6 +45,22 @@ const DashboardHeader = () => {
             {/* ── Right side ── */}
             <div className="dh-right">
 
+
+                {/* Upload Icon — System Admin only */}
+                {roleLevel === 2 && (
+                    <button
+                        className="dh-icon-btn"
+                        onClick={() => navigate("/upload")}
+                        title="Upload Data"
+                    >
+                        <svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2">
+                            <path d="M21 15v4a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2v-4"/>
+                            <polyline points="17 8 12 3 7 8"/>
+                            <line x1="12" y1="3" x2="12" y2="15"/>
+                        </svg>
+                    </button>
+                )}
+
                 {/* Add User Icon — hidden for ZM */}
                 {roleLevel < 4 && (
                     <button
