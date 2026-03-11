@@ -51,6 +51,11 @@ const apiService = {
                 month:       customParams.month || null,
             }
         }),
+    getRoles:  () => api.get("/getRoles"),
+    getAdmins: () => api.get("/getAdmins"),
+    getUsers:  () => api.get("/getUsers"),
+    addUser:   (data) => api.post("/addUser", data),
+    logout:    () => api.post("/logoutUser"),
 };
 
 export default apiService;
