@@ -3,6 +3,7 @@ import { jwtDecode } from "jwt-decode";
 import Login from "./Pages/Login";
 import DashBoard from "./Pages/DashBoard";
 import UserMaster from "./Pages/UserMaster";
+import UploadPage from "./Pages/UploadPage";
 
 const checkToken = () => {
     const token = localStorage.getItem("token");
@@ -50,6 +51,11 @@ export default function App() {
                 <Route path="/users" element={
                     <PrivateRoute>
                         <UserMaster />
+                    </PrivateRoute>
+                } />
+                <Route path="/upload" element={
+                    <PrivateRoute>
+                        <UploadPage />
                     </PrivateRoute>
                 } />
             </Routes>
