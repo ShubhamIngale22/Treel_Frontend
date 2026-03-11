@@ -56,6 +56,9 @@ const apiService = {
     getUsers:  () => api.get("/getUsers"),
     addUser:   (data) => api.post("/addUser", data),
     logout:    () => api.post("/logoutUser"),
+    uploadExcel: (formData) => api.post("/uploadDealerSellExcel", formData, {
+        headers: { "Content-Type": "multipart/form-data" }
+    }),
 };
 
 export default apiService;
