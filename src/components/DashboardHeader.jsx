@@ -1,5 +1,6 @@
 import { useState, useRef, useEffect } from "react";
 import { useNavigate } from "react-router-dom";
+import api from "../services/api";
 
 const DashboardHeader = () => {
     const navigate = useNavigate();
@@ -20,10 +21,16 @@ const DashboardHeader = () => {
         return () => document.removeEventListener("mousedown", handleClick);
     }, []);
 
-    const handleLogout = () => {
-        localStorage.removeItem("token");
-        localStorage.removeItem("user");
-        navigate("/");
+    const handleLogout = async () => {
+        try {
+            await api.logout();
+        } catch (err) {
+            console.error('[logout] API error:', err.message);
+        } finally {
+            localStorage.removeItem("token");
+            localStorage.removeItem("user");
+            navigate("/");
+        }
     };
 
     return (
