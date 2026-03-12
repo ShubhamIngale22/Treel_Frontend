@@ -7,8 +7,18 @@
 :root {
     /* Layout */
     --header-h:         56px;
+    --icon-size:        20px;
+    --divider-h:        28px;
+    --user-name-font:   13px;
+    --user-role-font:   11px;
+
     --dash-gap:         12px;
     --dash-px:          10px;
+
+    --logout-popup-w:   130px;
+    --logout-font:      11px;
+    --logout-pad:       8px 12px;
+    --pro-log-gap:       8px;
 
     --custom-range-h:   250px;
     --custom-range-w:   240px;
@@ -98,20 +108,30 @@
 @media (min-width: 1920px) {
     :root {
         --header-h:         68px;
+        --icon-size:        30px;
+        --divider-h:        38px;
+        --user-name-font:   17px;
+        --user-role-font:   14px;
+
         --dash-gap:         22px;
         --dash-px:          32px;
 
-        --custom-range-h:   360px;
-        --custom-range-w:   700px;
+        --logout-popup-w:   160px;
+        --logout-font:      18px;
+        --logout-pad:       8px 12px;
+        --pro-log-gap:       10px;
+
+        --custom-range-h:     360px;
+        --custom-range-w:     600px;
         --fs-custom-scroll-h: 40px;
 
-        --chart-line-h:     400px;
-        --chart-bar-h:      550px;
+        --chart-line-h:     370px;
+        --chart-bar-h:      500px;
         --fs-title:         1.4rem;
         --fs-th:            1.1rem;
         --fs-td:            1.1rem;
         --fs-table-p:       0.45rem;
-        --fs-badge:         1.3rem;
+        --fs-badge:         1.1rem;
         --fs-pill:          20px;
         --pill-py:          4px;
         --pill-px:          20px;
@@ -126,15 +146,25 @@
 @media (min-width: 2560px) {
     :root {
         --header-h:         120px;
+        --icon-size:        43px;
+        --divider-h:        55px;
+        --user-name-font:   24px;
+        --user-role-font:   19px;
+
         --dash-gap:         28px;
         --dash-px:          48px;
+
+        --logout-popup-w:   220px;
+        --logout-font:      22px;
+        --logout-pad:       8px 12px;
+        --pro-log-gap:       18px;
 
         --custom-range-h:   450px;
         --custom-range-w:   900px;
         --fs-custom-scroll-h: 40px;
 
-        --chart-line-h:     570px;
-        --chart-bar-h:      670px;
+        --chart-line-h:     510px;
+        --chart-bar-h:      640px;
         --fs-title:         1.7rem;
         --fs-th:            1.5rem;
         --fs-td:            1.5rem;
@@ -154,15 +184,25 @@
 @media (min-width: 3840px) {
     :root {
         --header-h:         150px;
+        --icon-size:        60px;
+        --divider-h:        70px;
+        --user-name-font:   32px;
+        --user-role-font:   24px;
+
         --dash-gap:         40px;
         --dash-px:          67px;
+
+        --logout-popup-w:   270px;
+        --logout-font:      25px;
+        --logout-pad:       8px 12px;
+        --pro-log-gap:       30px;
 
         --custom-range-h:   750px;
         --custom-range-w:   1200px;
         --fs-custom-scroll-h: 80px;
 
-        --chart-line-h:     830px;
-        --chart-bar-h:      1050px;
+        --chart-line-h:     740px;
+        --chart-bar-h:      975px;
         --fs-title:         2.8rem;
         --fs-th:            2.45rem;
         --fs-td:            2.45rem;
@@ -296,6 +336,122 @@
     overflow-y: auto;
 }
 
+/* ── Header right side icons ── */
+.dh-right {
+    display: flex;
+    align-items: center;
+    gap:var(--pro-log-gap);
+    margin-left: auto;
+    flex-shrink: 0;
+}
+
+.dh-icon-btn {
+    background: none;
+    border: none;
+    color: #fff;
+    cursor: pointer;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    padding: 6px;
+    border-radius: 6px;
+    transition: background 0.2s;
+}
+.dh-icon-btn:hover {
+    background: rgba(255,255,255,0.1);
+}
+
+.dh-divider {
+    width: 1px;
+    height: var(--divider-h);
+    background: rgba(255,255,255,0.2);
+}
+
+.dh-profile {
+    display: flex;
+    align-items: center;
+    gap: var(--pro-log-gap);
+    cursor: pointer;
+    position: relative;
+    padding: 4px 8px;
+    border-radius: 6px;
+    transition: background 0.2s;
+}
+.dh-profile:hover {
+    background: rgba(255,255,255,0.1);
+}
+
+.dh-avatar {
+    width: 32px;
+    height: 32px;
+    background: #e24731;
+    border-radius: 50%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    color: #fff;
+    flex-shrink: 0;
+    margin-right: 0.2rem;
+}
+
+.dh-user-info {
+    display: flex;
+    flex-direction: column;
+    line-height: 1.2;
+}
+
+.dh-user-name {
+    font-size: var(--user-name-font);
+    font-weight: 600;
+    color: #fff;
+    white-space: nowrap;
+}
+
+.dh-user-role {
+    font-size: var(--user-role-font);
+    color: rgba(255,255,255,0.6);
+    white-space: nowrap;
+}
+
+.dh-icon-btn img,
+.dh-avatar img,
+.dh-logout-btn img {
+    width:  var(--icon-size);
+    height: var(--icon-size);
+}
+
+.dh-logout-popup {
+    position: absolute;
+    top: calc(100% + 8px);
+    right: 0;
+    background: #1c1d22;
+    border: 1px solid #333;
+    border-radius: 6px;
+    padding: 4px;
+    z-index: 9999;
+    min-width: var(--logout-popup-w);
+    box-shadow: 0 8px 24px rgba(0,0,0,0.4);
+}
+
+.dh-logout-btn {
+    width: 100%;
+    background: none;
+    border: none;
+    color: #fff;
+    padding: var(--logout-pad);
+    font-size: var(--logout-font);
+    cursor: pointer;
+    display: flex;
+    align-items: center;
+    gap: var(--pro-log-gap);
+    border-radius: 4px;
+    transition: background 0.2s;
+}
+
+.dh-logout-btn:hover {
+    background: #e24731;
+}
+
 @media (min-width: 1024px) {
     .dashboard-grid {
         grid-template-columns: 1fr;
@@ -351,111 +507,4 @@
         max-height: unset;
         overflow-y: visible;
     }
-}
-
-/* ── Header right side ── */
-.dh-right {
-    display: flex;
-    align-items: center;
-    gap: 12px;
-    margin-left: auto;
-    flex-shrink: 0;
-}
-
-.dh-icon-btn {
-    background: none;
-    border: none;
-    color: #fff;
-    cursor: pointer;
-    display: flex;
-    align-items: center;
-    justify-content: center;
-    padding: 6px;
-    border-radius: 6px;
-    transition: background 0.2s;
-}
-.dh-icon-btn:hover {
-    background: rgba(255,255,255,0.1);
-}
-
-.dh-divider {
-    width: 1px;
-    height: 28px;
-    background: rgba(255,255,255,0.2);
-}
-
-.dh-profile {
-    display: flex;
-    align-items: center;
-    gap: 8px;
-    cursor: pointer;
-    position: relative;
-    padding: 4px 8px;
-    border-radius: 6px;
-    transition: background 0.2s;
-}
-.dh-profile:hover {
-    background: rgba(255,255,255,0.1);
-}
-
-.dh-avatar {
-    width: 32px;
-    height: 32px;
-    background: #e24731;
-    border-radius: 50%;
-    display: flex;
-    align-items: center;
-    justify-content: center;
-    color: #fff;
-    flex-shrink: 0;
-}
-
-.dh-user-info {
-    display: flex;
-    flex-direction: column;
-    line-height: 1.2;
-}
-
-.dh-user-name {
-    font-size: 13px;
-    font-weight: 600;
-    color: #fff;
-    white-space: nowrap;
-}
-
-.dh-user-role {
-    font-size: 11px;
-    color: rgba(255,255,255,0.6);
-    white-space: nowrap;
-}
-
-.dh-logout-popup {
-    position: absolute;
-    top: calc(100% + 8px);
-    right: 0;
-    background: #1c1d22;
-    border: 1px solid #333;
-    border-radius: 6px;
-    padding: 4px;
-    z-index: 9999;
-    min-width: 120px;
-    box-shadow: 0 8px 24px rgba(0,0,0,0.4);
-}
-
-.dh-logout-btn {
-    width: 100%;
-    background: none;
-    border: none;
-    color: #fff;
-    padding: 8px 12px;
-    font-size: 13px;
-    cursor: pointer;
-    display: flex;
-    align-items: center;
-    gap: 8px;
-    border-radius: 4px;
-    transition: background 0.2s;
-}
-.dh-logout-btn:hover {
-    background: #e24731;
 }
