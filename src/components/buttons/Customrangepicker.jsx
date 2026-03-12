@@ -24,8 +24,8 @@ const VISIBLE = 5;
 const getItemH = () => {
     const w = window.screen.width;
     if (w >= 3840) return 90;
-    if (w >= 2560) return 34;
-    if (w >= 1920) return 29;
+    if (w >= 2560) return 50;
+    if (w >= 1920) return 35;
     if (w >= 1440) return 27;
     return 25;
 };
