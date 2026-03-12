@@ -55,7 +55,7 @@ export default function Login() {
                 {/* logo */}
                 <div className="login-logo-row">
                     <img
-                        src="/treel_logo.png"
+                        src="/icons/treel_logo.png"
                         alt="Treel Logo"
                         className="login-logo-img"
                     />
