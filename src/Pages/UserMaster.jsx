@@ -116,13 +116,13 @@ const AddUserModal = ({ onClose, onSuccess }) => {
                     {/* Email */}
                     <div className="um-form-row">
                         <label className="um-form-label">Email <span className="um-req">*</span></label>
-                        <input className="um-form-input" name="email" placeholder="Enter Email"
+                        <input className="um-form-input" name="email" placeholder="Enter Email" autoComplete="new-email"
                                value={form.email} onChange={handleChange} />
                     </div>
 
                     {/* Mobile */}
                     <div className="um-form-row">
-                        <label className="um-form-label">Mobile <span className="um-req">*</span></label>
+                        <label className="um-form-label">Mobile No <span className="um-req">*</span></label>
                         <input className="um-form-input" name="mobile" placeholder="Enter Mobile No"
                                value={form.mobile} onChange={handleChange} />
                     </div>
@@ -130,8 +130,8 @@ const AddUserModal = ({ onClose, onSuccess }) => {
                     {/* Password */}
                     <div className="um-form-row">
                         <label className="um-form-label">Password <span className="um-req">*</span></label>
-                        <input className="um-form-input" name="password" type="password"
-                               placeholder="Enter Password" value={form.password} onChange={handleChange} />
+                        <input className="um-form-input" name="password" type="password" placeholder="Enter Password"
+                               autoComplete="new-password" value={form.password} onChange={handleChange} />
                     </div>
 
                     {/* Zone — only for ZM */}
