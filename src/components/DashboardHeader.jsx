@@ -64,7 +64,7 @@ const DashboardHeader = () => {
                         onClick={() => navigate("/users")}
                         title="User Master"
                     >
-                        <img src="/icons/addUser.png" alt="Upload" />
+                        <img src="/icons/addUser.png" alt="AddUser" />
                     </button>
                 )}
 
@@ -77,7 +77,7 @@ const DashboardHeader = () => {
                     onClick={() => setShowLogout(!showLogout)}
                 >
                     <div className="dh-avatar">
-                        <img src="/icons/profile.png" alt="Upload" />
+                        <img src="/icons/profile.png" alt="Profile" />
                     </div>
                     <div className="dh-user-info">
                         <span className="dh-user-name">{user?.name || "User"}</span>
