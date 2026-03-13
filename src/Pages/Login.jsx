@@ -61,11 +61,6 @@ export default function Login() {
                     />
                 </div>
 
-                {/* header */}
-                <div className="login-tag">Dashboard Access</div>
-                <div className="login-title">Sign In</div>
-                <div className="login-sub">Enter your credentials to continue</div>
-
                 {/* email / Mobile */}
                 <label className="login-label">Email or Mobile</label>
                 <div className="login-input-wrap">
@@ -141,14 +136,6 @@ export default function Login() {
                         "SIGN IN →"
                     )}
                 </button>
-
-                {/* footer */}
-                <div className="login-divider">
-                    <span className="login-footer-dot" />
-                    <span className="login-footer-text">Secured with JWT Authentication</span>
-                    <span className="login-footer-dot" />
-                </div>
-
             </div>
         </div>
     );
