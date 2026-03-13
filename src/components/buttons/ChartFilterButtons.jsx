@@ -2,7 +2,6 @@ import { useDashboard } from "../context/DashboardContext";
 import CustomRangePicker from "./CustomRangePicker";
 
 const RANGE_OPTIONS = ["MTD", "YTD"];
-
 const RANGE_COLORS = {
     MTD:    "#e24731",
     YTD:    "#e24731",
@@ -13,27 +12,30 @@ export default function GlobalRangeSelector() {
     const { globalRange, setGlobalRange, setCustomParams } = useDashboard();
 
     const handleCustomApply = (fyIndex, monthIndex, fiscalYear, monthObj) => {
-        setCustomParams({ fiscalYear, month: monthObj.value });
+        setCustomParams({
+            fiscalYear,
+            month:      monthObj.value,
+            monthLabel: monthObj.label,
+        });
         setGlobalRange("custom");
     };
 
-    // font size and padding read from CSS tokens — scale automatically
     const pillStyle = (key, isActive) => {
         const color = RANGE_COLORS[key];
         return {
-            border: `1.5px solid ${color}`,
+            border:          `1.5px solid ${color}`,
             backgroundColor: isActive ? color : "transparent",
-            color: isActive ? "#fff" : color,
-            borderRadius: "20px",
-            padding: "var(--pill-py, 3px) var(--pill-px, 14px)",
-            margin:"var(--pill-py, 3px)",
-            fontSize: "var(--fs-pill, 11px)",
-            fontWeight: isActive ? "600" : "500",
-            cursor: "pointer",
-            transition: "all 0.2s ease",
-            boxShadow: isActive ? `0 2px 8px ${color}55` : "none",
-            letterSpacing: "0.4px",
-            lineHeight: 1.4,
+            color:           isActive ? "#fff" : color,
+            borderRadius:    "20px",
+            padding:         "var(--pill-py, 3px) var(--pill-px, 14px)",
+            margin:          "var(--pill-py, 3px)",
+            fontSize:        "var(--fs-pill, 11px)",
+            fontWeight:      isActive ? "600" : "500",
+            cursor:          "pointer",
+            transition:      "all 0.2s ease",
+            boxShadow:       isActive ? `0 2px 8px ${color}55` : "none",
+            letterSpacing:   "0.4px",
+            lineHeight:      1.4,
         };
     };
 
@@ -62,7 +64,6 @@ export default function GlobalRangeSelector() {
                 isActive={globalRange === "custom"}
                 label="Custom"
                 onApply={handleCustomApply}
-                buttonClassName=""
                 buttonStyle={pillStyle("custom", globalRange === "custom")}
             />
         </div>
