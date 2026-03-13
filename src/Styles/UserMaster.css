@@ -284,3 +284,72 @@
 }
 .um-save-btn:hover:not(:disabled) { background: #c93d28; }
 .um-save-btn:disabled { opacity: 0.7; cursor: not-allowed; }
+
+/* ── Action buttons ── */
+.um-actions {
+    display: flex;
+    align-items: center;
+    gap: 8px;
+}
+
+.um-action-btn {
+    background: none;
+    border: none;
+    cursor: pointer;
+    padding: 6px;
+    border-radius: 4px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    transition: background 0.2s, color 0.2s;
+}
+
+.um-action-Deactivate { color: #c62828; }
+.um-action-Deactivate:hover { background: #ffebee; }
+
+.um-action-reactivate { color: #2e7d32; }
+.um-action-reactivate:hover { background: #e8f5e9; }
+
+.um-action-edit { color: #1565c0; }
+.um-action-edit:hover { background: #e3f2fd; }
+
+/* ── Confirm modal ── */
+.um-modal-sm { max-width: 380px; }
+
+.um-modal-header-danger  { background: #e24731; }
+.um-modal-header-success { background: #2e7d32; }
+
+.um-confirm-text {
+    font-size: 14px;
+    color: #444;
+    margin: 0;
+    line-height: 1.6;
+}
+
+/* ── Cancel button ── */
+.um-cancel-btn {
+    background: #f5f5f5;
+    color: #555;
+    border: 1px solid #ddd;
+    padding: 10px 24px;
+    font-size: 14px;
+    font-weight: 500;
+    font-family: 'DM Sans', sans-serif;
+    border-radius: 4px;
+    cursor: pointer;
+    transition: background 0.2s;
+    margin-right: 8px;
+}
+.um-cancel-btn:hover { background: #eee; }
+
+/* ── Save button success variant ── */
+.um-save-btn-success { background: #2e7d32; }
+.um-save-btn-success:hover:not(:disabled) { background: #1b5e20; }
+
+/* ── Optional label ── */
+.um-optional {
+    font-size: 11px;
+    color: #aaa;
+    font-weight: 400;
+    margin-left: 4px;
+}
