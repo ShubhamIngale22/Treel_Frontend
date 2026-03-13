@@ -48,7 +48,7 @@ const apiService = {
                 type:        range,
                 filter:      tableName,
                 fiscal_year: customParams.fiscalYear || null,
-                month:       customParams.month || null,
+                ...(customParams.months?.length > 0 && { months: customParams.months.join(",") }),
             }
         }),
     getRoles:  () => api.get("/getRoles"),
