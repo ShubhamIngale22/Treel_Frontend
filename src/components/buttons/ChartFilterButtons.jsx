@@ -8,7 +8,7 @@ const RANGE_COLORS = {
     custom: "#e24731",
 };
 
-export default function GlobalRangeSelector() {
+export default function ChartFilterButtons() {
     const { globalRange, setGlobalRange, setCustomParams } = useDashboard();
 
     const handleCustomApply = (fyIndex, monthIndex, fiscalYear, monthObj) => {

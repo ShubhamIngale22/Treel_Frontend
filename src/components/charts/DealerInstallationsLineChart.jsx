@@ -2,11 +2,10 @@ import React, { useEffect, useState } from "react";
 import { Line } from "react-chartjs-2";
 import api from "../../services/api";
 import { useDashboard } from "../context/DashboardContext";
-import { MONTHS } from "../buttons/Customrangepicker";
+import { ALL_MONTHS } from "../buttons/Customrangepicker";
 import { getChartConfig } from "./chartConfig";
 
 // Read once at module load — window.screen.width is the physical screen
-// resolution, stable and never changes on resize/zoom
 const { tick: tickSize, legend: legendSize } = getChartConfig();
 const INSTALL_COLOR = "rgba(52, 211, 153, 0.8)";  // Green
 const SELLS_COLOR   = "rgba(239, 68, 68, 0.7)";   // Red
@@ -180,7 +179,7 @@ export default function DealerInstallationsLineChart() {
                         <small style={{ fontSize: "var(--fs-badge, 0.70rem)", color: "#92400e" }}>
                             Results for period : <strong>{customParams.fiscalYear}</strong>
                             {customParams.month && (
-                                <> - <strong>{MONTHS.find(m => m.value === customParams.month)?.label}</strong></>
+                                <> - <strong>{ALL_MONTHS.find(m => m.value === customParams.month)?.label}</strong></>
                             )}
                         </small>
                     </div>

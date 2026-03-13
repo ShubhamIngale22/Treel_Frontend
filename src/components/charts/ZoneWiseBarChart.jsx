@@ -10,7 +10,7 @@ import {
 } from "chart.js";
 import api from "../../services/api";
 import { useDashboard } from "../context/DashboardContext";
-import { MONTHS } from "../buttons/Customrangepicker";
+import { ALL_MONTHS } from "../buttons/Customrangepicker";
 import { getChartConfig } from "./chartConfig";
 
 ChartJS.register(CategoryScale, LinearScale, BarElement, Tooltip, Legend);
@@ -194,7 +194,7 @@ const ZoneWiseBarChart = () => {
                         <small style={{ fontSize: "var(--fs-badge, 0.70rem)", color: "#92400e" }}>
                             Results for period : <strong>{customParams.fiscalYear}</strong>
                             {customParams.month && (
-                                <> - <strong>{MONTHS.find(m => m.value === customParams.month)?.label}</strong></>
+                                <> - <strong>{ALL_MONTHS.find(m => m.value === customParams.month)?.label}</strong></>
                             )}
                         </small>
                     </div>

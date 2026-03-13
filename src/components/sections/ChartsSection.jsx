@@ -1,4 +1,4 @@
-import GlobalRangeSelector from "../buttons/GlobalRangeSelector";
+import ChartFilterButtons from "../buttons/ChartFilterButtons";
 import DealerInstallationsLineChart from "../charts/DealerInstallationsLineChart";
 import ZoneWiseBarChart from "../charts/ZoneWiseBarChart";
 
@@ -6,7 +6,7 @@ const ChartsSection = () => {
     return (
         <div className="charts-section">
             <div className="card shadow-sm rounded-2 p-1">
-                <GlobalRangeSelector />
+                <ChartFilterButtons />
             </div>
             <div className="chart-line-slot">
                 <DealerInstallationsLineChart />

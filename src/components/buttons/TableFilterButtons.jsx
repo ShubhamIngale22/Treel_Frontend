@@ -8,9 +8,9 @@ const TYPE_MAP = {
 };
 
 const filters = [
-    { label: "MTD",      value: "MTD",       color: "#e24731" },
-    { label: "YTD",      value: "YTD",  color: "#e24731" },
-    { label: "All Time", value: "All Time",       color: "#e24731" },
+    { label: "MTD",      value: "MTD",      color: "#e24731" },
+    { label: "YTD",      value: "YTD",      color: "#e24731" },
+    { label: "All Time", value: "All Time", color: "#e24731" },
 ];
 
 const pillStyle = (color, isActive) => ({
@@ -29,8 +29,13 @@ const pillStyle = (color, isActive) => ({
 });
 
 const TableFilterButtons = ({ tableRange, setTableRange, setCustomParams }) => {
+
     const handleCustomApply = (fyIndex, monthIndex, fiscalYear, monthObj) => {
-        setCustomParams({ fiscalYear, month: monthObj.value });
+        setCustomParams({
+            fiscalYear,
+            month:      monthObj.value,
+            monthLabel: monthObj.label,
+        });
         setTableRange("Custom");
     };
 
