@@ -55,10 +55,13 @@ const apiService = {
     getAdmins: () => api.get("/getAdmins"),
     getUsers:  () => api.get("/getUsers"),
     addUser:   (data) => api.post("/addUser", data),
+    updateUser: (userId, data) => api.put(`/updateUser/${userId}`, data),
+    deleteUser: (userId)       => api.delete(`/deleteUser/${userId}`),
     logout:    () => api.post("/logoutUser"),
     uploadExcel: (formData) => api.post("/uploadDealerSellExcel", formData, {
         headers: { "Content-Type": "multipart/form-data" }
     }),
+
 };
 
 export default apiService;
