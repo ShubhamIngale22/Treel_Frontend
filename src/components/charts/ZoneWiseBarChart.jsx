@@ -36,7 +36,9 @@ const ZoneWiseBarChart = () => {
 
         if (globalRange === "custom") {
             params.fiscal_year = customParams.fiscalYear;
-            if (customParams.month) params.month = customParams.month;
+            if (customParams.months?.length > 0) {
+                params.months = customParams.months.join(",");
+            }
         }
 
         setLoading(true);
@@ -193,8 +195,12 @@ const ZoneWiseBarChart = () => {
                         </svg>
                         <small style={{ fontSize: "var(--fs-badge, 0.70rem)", color: "#92400e" }}>
                             Results for period : <strong>{customParams.fiscalYear}</strong>
-                            {customParams.month && (
-                                <> - <strong>{ALL_MONTHS.find(m => m.value === customParams.month)?.label}</strong></>
+                            {customParams.months?.length > 0 && (
+                                <> | <strong>
+                                    {customParams.months.length === 1
+                                        ? ALL_MONTHS.find(m => m.value === customParams.months[0])?.label
+                                        : `${customParams.months.length} months selected`}
+                                </strong></>
                             )}
                         </small>
                     </div>

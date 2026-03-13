@@ -1,4 +1,4 @@
-import CustomRangePicker from "./Customrangepicker";
+import CustomRangePicker from "./CustomRangePicker";
 
 const TYPE_MAP = {
     "MTD":      "MTD",
@@ -30,12 +30,9 @@ const pillStyle = (color, isActive) => ({
 
 const TableFilterButtons = ({ tableRange, setTableRange, setCustomParams }) => {
 
-    const handleCustomApply = (fyIndex, monthIndex, fiscalYear, monthObj) => {
-        setCustomParams({
-            fiscalYear,
-            month:      monthObj.value,
-            monthLabel: monthObj.label,
-        });
+    // fiscalYear: string, months: array
+    const handleCustomApply = (fiscalYear, months) => {
+        setCustomParams({ fiscalYear, months });
         setTableRange("Custom");
     };
 

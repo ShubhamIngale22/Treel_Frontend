@@ -10,13 +10,9 @@ const RANGE_COLORS = {
 
 export default function ChartFilterButtons() {
     const { globalRange, setGlobalRange, setCustomParams } = useDashboard();
-
-    const handleCustomApply = (fyIndex, monthIndex, fiscalYear, monthObj) => {
-        setCustomParams({
-            fiscalYear,
-            month:      monthObj.value,
-            monthLabel: monthObj.label,
-        });
+    // fiscalYear: string, months: array of month values []
+    const handleCustomApply = (fiscalYear, months) => {
+        setCustomParams({ fiscalYear, months });
         setGlobalRange("custom");
     };
 
@@ -48,12 +44,8 @@ export default function ChartFilterButtons() {
                         key={key}
                         onClick={() => setGlobalRange(key)}
                         style={pillStyle(key, isActive)}
-                        onMouseEnter={e => {
-                            if (!isActive) e.currentTarget.style.backgroundColor = RANGE_COLORS[key] + "15";
-                        }}
-                        onMouseLeave={e => {
-                            if (!isActive) e.currentTarget.style.backgroundColor = "transparent";
-                        }}
+                        onMouseEnter={e => { if (!isActive) e.currentTarget.style.backgroundColor = RANGE_COLORS[key] + "15"; }}
+                        onMouseLeave={e => { if (!isActive) e.currentTarget.style.backgroundColor = "transparent"; }}
                     >
                         {key}
                     </button>
