@@ -297,7 +297,7 @@ const ConfirmModal = ({ user, onClose, onConfirm, loading }) => {
                         onClick={onConfirm}
                         disabled={loading}
                     >
-                        {loading ? "Please wait..." : isActive ? "Delete" : "Reactivate"}
+                        {loading ? "Please wait..." : isActive ? "Deactivate" : "Reactivate"}
                     </button>
                 </div>
             </div>
