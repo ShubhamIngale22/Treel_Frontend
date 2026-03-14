@@ -1,5 +1,135 @@
 @import url('https://fonts.googleapis.com/css2?family=Bebas+Neue&family=DM+Sans:wght@300;400;500;600&family=DM+Mono:wght@400;500&display=swap');
 
+/* ── Login CSS variables ── */
+:root {
+    --login-card-w:       430px;
+    --login-card-px:      40px;
+    --login-card-py:      48px;
+    --login-input-h:      30px;
+    --login-input-py:     13px;
+    --login-input-fs:     14px;
+    --login-btn-py:       15px;
+    --login-btn-fs:       12px;
+    --login-btn-ls:       3px;
+    --login-label-fs:     10px;
+    --login-label-ls:     3px;
+    --login-logo-h:       40px;
+    --login-logo-name-fs: 18px;
+    --login-logo-name-ls: 5px;
+    --login-logo-mb:      36px;
+    --login-error-fs:     13px;
+    --login-accent-h:     3px;
+}
+
+/* ── 1440px ── */
+@media (min-width: 1440px) {
+    :root {
+        --login-card-w:       480px;
+        --login-card-px:      44px;
+        --login-card-py:      52px;
+        --login-input-h:      40px;
+        --login-input-py:     14px;
+        --login-input-fs:     14px;
+        --login-btn-py:       16px;
+        --login-btn-fs:       12px;
+        --login-btn-ls:       3px;
+        --login-label-fs:     10px;
+        --login-logo-h:       42px;
+        --login-logo-name-fs: 19px;
+        --login-logo-mb:      38px;
+        --login-error-fs:     13px;
+    }
+}
+
+/* ── 1530px ── */
+@media (min-width: 1530px) {
+    :root {
+        --login-card-w:       500px;
+        --login-card-px:      46px;
+        --login-card-py:      54px;
+        --login-input-h:      40px;
+        --login-input-py:     14px;
+        --login-input-fs:     14px;
+        --login-btn-py:       16px;
+        --login-btn-fs:       13px;
+        --login-btn-ls:       3px;
+        --login-label-fs:     11px;
+        --login-logo-h:       44px;
+        --login-logo-name-fs: 20px;
+        --login-logo-mb:      40px;
+    }
+}
+
+/* ── 1920px ── */
+@media (min-width: 1920px) {
+    :root {
+        --login-card-w:       600px;
+        --login-card-px:      60px;
+        --login-card-py:      68px;
+        --login-input-h:      48px;
+        --login-input-py:     18px;
+        --login-input-fs:     18px;
+        --login-btn-py:       20px;
+        --login-btn-fs:       18px;
+        --login-btn-ls:       4px;
+        --login-label-fs:     14px;
+        --login-label-ls:     4px;
+        --login-logo-h:       56px;
+        --login-logo-name-fs: 26px;
+        --login-logo-name-ls: 6px;
+        --login-logo-mb:      52px;
+        --login-error-fs:     16px;
+        --login-accent-h:     4px;
+    }
+}
+
+/* ── 2560px ── */
+@media (min-width: 2560px) {
+    :root {
+        --login-card-w:       1000px;
+        --login-card-px:      90px;
+        --login-card-py:      100px;
+        --login-input-h:      60px;
+        --login-input-py:     10px;
+        --login-input-fs:     30px;
+        --login-btn-py:       28px;
+        --login-btn-fs:       22px;
+        --login-btn-ls:       5px;
+        --login-label-fs:     18px;
+        --login-label-ls:     5px;
+        --login-logo-h:       76px;
+        --login-logo-name-fs: 36px;
+        --login-logo-name-ls: 8px;
+        --login-logo-mb:      72px;
+        --login-error-fs:     20px;
+        --login-accent-h:     5px;
+    }
+}
+
+/* ── 3840px ── */
+@media (min-width: 3840px) {
+    :root {
+        --login-card-w:       1200px;
+        --login-card-px:      130px;
+        --login-card-py:      140px;
+        --login-input-h:      80px;
+        --login-input-py:     36px;
+        --login-input-fs:     40px;
+        --login-btn-py:       38px;
+        --login-btn-fs:       30px;
+        --login-btn-ls:       7px;
+        --login-label-fs:     24px;
+        --login-label-ls:     6px;
+        --login-logo-h:       110px;
+        --login-logo-name-fs: 52px;
+        --login-logo-name-ls: 12px;
+        --login-logo-mb:      100px;
+        --login-error-fs:     28px;
+        --login-accent-h:     7px;
+    }
+}
+
+/* ── Base styles ── */
 .login-root {
     min-height: 100vh;
     background: #0d0d0d;
@@ -11,7 +141,6 @@
     overflow: hidden;
 }
 
-/* subtle grid bg */
 .login-root::before {
     content: '';
     position: absolute;
@@ -23,7 +152,6 @@
     pointer-events: none;
 }
 
-/* glow blob */
 .login-root::after {
     content: '';
     position: absolute;
@@ -43,8 +171,8 @@
     border: 1px solid #222;
     border-radius: 0;
     width: 100%;
-    max-width: 440px;
-    padding: 48px 40px;
+    max-width:  var(--login-card-w);
+    padding:    var(--login-card-py) var(--login-card-px);
     box-shadow: 0 24px 80px rgba(0,0,0,0.6);
     animation: cardIn 0.5s ease both;
 }
@@ -54,10 +182,49 @@
     to   { opacity: 1; transform: translateY(0); }
 }
 
+.login-accent-bar {
+    position: absolute;
+    top: 0;
+    left: 0;
+    right: 0;
+    height: var(--login-accent-h);
+    background: #e24731;
+}
+
+.login-logo-row {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    margin-bottom: var(--login-logo-mb);
+}
+
+.login-logo-img {
+    height: var(--login-logo-h);
+    width: auto;
+    object-fit: contain;
+}
+
+.login-logo-icon {
+    width: 36px;
+    height: 36px;
+    background: #e24731;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    flex-shrink: 0;
+}
+
+.login-logo-name {
+    font-family: 'Bebas Neue', sans-serif;
+    font-size:      var(--login-logo-name-fs);
+    letter-spacing: var(--login-logo-name-ls);
+    color: #fff;
+}
+
 .login-label {
-    font-family: 'DM Mono', monospace;
-    font-size: 10px;
-    letter-spacing: 3px;
+    font-family:    'DM Mono', monospace;
+    font-size:      var(--login-label-fs);
+    letter-spacing: var(--login-label-ls);
     color: #ffffff;
     text-transform: uppercase;
     margin-bottom: 8px;
@@ -76,8 +243,9 @@
     border: 1px solid #222 !important;
     border-radius: 0 !important;
     color: #fff !important;
-    padding: 13px 44px 13px 16px;
-    font-size: 14px;
+    padding:   var(--login-input-py)  var(--login-input-py) ;
+    font-size: var(--login-input-fs);
+    height:var(--login-input-h) ;
     font-family: 'DM Sans', sans-serif;
     transition: border-color 0.2s;
     outline: none;
@@ -113,7 +281,7 @@
     background: rgba(226,71,49,0.08);
     border: 1px solid rgba(226,71,49,0.25);
     color: #e24731;
-    font-size: 13px;
+    font-size: var(--login-error-fs);
     padding: 10px 14px;
     display: flex;
     align-items: center;
@@ -128,11 +296,11 @@
     color: #fff !important;
     border: none !important;
     border-radius: 0 !important;
-    padding: 15px;
+    padding:        var(--login-btn-py) 0;
     font-family: 'DM Mono', monospace;
-    font-size: 12px;
+    font-size:      var(--login-btn-fs);
     font-weight: 500;
-    letter-spacing: 3px;
+    letter-spacing: var(--login-btn-ls);
     text-transform: uppercase;
     cursor: pointer;
     transition: background 0.2s, transform 0.1s;
@@ -169,45 +337,8 @@
     flex-shrink: 0;
 }
 
-.login-accent-bar {
-    position: absolute;
-    top: 0;
-    left: 0;
-    right: 0;
-    height: 3px;
-    background: #e24731;
-}
-
-.login-logo-row {
-    display: flex;
-    align-items: center;
-    justify-content: center;
-    margin-bottom: 36px;
-}
-
-.login-logo-img {
-    height: 40px;
-    width: auto;
-    object-fit: contain;
-}
-
-.login-logo-icon {
-    width: 36px;
-    height: 36px;
-    background: #e24731;
-    display: flex;
-    align-items: center;
-    justify-content: center;
-    flex-shrink: 0;
-}
-
-.login-logo-name {
-    font-family: 'Bebas Neue', sans-serif;
-    font-size: 18px;
-    letter-spacing: 5px;
-    color: #fff;
-}
-
-@media (max-width: 480px) {
-    .login-card { padding: 36px 24px; }
+/* ── Reduced motion ── */
+@media (prefers-reduced-motion: reduce) {
+    .login-card    { animation: none; }
+    .login-spinner { animation-duration: 1.5s; }
 }
