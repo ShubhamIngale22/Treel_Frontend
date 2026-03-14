@@ -65,7 +65,7 @@ export default function Login() {
                 <label className="login-label">Email or Mobile</label>
                 <div className="login-input-wrap">
                     <input
-                        className="login-input form-control"
+                        className="login-input"
                         type="text"
                         name="emailOrMobile"
                         placeholder="admin@example.com"
@@ -80,7 +80,7 @@ export default function Login() {
                 <label className="login-label">Password</label>
                 <div className="login-input-wrap">
                     <input
-                        className="login-input form-control"
+                        className="login-input "
                         type={showPassword ? "text" : "password"}
                         name="password"
                         placeholder="••••••••"
