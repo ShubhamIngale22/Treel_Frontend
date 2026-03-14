@@ -20,8 +20,12 @@
     --logout-pad:       8px 12px;
     --pro-log-gap:       8px;
 
-    --custom-range-h:   250px;
-    --custom-range-w:   240px;
+
+    --custom-range-w:   280px;
+    --custom-range-h:   auto;
+    --fy-col-w:         80px;    /*financial column width*/
+    --month-chip-fs:    9px;
+    --month-chip-pad:   3px 2px;
     --fs-custom-scroll-h: 25px;
 
     /* Chart slot heights */
@@ -58,9 +62,12 @@
         --dash-gap:         16px;
         --dash-px:          20px;
 
-        --custom-range-h:   270px;
-        --custom-range-w:   400px;
-        --fs-custom-scroll-h: 27px;
+        --custom-range-w:     400px;
+        --fy-col-w:           90px;
+        --fs-custom-scroll-h: 27px;  /* ← keep as is */
+        --month-chip-fs:      11px;
+        --month-chip-pad:     4px 4px;
+
 
         --chart-line-h:     300px;
         --chart-bar-h:      370px;
@@ -84,9 +91,11 @@
         --dash-gap:         14px;
         --dash-px:          14px;
 
-        --custom-range-h:   250px;
-        --custom-range-w:   500px;
-        --fs-custom-scroll-h: 25px;
+        --custom-range-w:     460px;
+        --fy-col-w:           90px;
+        --fs-custom-scroll-h: 29px;  /* ← keep as is */
+        --month-chip-fs:      11px;
+        --month-chip-pad:     4px 4px;
 
         --chart-line-h:     255px;
         --chart-bar-h:      300px;
@@ -121,9 +130,11 @@
         --logout-pad:       8px 12px;
         --pro-log-gap:       10px;
 
-        --custom-range-h:     360px;
         --custom-range-w:     600px;
-        --fs-custom-scroll-h: 40px;
+        --fy-col-w:           120px;
+        --fs-custom-scroll-h: 40px;  /* ← keep as is */
+        --month-chip-fs:      16px;
+        --month-chip-pad:     6px 4px;
 
         --chart-line-h:     370px;
         --chart-bar-h:      500px;
@@ -159,9 +170,11 @@
         --logout-pad:       8px 12px;
         --pro-log-gap:       18px;
 
-        --custom-range-h:   450px;
-        --custom-range-w:   900px;
-        --fs-custom-scroll-h: 40px;
+        --custom-range-w:     900px;
+        --fy-col-w:           160px;
+        --fs-custom-scroll-h: 53px;  /* ← keep as is */
+        --month-chip-fs:      22px;
+        --month-chip-pad:     8px 6px;
 
         --chart-line-h:     510px;
         --chart-bar-h:      640px;
@@ -197,9 +210,11 @@
         --logout-pad:       8px 12px;
         --pro-log-gap:       30px;
 
-        --custom-range-h:   750px;
-        --custom-range-w:   1200px;
-        --fs-custom-scroll-h: 80px;
+        --custom-range-w:     1200px;
+        --fy-col-w:           240px;
+        --fs-custom-scroll-h: 80px;  /* ← keep as is */
+        --month-chip-fs:      32px;
+        --month-chip-pad:     12px 8px;
 
         --chart-line-h:     740px;
         --chart-bar-h:      975px;
