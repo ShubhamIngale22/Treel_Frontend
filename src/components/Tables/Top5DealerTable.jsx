@@ -30,7 +30,7 @@ const Top5DealerTable = ({ range, customParams = {} }) => {
 
     return (
         <TableShell
-            title="Top 5 Dealers"
+            title={`Top ${data.length} Top Dealers`}
             columns={COLUMNS}
             data={data}
             refreshing={refreshing}

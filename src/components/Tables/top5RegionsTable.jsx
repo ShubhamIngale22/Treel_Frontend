@@ -30,7 +30,7 @@ const Top5RegionsTable = ({ range, customParams = {} }) => {
 
     return (
         <TableShell
-            title="Top 6 Regions"
+            title={`Top ${data.length} Regions`}
             columns={COLUMNS}
             data={data}
             refreshing={refreshing}

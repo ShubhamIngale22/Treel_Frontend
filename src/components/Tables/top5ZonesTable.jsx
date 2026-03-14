@@ -30,7 +30,7 @@ const Top5ZonesTable = ({ range, customParams = {} }) => {
 
     return (
         <TableShell
-            title="Top 6 Zone"
+            title={ data.length === 1 ? "Zone Performance":`Top ${data.length} Zone`}
             columns={COLUMNS}
             data={data}
             refreshing={refreshing}

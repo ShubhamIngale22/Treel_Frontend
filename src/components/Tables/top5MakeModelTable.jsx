@@ -31,7 +31,7 @@ const Top5MakeModelTable = ({ range, customParams = {} }) => {
 
     return (
         <TableShell
-            title="Top 5 Make-Model"
+            title={`Top ${data.length} Make-Model`}
             columns={COLUMNS}
             data={data}
             refreshing={refreshing}
