@@ -48,27 +48,31 @@ const getAvailableMonths = (fyString) => {
     });
 };
 
-const getItemH = () => {
-    const w = window.screen.width;
-    if (w >= 3840) return 90;
-    if (w >= 2560) return 50;
-    if (w >= 1920) return 35;
-    if (w >= 1440) return 27;
-    return 25;
-};
-const ITEM_H = getItemH();
-const VISIBLE = 5;
+const VISIBLE = 4;
 
-// ── Drum-roll scroll picker ───────────────────────────────────────────────────
+// Read CSS var lazily inside the component
+function useItemH() {
+    const [itemH, setItemH] = React.useState(32);
+    React.useEffect(() => {
+        const h = parseInt(getComputedStyle(document.documentElement).getPropertyValue("--fs-custom-scroll-h"));
+        if (!isNaN(h) && h > 0) setItemH(h);
+    }, []);
+    return itemH;
+}
+
 function ScrollPicker({ items, selectedIndex, onChange, getLabel }) {
+    const ITEM_H      = useItemH();
+    const PAD         = Math.floor(VISIBLE / 2);
     const listRef     = useRef(null);
     const isDragging  = useRef(false);
     const startY      = useRef(0);
     const startScroll = useRef(0);
 
+    // Re-runs when ITEM_H resolves from NaN → real value
     useEffect(() => {
-        if (listRef.current) listRef.current.scrollTop = selectedIndex * ITEM_H;
-    }, [selectedIndex]);
+        if (listRef.current && ITEM_H > 0)
+            listRef.current.scrollTop = selectedIndex * ITEM_H;
+    }, [selectedIndex, ITEM_H]);
 
     const snapToNearest = useCallback(() => {
         if (!listRef.current) return;
@@ -76,7 +80,7 @@ function ScrollPicker({ items, selectedIndex, onChange, getLabel }) {
         const clamped = Math.max(0, Math.min(idx, items.length - 1));
         listRef.current.scrollTop = clamped * ITEM_H;
         onChange(clamped);
-    }, [items.length, onChange]);
+    }, [ITEM_H, items.length, onChange]);  //
 
     const onMouseDown  = (e) => { isDragging.current = true; startY.current = e.clientY; startScroll.current = listRef.current.scrollTop; e.preventDefault(); };
     const onMouseMove  = (e) => { if (!isDragging.current) return; listRef.current.scrollTop = startScroll.current - (e.clientY - startY.current); };
@@ -87,16 +91,19 @@ function ScrollPicker({ items, selectedIndex, onChange, getLabel }) {
 
     return (
         <div style={{ position: "relative", width: "100%", height: "90%", userSelect: "none" }}>
-            <div style={{ position: "absolute", top: 0, left: 0, right: 0, height: "var(--fs-custom-scroll-h)", background: "linear-gradient(to bottom, white 30%, transparent)", zIndex: 2, pointerEvents: "none" }} />
-            <div style={{ position: "absolute", bottom: 0, left: 0, right: 0, height: "var(--fs-custom-scroll-h)", background: "linear-gradient(to top, white 30%, transparent)", zIndex: 2, pointerEvents: "none" }} />
-            <div style={{ position: "absolute", top: "50%", left: 0, right: 0, transform: "translateY(-50%)", height: "var(--fs-custom-scroll-h)", background: "rgba(248,215,122,0.25)", borderTop: "1.5px solid #f8d77a", borderBottom: "1.5px solid #f8d77a", borderRadius: "6px", zIndex: 1, pointerEvents: "none" }} />
+            {/* fade top */}
+            <div style={{ position: "absolute", top: 0, left: 0, right: 0, height: ITEM_H, background: "linear-gradient(to bottom, white 30%, transparent)", zIndex: 2, pointerEvents: "none" }} />
+            {/* fade bottom */}
+            <div style={{ position: "absolute", bottom: 0, left: 0, right: 0, height: ITEM_H, background: "linear-gradient(to top, white 30%, transparent)", zIndex: 2, pointerEvents: "none" }} />
+            {/* highlight band — ITEM_H tall, not CSS var */}
+            <div style={{ position: "absolute", top: "50%", left: 0, right: 0, transform: "translateY(-50%)", height: ITEM_H, background: "rgba(248,215,122,0.25)", borderTop: "1.5px solid #f8d77a", borderBottom: "1.5px solid #f8d77a", borderRadius: "6px", zIndex: 1, pointerEvents: "none" }} />
             <div
                 ref={listRef}
                 onMouseDown={onMouseDown} onMouseMove={onMouseMove} onMouseUp={onMouseUp} onMouseLeave={onMouseUp}
                 onTouchStart={onTouchStart} onTouchMove={onTouchMove} onTouchEnd={onTouchEnd}
                 style={{ height: ITEM_H * VISIBLE, overflowY: "scroll", scrollbarWidth: "none", msOverflowStyle: "none", cursor: "grab", position: "relative", zIndex: 0 }}
             >
-                <div style={{ height: ITEM_H * 2 }} />
+                <div style={{ height: ITEM_H * PAD }} />
                 {items.map((item, i) => {
                     const isSelected = i === selectedIndex;
                     return (
@@ -108,7 +115,7 @@ function ScrollPicker({ items, selectedIndex, onChange, getLabel }) {
                         </div>
                     );
                 })}
-                <div style={{ height: ITEM_H * 2 }} />
+                <div style={{ height: ITEM_H * PAD }} />
             </div>
             <style>{`div::-webkit-scrollbar { display: none; }`}</style>
         </div>
@@ -119,19 +126,19 @@ function ScrollPicker({ items, selectedIndex, onChange, getLabel }) {
 function MonthChips({ availableMonths, selectedMonths, onToggle, onSelectAll, onClear }) {
     return (
         <div>
-            {/* Select All / Clear */}
+            {/* Select All / Clear All */}
             <div style={{ display: "flex", justifyContent: "space-between", marginBottom: "6px" }}>
                 <button
                     onClick={onSelectAll}
-                    style={{ fontSize: "var(--fs-badge, 0.70rem)", background: "none", border: "none", color: "#e24731", cursor: "pointer", fontWeight: 600, padding: 0 }}
+                    style={{ fontSize: "var(--month-chip-fs, var(--fs-badge))", background: "none", border: "none", color: "#e24731", cursor: "pointer", fontWeight: 600, padding: 0 }}
                 >
                     Select All
                 </button>
                 <button
                     onClick={onClear}
-                    style={{ fontSize: "var(--fs-badge, 0.70rem)", background: "none", border: "none", color: "#94a3b8", cursor: "pointer", padding: 0 }}
+                    style={{ fontSize: "var(--month-chip-fs, var(--fs-badge))", background: "none", border: "none", color: "#94a3b8", cursor: "pointer", padding: 0 }}
                 >
-                    Clear
+                    Clear All
                 </button>
             </div>
 
@@ -147,8 +154,8 @@ function MonthChips({ availableMonths, selectedMonths, onToggle, onSelectAll, on
                             onClick={() => isAvailable && onToggle(m.value)}
                             disabled={!isAvailable}
                             style={{
-                                padding: "4px 2px",
-                                fontSize: "var(--fs-badge, 0.70rem)",
+                                padding: "var(--month-chip-pad, 4px 2px)",
+                                fontSize: "var(--month-chip-fs, var(--fs-badge, 0.70rem))",
                                 fontWeight: isSelected ? 600 : 400,
                                 border: `1.5px solid ${isSelected ? "#e24731" : isAvailable ? "#e2e8f0" : "#f1f5f9"}`,
                                 borderRadius: "6px",
@@ -239,11 +246,12 @@ export default function CustomRangePicker({ isActive, label, onApply, buttonStyl
                     <polyline points="6 9 12 15 18 9" />
                 </svg>
             </button>
-
+            {/*maxHeight: "80vh"*/}
             {showCustom && (
                 <div
                     className="position-absolute bg-white border rounded-3 shadow"
-                    style={{ top: "calc(100% + 6px)", right: 0, zIndex: 100, width: "var(--custom-range-w)", padding: "var(--card-p, 0.75rem)" }}
+                    style={{ top: "calc(100% + 6px)", right: 0, zIndex: 100, width: "var(--custom-range-w)",
+                             padding: "var(--card-p, 0.75rem)",height:"var(--custom-range-h) ", overflowY: "auto" }}
                 >
                     <p className="text-uppercase fw-semibold text-secondary mb-3"
                        style={{ fontSize: "var(--fs-badge, 0.70rem)", letterSpacing: "0.6px" }}>
@@ -252,7 +260,7 @@ export default function CustomRangePicker({ isActive, label, onApply, buttonStyl
 
                     <div className="d-flex gap-3 mb-3">
                         {/* Financial Year picker */}
-                        <div style={{ flex: "0 0 90px" }}>
+                        <div style={{ flex: `0 0 var(--fy-col-w, 90px)` }}>
                             <p className="text-center fw-semibold text-secondary mb-1"
                                style={{ fontSize: "var(--fs-badge, 0.70rem)" }}>
                                 Financial Year
@@ -286,7 +294,8 @@ export default function CustomRangePicker({ isActive, label, onApply, buttonStyl
                     <button
                         onClick={handleApply}
                         className="btn btn-warning w-100 fw-semibold"
-                        style={{ fontSize: "var(--fs-pill, 11px)", borderRadius: "8px", padding: "var(--pill-py, 3px) var(--pill-px, 14px)" }}
+                        style={{ fontSize: "var(--fs-pill, 11px)", borderRadius: "8px",zIndex:10,
+                            display: "block",padding: "var(--pill-py, 3px) var(--pill-px, 14px)" }}
                     >
                         Apply
                     </button>
